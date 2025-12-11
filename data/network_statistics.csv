@@ -1,0 +1,10 @@
+Metric,Value
+Total Community Areas,77
+Network Edges,453
+Network Density,0.1548
+Clustering Coefficient,0.7023
+Connected Components,3
+Largest Component Size,75
+Louvain Communities Detected,3
+Modularity,0.6074
+Similarity Threshold,0.7
