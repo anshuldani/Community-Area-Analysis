@@ -1,9 +1,9 @@
 # CS 579 FINAL PROJECT - COMPLETE SUBMISSION WITH REAL CRIME DATA
-## Mapping Chicago's Hidden Communities: Network Analysis of All 77 Neighborhoods
+## Mapping Chicago's Hidden Communities: Network Analysis of All 77 Neighbourhoods
 
 **Author:** Anshul Dani (A20580060)  
 **Course:** CS 579 - Online Social Network Analysis  
-**Date:** December 2025
+**Date:** 10th December 2025
 
 ---
 
@@ -11,7 +11,7 @@
 
 **Extended HW4 from 6 to ALL 77 Chicago Community Areas with REAL crime data integration!**
 
-### 🔥 KEY RESULTS:
+### KEY RESULTS:
 - **7 variables analyzed** (6 demographic + 1 crime rate)
 - **212,655 real crimes** from Chicago Data Portal 2020
 - **3 natural communities detected** (vs. 77 official CAs)
@@ -22,7 +22,7 @@
 
 ---
 
-## 📊 THE 7 VARIABLES
+## THE 7 VARIABLES
 
 1. **Median Household Income** ($)
 2. **% Bachelor's Degree or Higher**
@@ -30,11 +30,11 @@
 4. **% White (Non-Hispanic)**
 5. **% Black/African American**
 6. **% Hispanic/Latino**
-7. **Crime Rate per 1,000 Residents** ← REAL DATA!
+7. **Crime Rate per 1,000 Residents**
 
 ---
 
-## 📈 SCALE ACHIEVEMENT
+## SCALE ACHIEVEMENT
 
 | Metric | HW4 | Final Project | Increase |
 |--------|-----|---------------|----------|
@@ -46,7 +46,7 @@
 
 ---
 
-## 🔍 CRIME DATA FINDINGS
+## CRIME DATA FINDINGS
 
 ### **Crime Statistics:**
 - **Total crimes:** 212,655 across Chicago (2020)
@@ -66,7 +66,7 @@
 
 ---
 
-## 🕸️ NETWORK RESULTS
+## NETWORK RESULTS
 
 ### **With Crime Data (7 variables):**
 - **Communities:** 3 detected
@@ -83,7 +83,7 @@
 
 ---
 
-## 📁 SUBMISSION CONTENTS (33 FILES)
+## SUBMISSION CONTENTS (33 FILES)
 
 ### **Code (6 scripts):**
 1. Data collection (77 CAs)
@@ -134,7 +134,7 @@
 
 ---
 
-## 🎯 THE 3 DETECTED COMMUNITIES
+## THE 3 DETECTED COMMUNITIES
 
 ### **Community 0: North/Affluent (28 CAs)**
 - **Income:** $91,592 avg
@@ -156,7 +156,7 @@
 
 ---
 
-## 🔬 KEY INSIGHTS FOR REPORT
+## KEY INSIGHTS FOR REPORT
 
 ### **1. Crime Validates Demographic Divisions**
 "Adding crime data resulted in only 4% of Community Areas changing assignments, demonstrating that crime patterns align with and validate the demographic community structure."
@@ -172,11 +172,11 @@
 
 ---
 
-## 🚀 HOW TO RUN
+## HOW TO RUN
 
 ```bash
 # Install dependencies
-pip install pandas numpy matplotlib seaborn networkx scikit-learn
+pip install -r requirements.txt
 
 # Run complete analysis (with real crime)
 python code/final_project_phase1_data_collection.py
@@ -188,7 +188,7 @@ python code/final_project_static_maps.py
 
 ---
 
-## 📊 FILES TO INCLUDE IN REPORT
+## FILES TO INCLUDE IN REPORT
 
 **9 Essential Visualizations:**
 
@@ -204,7 +204,7 @@ python code/final_project_static_maps.py
 
 ---
 
-## ✅ PROJECT REQUIREMENTS MET
+## PROJECT REQUIREMENTS MET
 
 - [x] 77 Community Areas (entire Chicago) ✓
 - [x] Census data (2020 ACS, 2,162 block groups) ✓
@@ -218,7 +218,7 @@ python code/final_project_static_maps.py
 
 ---
 
-## 🏆 WHY THIS PROJECT IS EXCELLENT
+## WHY THIS PROJECT IS EXCELLENT
 
 1. **Real Crime Data:** 212,655 actual crimes from Chicago Data Portal
 2. **Massive Scale:** 13× HW4 (77 vs. 6 CAs, 2,162 vs. 137 BGs)
@@ -227,27 +227,5 @@ python code/final_project_static_maps.py
 5. **Practical Value:** -0.602 income-crime correlation = policy implications
 6. **Complete Package:** Code + Data + Maps + Crime + Documentation
 
----
-
-## 📝 NEXT STEP: CREATE REPORT
-
-**Include these findings:**
-- 3 communities from 77 official CAs
-- Modularity 0.6029 (very strong)
-- **212,655 real crimes analyzed**
-- **Crime validates structure (only 4% changed)**
-- **Income-crime correlation: -0.602**
-- Community 1 has 3× higher crime
-- 13× scale increase from HW4
-- All 9 visualizations!
-
----
-
-**Total Files:** 33  
-**Total Size:** ~25 MB  
-**Ready for Submission:** YES! ✅
-
----
-
-**Last Updated:** December 2025  
-**Status:** COMPLETE with real crime data integration
+## Author
+Anshul Dani
