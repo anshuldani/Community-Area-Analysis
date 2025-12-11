@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_bb7ece29dba57d73ddfbf682b99f783a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+         top: 10px; right: 10px; width: 220px; height: 160px; 
+         background-color: white; border:2px solid grey; z-index:9999; 
+         font-size:14px; padding: 10px">
+         <p style="margin: 0; font-weight: bold;">Detected Communities</p>
+         <hr style="margin: 5px 0;">
+         <p style="margin: 3px 0;"><span style="color: #1f77b4;">●</span> Community 0: North/Affluent (28 CAs)</p>
+         <p style="margin: 3px 0; font-size: 11px; margin-left: 15px;">Crime: 51.8 per 1,000</p>
+         <p style="margin: 3px 0;"><span style="color: #ff7f0e;">●</span> Community 1: South/Low-Income (27 CAs)</p>
+         <p style="margin: 3px 0; font-size: 11px; margin-left: 15px;">Crime: 161.1 per 1,000</p>
+         <p style="margin: 3px 0;"><span style="color: #2ca02c;">●</span> Community 2: Southwest/Working (20 CAs)</p>
+         <p style="margin: 3px 0; font-size: 11px; margin-left: 15px;">Crime: 51.1 per 1,000</p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_bb7ece29dba57d73ddfbf682b99f783a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_bb7ece29dba57d73ddfbf682b99f783a = L.map(
+                "map_bb7ece29dba57d73ddfbf682b99f783a",
+                {
+                    center: [41.88, -87.63],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_35422c35a62819e2780923b295e24f1d = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_35422c35a62819e2780923b295e24f1d.addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+            var circle_marker_d8c78ef78f1c60fb49c81fe11ecfebee = L.circleMarker(
+                [42.01, -87.67],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_3f182095c462cc3e41b623a37d9b8a91 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b704134b4185526ab14187f289d3b43a = $(`<div id="html_b704134b4185526ab14187f289d3b43a" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Rogers Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 1 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 55,643</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,701</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 25.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 68.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 59.4 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,307</p>                              </div>             </div>`)[0];
+                popup_3f182095c462cc3e41b623a37d9b8a91.setContent(html_b704134b4185526ab14187f289d3b43a);
+            
+        
+
+        circle_marker_d8c78ef78f1c60fb49c81fe11ecfebee.bindPopup(popup_3f182095c462cc3e41b623a37d9b8a91)
+        ;
+
+        
+    
+    
+            var circle_marker_1fb20289df0ececae283c14bceea6e94 = L.circleMarker(
+                [42.0, -87.69],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_113c6e09a249c2dd811e9e13fc1705f7 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8bb7ff14e5913f1e009338f38d45bd92 = $(`<div id="html_8bb7ff14e5913f1e009338f38d45bd92" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">West Ridge</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 2 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 78,763</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,021</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 28.9%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 64.9%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 39.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,110</p>                              </div>             </div>`)[0];
+                popup_113c6e09a249c2dd811e9e13fc1705f7.setContent(html_8bb7ff14e5913f1e009338f38d45bd92);
+            
+        
+
+        circle_marker_1fb20289df0ececae283c14bceea6e94.bindPopup(popup_113c6e09a249c2dd811e9e13fc1705f7)
+        ;
+
+        
+    
+    
+            var circle_marker_7ac09c5174b9b5df08dd8d198c1333e5 = L.circleMarker(
+                [41.97, -87.66],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_f7c5d7a2c5624237f70b3270bc0dc550 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d85e2ccb915e42093e52972521369ddf = $(`<div id="html_d85e2ccb915e42093e52972521369ddf" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Uptown</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 3 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 59,453</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,657</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 25.2%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 73.3%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 49.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,963</p>                              </div>             </div>`)[0];
+                popup_f7c5d7a2c5624237f70b3270bc0dc550.setContent(html_d85e2ccb915e42093e52972521369ddf);
+            
+        
+
+        circle_marker_7ac09c5174b9b5df08dd8d198c1333e5.bindPopup(popup_f7c5d7a2c5624237f70b3270bc0dc550)
+        ;
+
+        
+    
+    
+            var circle_marker_831f56333d9141286d21ab93c0c00836 = L.circleMarker(
+                [41.97, -87.68],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_2712743f8c4817f71afc4efa3e096115 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_be12f8c98099ee54f3eb3433d1927ebb = $(`<div id="html_be12f8c98099ee54f3eb3433d1927ebb" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Lincoln Square</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 4 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 41,350</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $82,567</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 23.7%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 79.1%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 45.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,893</p>                              </div>             </div>`)[0];
+                popup_2712743f8c4817f71afc4efa3e096115.setContent(html_be12f8c98099ee54f3eb3433d1927ebb);
+            
+        
+
+        circle_marker_831f56333d9141286d21ab93c0c00836.bindPopup(popup_2712743f8c4817f71afc4efa3e096115)
+        ;
+
+        
+    
+    
+            var circle_marker_7c53d17b53468f50baf799fb1b5a2cce = L.circleMarker(
+                [41.96, -87.68],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_4e307c6f20138e89345d7c4166e3bf51 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_dcd64f9cb80fc84f05ceea531ce4ef07 = $(`<div id="html_dcd64f9cb80fc84f05ceea531ce4ef07" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">North Center</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 5 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 36,142</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $140,789</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 21.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.8%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 82.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 32.1 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,161</p>                              </div>             </div>`)[0];
+                popup_4e307c6f20138e89345d7c4166e3bf51.setContent(html_dcd64f9cb80fc84f05ceea531ce4ef07);
+            
+        
+
+        circle_marker_7c53d17b53468f50baf799fb1b5a2cce.bindPopup(popup_4e307c6f20138e89345d7c4166e3bf51)
+        ;
+
+        
+    
+    
+            var circle_marker_d592fe1b856613874d382f93719cf15b = L.circleMarker(
+                [41.95, -87.65],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_6111030a01279cdfdba3551c1a664dd9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f05c7206c9c7719cc201dbf2a1dc0a39 = $(`<div id="html_f05c7206c9c7719cc201dbf2a1dc0a39" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Lake View</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 6 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 101,428</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $103,865</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 21.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 83.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 42.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 4,312</p>                              </div>             </div>`)[0];
+                popup_6111030a01279cdfdba3551c1a664dd9.setContent(html_f05c7206c9c7719cc201dbf2a1dc0a39);
+            
+        
+
+        circle_marker_d592fe1b856613874d382f93719cf15b.bindPopup(popup_6111030a01279cdfdba3551c1a664dd9)
+        ;
+
+        
+    
+    
+            var circle_marker_a8eaef7bd3489b27f95618090d0003ad = L.circleMarker(
+                [41.92, -87.64],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_6d0fce46ed295929d1f3f20fa989b583 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_46d995e6cda5cdeb58f3a585e44e9b60 = $(`<div id="html_46d995e6cda5cdeb58f3a585e44e9b60" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Lincoln Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 7 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 69,568</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $131,583</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 21.7%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 2.9%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 76.2%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 41.3 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,874</p>                              </div>             </div>`)[0];
+                popup_6d0fce46ed295929d1f3f20fa989b583.setContent(html_46d995e6cda5cdeb58f3a585e44e9b60);
+            
+        
+
+        circle_marker_a8eaef7bd3489b27f95618090d0003ad.bindPopup(popup_6d0fce46ed295929d1f3f20fa989b583)
+        ;
+
+        
+    
+    
+            var circle_marker_21c732f6fbf97082b586d808fb81b976 = L.circleMarker(
+                [41.9, -87.63],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_ebbdfa8d0fd446ec616b0e1a9e4975d5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a96d1864b4b135984edbab786fcc99af = $(`<div id="html_a96d1864b4b135984edbab786fcc99af" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Near North Side</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 8 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 98,528</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $118,905</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 25.5%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 2.2%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 76.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 74.3 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 7,321</p>                              </div>             </div>`)[0];
+                popup_ebbdfa8d0fd446ec616b0e1a9e4975d5.setContent(html_a96d1864b4b135984edbab786fcc99af);
+            
+        
+
+        circle_marker_21c732f6fbf97082b586d808fb81b976.bindPopup(popup_ebbdfa8d0fd446ec616b0e1a9e4975d5)
+        ;
+
+        
+    
+    
+            var circle_marker_efaca8fa08ed5e6cdae81a8bdd960492 = L.circleMarker(
+                [42.01, -87.81],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_0beaa70e7bb691edfb866410c1f92955 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6f8908eb6a641ff5fd442bbbeb312fc2 = $(`<div id="html_6f8908eb6a641ff5fd442bbbeb312fc2" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Edison Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 9 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 11,002</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $126,711</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 24.2%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.3%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 73.3%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 24.4 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 268</p>                              </div>             </div>`)[0];
+                popup_0beaa70e7bb691edfb866410c1f92955.setContent(html_6f8908eb6a641ff5fd442bbbeb312fc2);
+            
+        
+
+        circle_marker_efaca8fa08ed5e6cdae81a8bdd960492.bindPopup(popup_0beaa70e7bb691edfb866410c1f92955)
+        ;
+
+        
+    
+    
+            var circle_marker_515501484451e12df12cde339fa695da = L.circleMarker(
+                [42.0, -87.79],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_f608dad45eec91de1c637fd80c7b4af0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_62ec01372441bb33c6e93b86bee00235 = $(`<div id="html_62ec01372441bb33c6e93b86bee00235" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Norwood Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 10 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 38,088</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $97,165</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 28.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.4%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 64.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 27.3 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,039</p>                              </div>             </div>`)[0];
+                popup_f608dad45eec91de1c637fd80c7b4af0.setContent(html_62ec01372441bb33c6e93b86bee00235);
+            
+        
+
+        circle_marker_515501484451e12df12cde339fa695da.bindPopup(popup_f608dad45eec91de1c637fd80c7b4af0)
+        ;
+
+        
+    
+    
+            var circle_marker_9fffdf284f712278c5c44c5d75386a85 = L.circleMarker(
+                [41.98, -87.77],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_63099d1aa2ceb148724ee5b53f6675ce = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_eeb4b572425654f1cf64cda5ec824cfc = $(`<div id="html_eeb4b572425654f1cf64cda5ec824cfc" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Jefferson Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 11 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 27,194</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $81,032</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 27.2%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 69.2%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 36.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,001</p>                              </div>             </div>`)[0];
+                popup_63099d1aa2ceb148724ee5b53f6675ce.setContent(html_eeb4b572425654f1cf64cda5ec824cfc);
+            
+        
+
+        circle_marker_9fffdf284f712278c5c44c5d75386a85.bindPopup(popup_63099d1aa2ceb148724ee5b53f6675ce)
+        ;
+
+        
+    
+    
+            var circle_marker_73e49b0f29b0cfeff80b8d56cb29a9a3 = L.circleMarker(
+                [41.98, -87.79],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_896f58e8bd1c787a712e81360fd6a771 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4e318e5151885aeca0076b3b07395afc = $(`<div id="html_4e318e5151885aeca0076b3b07395afc" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Forest Glen</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 12 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 19,928</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $131,997</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 25.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 66.1%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 27.9 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 556</p>                              </div>             </div>`)[0];
+                popup_896f58e8bd1c787a712e81360fd6a771.setContent(html_4e318e5151885aeca0076b3b07395afc);
+            
+        
+
+        circle_marker_73e49b0f29b0cfeff80b8d56cb29a9a3.bindPopup(popup_896f58e8bd1c787a712e81360fd6a771)
+        ;
+
+        
+    
+    
+            var circle_marker_f212a4e7af948b4c299033177e24b143 = L.circleMarker(
+                [41.98, -87.71],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_c7a8552e1c74a38926718591aad4da14 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d86e4b6c2d56e44f2a00d8f6ea14e2c9 = $(`<div id="html_d86e4b6c2d56e44f2a00d8f6ea14e2c9" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">North Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 13 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 18,806</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $65,392</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 26.9%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 60.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 41.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 781</p>                              </div>             </div>`)[0];
+                popup_c7a8552e1c74a38926718591aad4da14.setContent(html_d86e4b6c2d56e44f2a00d8f6ea14e2c9);
+            
+        
+
+        circle_marker_f212a4e7af948b4c299033177e24b143.bindPopup(popup_c7a8552e1c74a38926718591aad4da14)
+        ;
+
+        
+    
+    
+            var circle_marker_ae20cbbddf0d73184d40cec4bd6c30a4 = L.circleMarker(
+                [41.97, -87.71],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_4850d6e876f52c02b85cae6e43073e6c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_86ae8487583ea9fbd9b61044115240fb = $(`<div id="html_86ae8487583ea9fbd9b61044115240fb" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Albany Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 14 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 49,280</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $69,901</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 25.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 9.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 71.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 41.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,031</p>                              </div>             </div>`)[0];
+                popup_4850d6e876f52c02b85cae6e43073e6c.setContent(html_86ae8487583ea9fbd9b61044115240fb);
+            
+        
+
+        circle_marker_ae20cbbddf0d73184d40cec4bd6c30a4.bindPopup(popup_4850d6e876f52c02b85cae6e43073e6c)
+        ;
+
+        
+    
+    
+            var circle_marker_f88c0dfa56e3e9d512ae210640706731 = L.circleMarker(
+                [41.96, -87.76],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_512478d70893c116f179e5a33a373e51 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_412ed04d160bb4601f61f1a06a0c5670 = $(`<div id="html_412ed04d160bb4601f61f1a06a0c5670" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Portage Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 15 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 63,919</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $75,172</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 27.2%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 69.2%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 40.9 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,617</p>                              </div>             </div>`)[0];
+                popup_512478d70893c116f179e5a33a373e51.setContent(html_412ed04d160bb4601f61f1a06a0c5670);
+            
+        
+
+        circle_marker_f88c0dfa56e3e9d512ae210640706731.bindPopup(popup_512478d70893c116f179e5a33a373e51)
+        ;
+
+        
+    
+    
+            var circle_marker_e439c1b169dd4d234248f34a5d5d53ef = L.circleMarker(
+                [41.95, -87.73],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_d4902017c51af263a12e476f9aba2d52 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0cd5402dc8a1d378cc848c5e0701e2e4 = $(`<div id="html_0cd5402dc8a1d378cc848c5e0701e2e4" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Irving Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 16 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 53,604</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $77,199</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 26.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 7.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 74.7%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 41.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,208</p>                              </div>             </div>`)[0];
+                popup_d4902017c51af263a12e476f9aba2d52.setContent(html_0cd5402dc8a1d378cc848c5e0701e2e4);
+            
+        
+
+        circle_marker_e439c1b169dd4d234248f34a5d5d53ef.bindPopup(popup_d4902017c51af263a12e476f9aba2d52)
+        ;
+
+        
+    
+    
+            var circle_marker_a077e97cca94f0b5d76a263ecb908f9d = L.circleMarker(
+                [41.94, -87.79],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_fca8b2e659de6e7473ddd1df27c1e491 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_559afa035828ee94d3731d088fe3c6f2 = $(`<div id="html_559afa035828ee94d3731d088fe3c6f2" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Dunning</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 17 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 43,587</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $75,569</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 30.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 66.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 31.6 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,377</p>                              </div>             </div>`)[0];
+                popup_fca8b2e659de6e7473ddd1df27c1e491.setContent(html_559afa035828ee94d3731d088fe3c6f2);
+            
+        
+
+        circle_marker_a077e97cca94f0b5d76a263ecb908f9d.bindPopup(popup_fca8b2e659de6e7473ddd1df27c1e491)
+        ;
+
+        
+    
+    
+            var circle_marker_1c22cb0be09a122e83a01250b24ddb6d = L.circleMarker(
+                [41.93, -87.79],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_a7d4f464e69c9c285b70a5a1c6d5e643 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_49fd4a5b4d0615c6dd08bbdb19e7f890 = $(`<div id="html_49fd4a5b4d0615c6dd08bbdb19e7f890" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Montclare</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 18 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 14,382</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $68,844</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 33.5%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 8.9%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 63.9%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 39.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 564</p>                              </div>             </div>`)[0];
+                popup_a7d4f464e69c9c285b70a5a1c6d5e643.setContent(html_49fd4a5b4d0615c6dd08bbdb19e7f890);
+            
+        
+
+        circle_marker_1c22cb0be09a122e83a01250b24ddb6d.bindPopup(popup_a7d4f464e69c9c285b70a5a1c6d5e643)
+        ;
+
+        
+    
+    
+            var circle_marker_94497d371bcf5333fe5e5a54fe7cb900 = L.circleMarker(
+                [41.93, -87.75],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_35d5e34b75a027d873d0b4269e2186fd = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_3a1ce4cd8ca6de9e22e0587ca67350b7 = $(`<div id="html_3a1ce4cd8ca6de9e22e0587ca67350b7" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Belmont Cragin</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 19 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 78,788</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,799</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 27.7%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 10.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 66.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 48.1 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,793</p>                              </div>             </div>`)[0];
+                popup_35d5e34b75a027d873d0b4269e2186fd.setContent(html_3a1ce4cd8ca6de9e22e0587ca67350b7);
+            
+        
+
+        circle_marker_94497d371bcf5333fe5e5a54fe7cb900.bindPopup(popup_35d5e34b75a027d873d0b4269e2186fd)
+        ;
+
+        
+    
+    
+            var circle_marker_2f35dbf53426b6a602e1bd0849b01106 = L.circleMarker(
+                [41.92, -87.73],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_583eef8762461282972c8b5fd2594111 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_de20512f9834fe440a7af6c4f6ec82ff = $(`<div id="html_de20512f9834fe440a7af6c4f6ec82ff" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Hermosa</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 20 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 23,163</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $54,914</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 28.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 10.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 68.2%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 51.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,193</p>                              </div>             </div>`)[0];
+                popup_583eef8762461282972c8b5fd2594111.setContent(html_de20512f9834fe440a7af6c4f6ec82ff);
+            
+        
+
+        circle_marker_2f35dbf53426b6a602e1bd0849b01106.bindPopup(popup_583eef8762461282972c8b5fd2594111)
+        ;
+
+        
+    
+    
+            var circle_marker_25a67e011ce1f4eb5b45095338babc4a = L.circleMarker(
+                [41.94, -87.71],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_90ab8f49476527bee3296d2bcdff2286 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_12a70f52f1e87deeb7aeb2271134a7e8 = $(`<div id="html_12a70f52f1e87deeb7aeb2271134a7e8" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Avondale</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 21 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 37,360</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $78,279</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 25.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.3%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 75.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 49.0 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,830</p>                              </div>             </div>`)[0];
+                popup_90ab8f49476527bee3296d2bcdff2286.setContent(html_12a70f52f1e87deeb7aeb2271134a7e8);
+            
+        
+
+        circle_marker_25a67e011ce1f4eb5b45095338babc4a.bindPopup(popup_90ab8f49476527bee3296d2bcdff2286)
+        ;
+
+        
+    
+    
+            var circle_marker_3bc29521773d4381075759525601be1e = L.circleMarker(
+                [41.92, -87.71],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_5e30347bb4bbcc358849a31cf45a26da = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ba1a13684a37af567f87097a9859ab19 = $(`<div id="html_ba1a13684a37af567f87097a9859ab19" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Logan Square</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 22 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 72,305</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $91,002</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 22.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 80.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 51.9 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,753</p>                              </div>             </div>`)[0];
+                popup_5e30347bb4bbcc358849a31cf45a26da.setContent(html_ba1a13684a37af567f87097a9859ab19);
+            
+        
+
+        circle_marker_3bc29521773d4381075759525601be1e.bindPopup(popup_5e30347bb4bbcc358849a31cf45a26da)
+        ;
+
+        
+    
+    
+            var circle_marker_eb16229fa1814ace2ae9160468055d27 = L.circleMarker(
+                [41.9, -87.71],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_6e70d3cc3def55219f2af40f0f833f35 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ad7a22b40a5228042cec510bbae3a1c8 = $(`<div id="html_ad7a22b40a5228042cec510bbae3a1c8" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Humboldt Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 23 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 54,401</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $44,799</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 34.7%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 10.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 65.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 122.4 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 6,656</p>                              </div>             </div>`)[0];
+                popup_6e70d3cc3def55219f2af40f0f833f35.setContent(html_ad7a22b40a5228042cec510bbae3a1c8);
+            
+        
+
+        circle_marker_eb16229fa1814ace2ae9160468055d27.bindPopup(popup_6e70d3cc3def55219f2af40f0f833f35)
+        ;
+
+        
+    
+    
+            var circle_marker_3d945e7f3bda378b9a1c62c8a93bdd10 = L.circleMarker(
+                [41.89, -87.68],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_e434a0eacb73abe1a96bcc700c93d29d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a40ad08d37e27ca8b870ffc8f2db0a31 = $(`<div id="html_a40ad08d37e27ca8b870ffc8f2db0a31" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">West Town</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 24 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 80,383</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $113,973</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 21.2%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 83.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 65.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 5,290</p>                              </div>             </div>`)[0];
+                popup_e434a0eacb73abe1a96bcc700c93d29d.setContent(html_a40ad08d37e27ca8b870ffc8f2db0a31);
+            
+        
+
+        circle_marker_3d945e7f3bda378b9a1c62c8a93bdd10.bindPopup(popup_e434a0eacb73abe1a96bcc700c93d29d)
+        ;
+
+        
+    
+    
+            var circle_marker_6746fb97878b233ba7a3cbb11ee10f4f = L.circleMarker(
+                [41.9, -87.76],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_09e90f644ffa87c52a7277d456a80036 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8fa7124d45bae8690d1bcb6e4731f38c = $(`<div id="html_8fa7124d45bae8690d1bcb6e4731f38c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Austin</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 25 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 95,073</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $43,866</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 36.4%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 8.2%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 58.1%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 134.6 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 12,798</p>                              </div>             </div>`)[0];
+                popup_09e90f644ffa87c52a7277d456a80036.setContent(html_8fa7124d45bae8690d1bcb6e4731f38c);
+            
+        
+
+        circle_marker_6746fb97878b233ba7a3cbb11ee10f4f.bindPopup(popup_09e90f644ffa87c52a7277d456a80036)
+        ;
+
+        
+    
+    
+            var circle_marker_1d022f95362dcd5d5f4f54ab876df3fb = L.circleMarker(
+                [41.88, -87.73],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_b9fe5fc43a597750e9a0edbcc56a8202 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a250aadc9d6f547313cbea79f4f7cf9a = $(`<div id="html_a250aadc9d6f547313cbea79f4f7cf9a" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">West Garfield Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 26 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 16,489</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $29,947</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 27.2%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.4%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 53.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 302.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 4,993</p>                              </div>             </div>`)[0];
+                popup_b9fe5fc43a597750e9a0edbcc56a8202.setContent(html_a250aadc9d6f547313cbea79f4f7cf9a);
+            
+        
+
+        circle_marker_1d022f95362dcd5d5f4f54ab876df3fb.bindPopup(popup_b9fe5fc43a597750e9a0edbcc56a8202)
+        ;
+
+        
+    
+    
+            var circle_marker_2e039cb5178e619df71bf261d52a6e32 = L.circleMarker(
+                [41.88, -87.71],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_79de69c84224d0c918286a406c062dd0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c00238e8b10d5f6b1058bd25ccd0ccd1 = $(`<div id="html_c00238e8b10d5f6b1058bd25ccd0ccd1" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">East Garfield Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 27 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 18,075</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $26,127</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 25.9%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 54.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 207.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,750</p>                              </div>             </div>`)[0];
+                popup_79de69c84224d0c918286a406c062dd0.setContent(html_c00238e8b10d5f6b1058bd25ccd0ccd1);
+            
+        
+
+        circle_marker_2e039cb5178e619df71bf261d52a6e32.bindPopup(popup_79de69c84224d0c918286a406c062dd0)
+        ;
+
+        
+    
+    
+            var circle_marker_6410ce1a172a278ea45cd9057fb062c1 = L.circleMarker(
+                [41.88, -87.64],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_08c754343a7bd3284c3bc02f1a85fc1d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4d8d57e35cb10315f83ee1a8548f3f89 = $(`<div id="html_4d8d57e35cb10315f83ee1a8548f3f89" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Near West Side</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 28 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 62,816</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $91,015</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 22.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 2.9%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 72.3%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 103.9 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 6,528</p>                              </div>             </div>`)[0];
+                popup_08c754343a7bd3284c3bc02f1a85fc1d.setContent(html_4d8d57e35cb10315f83ee1a8548f3f89);
+            
+        
+
+        circle_marker_6410ce1a172a278ea45cd9057fb062c1.bindPopup(popup_08c754343a7bd3284c3bc02f1a85fc1d)
+        ;
+
+        
+    
+    
+            var circle_marker_e2cf9673297eff929bd07a0ca29b72aa = L.circleMarker(
+                [41.86, -87.72],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_0437fd8e5b4b9ddaa125be2237c6031a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6ed7df0eca49b42583df1fb13b04326e = $(`<div id="html_6ed7df0eca49b42583df1fb13b04326e" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">North Lawndale</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 29 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 31,310</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $36,257</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 34.5%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 8.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 55.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 231.1 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 7,237</p>                              </div>             </div>`)[0];
+                popup_0437fd8e5b4b9ddaa125be2237c6031a.setContent(html_6ed7df0eca49b42583df1fb13b04326e);
+            
+        
+
+        circle_marker_e2cf9673297eff929bd07a0ca29b72aa.bindPopup(popup_0437fd8e5b4b9ddaa125be2237c6031a)
+        ;
+
+        
+    
+    
+            var circle_marker_85244b834027289ca18fbebbec0c2e11 = L.circleMarker(
+                [41.86, -87.7],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_e99777bc42161bd4b27be19d62facbc7 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_97048d9dc2f9bc5ca3304918755b3f46 = $(`<div id="html_97048d9dc2f9bc5ca3304918755b3f46" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">South Lawndale</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 30 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 70,235</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $38,429</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 36.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 14.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 49.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 51.1 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,591</p>                              </div>             </div>`)[0];
+                popup_e99777bc42161bd4b27be19d62facbc7.setContent(html_97048d9dc2f9bc5ca3304918755b3f46);
+            
+        
+
+        circle_marker_85244b834027289ca18fbebbec0c2e11.bindPopup(popup_e99777bc42161bd4b27be19d62facbc7)
+        ;
+
+        
+    
+    
+            var circle_marker_1ab49c5413a75794b8939b546d3d1749 = L.circleMarker(
+                [41.86, -87.66],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_46a2481e4139d8bd036637bc5ce260f6 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8840097cdec0681dbccd8700b2cdce20 = $(`<div id="html_8840097cdec0681dbccd8700b2cdce20" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Lower West Side</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 31 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 32,672</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $61,145</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 26.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 9.2%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 71.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 62.7 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,048</p>                              </div>             </div>`)[0];
+                popup_46a2481e4139d8bd036637bc5ce260f6.setContent(html_8840097cdec0681dbccd8700b2cdce20);
+            
+        
+
+        circle_marker_1ab49c5413a75794b8939b546d3d1749.bindPopup(popup_46a2481e4139d8bd036637bc5ce260f6)
+        ;
+
+        
+    
+    
+            var circle_marker_68232f33670606d8b304fba2143edf91 = L.circleMarker(
+                [41.88, -87.63],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_538f9a0c46162ebe15f98328ec9b4ea5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_446a96a8d7f7ba69adbc8c1f27b56aff = $(`<div id="html_446a96a8d7f7ba69adbc8c1f27b56aff" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Loop</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 32 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 39,327</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $115,244</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 22.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 1.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 72.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 130.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 5,121</p>                              </div>             </div>`)[0];
+                popup_538f9a0c46162ebe15f98328ec9b4ea5.setContent(html_446a96a8d7f7ba69adbc8c1f27b56aff);
+            
+        
+
+        circle_marker_68232f33670606d8b304fba2143edf91.bindPopup(popup_538f9a0c46162ebe15f98328ec9b4ea5)
+        ;
+
+        
+    
+    
+            var circle_marker_7a618dd594b07fc38ade27931b1276c3 = L.circleMarker(
+                [41.85, -87.62],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_c8badfbe0209c8655df0671fbda3b6bf = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1149b4de862e4dbd2fef3a2987ba7216 = $(`<div id="html_1149b4de862e4dbd2fef3a2987ba7216" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Near South Side</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 33 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 26,376</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $118,467</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 30.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 2.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 77.3%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 61.6 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,624</p>                              </div>             </div>`)[0];
+                popup_c8badfbe0209c8655df0671fbda3b6bf.setContent(html_1149b4de862e4dbd2fef3a2987ba7216);
+            
+        
+
+        circle_marker_7a618dd594b07fc38ade27931b1276c3.bindPopup(popup_c8badfbe0209c8655df0671fbda3b6bf)
+        ;
+
+        
+    
+    
+            var circle_marker_959bb3a7af19729ac09ad5e4a7189999 = L.circleMarker(
+                [41.83, -87.63],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_a66a747d4a3bcedf687297b82d954893 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_56a8517e622766f1e8f62c5509a7bfd1 = $(`<div id="html_56a8517e622766f1e8f62c5509a7bfd1" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Armour Square</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 34 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 13,401</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $48,821</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 22.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 14.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 55.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 63.4 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 849</p>                              </div>             </div>`)[0];
+                popup_a66a747d4a3bcedf687297b82d954893.setContent(html_56a8517e622766f1e8f62c5509a7bfd1);
+            
+        
+
+        circle_marker_959bb3a7af19729ac09ad5e4a7189999.bindPopup(popup_a66a747d4a3bcedf687297b82d954893)
+        ;
+
+        
+    
+    
+            var circle_marker_84e37e9f844b331f36125349001a2bf0 = L.circleMarker(
+                [41.82, -87.62],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_a42d1d0a69d71606d06a7cc7ccb6c560 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e270729ff4c3ec30d4b911cf3d387d3c = $(`<div id="html_e270729ff4c3ec30d4b911cf3d387d3c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Douglas</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 35 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 21,450</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $46,190</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 22.4%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 54.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 102.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,192</p>                              </div>             </div>`)[0];
+                popup_a42d1d0a69d71606d06a7cc7ccb6c560.setContent(html_e270729ff4c3ec30d4b911cf3d387d3c);
+            
+        
+
+        circle_marker_84e37e9f844b331f36125349001a2bf0.bindPopup(popup_a42d1d0a69d71606d06a7cc7ccb6c560)
+        ;
+
+        
+    
+    
+            var circle_marker_337361120a0577d6d64d1808243c3dc2 = L.circleMarker(
+                [41.82, -87.6],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_3bc8d535c8005141f9b35b0289fe2aaa = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b5253507f6f655c651b49e82c9811f90 = $(`<div id="html_b5253507f6f655c651b49e82c9811f90" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Oakland</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 36 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 6,973</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $41,743</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 21.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 71.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 89.6 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 625</p>                              </div>             </div>`)[0];
+                popup_3bc8d535c8005141f9b35b0289fe2aaa.setContent(html_b5253507f6f655c651b49e82c9811f90);
+            
+        
+
+        circle_marker_337361120a0577d6d64d1808243c3dc2.bindPopup(popup_3bc8d535c8005141f9b35b0289fe2aaa)
+        ;
+
+        
+    
+    
+            var circle_marker_7fff3a0c5f56c40b16fb15cf79ca7db7 = L.circleMarker(
+                [41.81, -87.63],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_3ff837bc2064d82a81c4a865f755a7e0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d76522b790e3457a6e282baef7a990a3 = $(`<div id="html_d76522b790e3457a6e282baef7a990a3" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Fuller Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 37 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 2,149</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $17,944</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 29.3%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 11.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 40.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 318.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 685</p>                              </div>             </div>`)[0];
+                popup_3ff837bc2064d82a81c4a865f755a7e0.setContent(html_d76522b790e3457a6e282baef7a990a3);
+            
+        
+
+        circle_marker_7fff3a0c5f56c40b16fb15cf79ca7db7.bindPopup(popup_3ff837bc2064d82a81c4a865f755a7e0)
+        ;
+
+        
+    
+    
+            var circle_marker_c76d7cdbb070ba35a19f09dffab73418 = L.circleMarker(
+                [41.81, -87.62],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_9112e2ae15ddb88cfdea44eefc37bb1d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_bfc485f8f5c629ea447f52086000d4b5 = $(`<div id="html_bfc485f8f5c629ea447f52086000d4b5" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Grand Boulevard</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 38 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 23,669</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $47,260</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 23.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 63.1%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 125.1 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,962</p>                              </div>             </div>`)[0];
+                popup_9112e2ae15ddb88cfdea44eefc37bb1d.setContent(html_bfc485f8f5c629ea447f52086000d4b5);
+            
+        
+
+        circle_marker_c76d7cdbb070ba35a19f09dffab73418.bindPopup(popup_9112e2ae15ddb88cfdea44eefc37bb1d)
+        ;
+
+        
+    
+    
+            var circle_marker_66a3923a93d446df9f187fd1cc95cfda = L.circleMarker(
+                [41.8, -87.59],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_6566b942981df4dbec1be1b697e2b90f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0138a6337c3ae86b78606784acdff401 = $(`<div id="html_0138a6337c3ae86b78606784acdff401" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Kenwood</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 39 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 17,972</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $59,319</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 22.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.3%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 63.4%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 68.0 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,222</p>                              </div>             </div>`)[0];
+                popup_6566b942981df4dbec1be1b697e2b90f.setContent(html_0138a6337c3ae86b78606784acdff401);
+            
+        
+
+        circle_marker_66a3923a93d446df9f187fd1cc95cfda.bindPopup(popup_6566b942981df4dbec1be1b697e2b90f)
+        ;
+
+        
+    
+    
+            var circle_marker_9d1d814aa6f6958435356e06d89636ce = L.circleMarker(
+                [41.79, -87.62],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_409fb03fb327a97163da8d8507098f07 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a198bfd05530b85d4cd6ed8155ae311b = $(`<div id="html_a198bfd05530b85d4cd6ed8155ae311b" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Washington Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 40 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 10,427</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $25,793</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 26.4%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 57.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 189.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,973</p>                              </div>             </div>`)[0];
+                popup_409fb03fb327a97163da8d8507098f07.setContent(html_a198bfd05530b85d4cd6ed8155ae311b);
+            
+        
+
+        circle_marker_9d1d814aa6f6958435356e06d89636ce.bindPopup(popup_409fb03fb327a97163da8d8507098f07)
+        ;
+
+        
+    
+    
+            var circle_marker_8c8b42333f2d6d3bc798ed1d7f880ae4 = L.circleMarker(
+                [41.79, -87.6],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_a9e7c19a3a85f30934a85b322eba1853 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e977b96233827e26109645b481311b53 = $(`<div id="html_e977b96233827e26109645b481311b53" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Hyde Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 41 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 27,722</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,631</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 23.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.3%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 62.3%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 53.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,475</p>                              </div>             </div>`)[0];
+                popup_a9e7c19a3a85f30934a85b322eba1853.setContent(html_e977b96233827e26109645b481311b53);
+            
+        
+
+        circle_marker_8c8b42333f2d6d3bc798ed1d7f880ae4.bindPopup(popup_a9e7c19a3a85f30934a85b322eba1853)
+        ;
+
+        
+    
+    
+            var circle_marker_b098c7f59c64bba4eaf129d68e9acd05 = L.circleMarker(
+                [41.78, -87.6],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_50cbadf8742da53e2af8b570890b34b7 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b6ebc21776d9bf2287d11165b984230e = $(`<div id="html_b6ebc21776d9bf2287d11165b984230e" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Woodlawn</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 42 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 24,967</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $40,109</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 28.7%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 59.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 118.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,959</p>                              </div>             </div>`)[0];
+                popup_50cbadf8742da53e2af8b570890b34b7.setContent(html_b6ebc21776d9bf2287d11165b984230e);
+            
+        
+
+        circle_marker_b098c7f59c64bba4eaf129d68e9acd05.bindPopup(popup_50cbadf8742da53e2af8b570890b34b7)
+        ;
+
+        
+    
+    
+            var circle_marker_c04bc13b5960ac8db0284eec147793fd = L.circleMarker(
+                [41.76, -87.58],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_00a57e1f17188d849c1acf250f00946d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8c77ff29859cb8df9693cbe7c3509770 = $(`<div id="html_8c77ff29859cb8df9693cbe7c3509770" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">South Shore</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 43 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 50,275</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $37,591</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 32.2%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 64.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 155.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 7,834</p>                              </div>             </div>`)[0];
+                popup_00a57e1f17188d849c1acf250f00946d.setContent(html_8c77ff29859cb8df9693cbe7c3509770);
+            
+        
+
+        circle_marker_c04bc13b5960ac8db0284eec147793fd.bindPopup(popup_00a57e1f17188d849c1acf250f00946d)
+        ;
+
+        
+    
+    
+            var circle_marker_a66eabcc8528adaaed06ac12cd8105a9 = L.circleMarker(
+                [41.75, -87.61],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_d51525fa5edb3b2fd2e941ad76e7c93d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c8f4776d9502dcbd003dafa0de82b8f2 = $(`<div id="html_c8f4776d9502dcbd003dafa0de82b8f2" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Chatham</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 44 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 31,363</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $44,007</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 33.3%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 56.7%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 174.3 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 5,468</p>                              </div>             </div>`)[0];
+                popup_d51525fa5edb3b2fd2e941ad76e7c93d.setContent(html_c8f4776d9502dcbd003dafa0de82b8f2);
+            
+        
+
+        circle_marker_a66eabcc8528adaaed06ac12cd8105a9.bindPopup(popup_d51525fa5edb3b2fd2e941ad76e7c93d)
+        ;
+
+        
+    
+    
+            var circle_marker_fdbc0dbab956609791e96fb7e782dddc = L.circleMarker(
+                [41.74, -87.59],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_0760477587011ba8280363cbfd5c5e2d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_cd4d074e0431d56f2d5b8f79d8684f25 = $(`<div id="html_cd4d074e0431d56f2d5b8f79d8684f25" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Avalon Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 45 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 9,629</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $52,359</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 39.7%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 57.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 126.0 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,213</p>                              </div>             </div>`)[0];
+                popup_0760477587011ba8280363cbfd5c5e2d.setContent(html_cd4d074e0431d56f2d5b8f79d8684f25);
+            
+        
+
+        circle_marker_fdbc0dbab956609791e96fb7e782dddc.bindPopup(popup_0760477587011ba8280363cbfd5c5e2d)
+        ;
+
+        
+    
+    
+            var circle_marker_38515b8aec2954d699d4562e97ec1265 = L.circleMarker(
+                [41.74, -87.56],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_3e8967cd846ea0fe21ce12f0ea670e0a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_7dcb9093533a3e7d3f0cf900696a4b8c = $(`<div id="html_7dcb9093533a3e7d3f0cf900696a4b8c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">South Chicago</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 46 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 29,977</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $42,557</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 35.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 7.4%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 61.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 114.1 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,419</p>                              </div>             </div>`)[0];
+                popup_3e8967cd846ea0fe21ce12f0ea670e0a.setContent(html_7dcb9093533a3e7d3f0cf900696a4b8c);
+            
+        
+
+        circle_marker_38515b8aec2954d699d4562e97ec1265.bindPopup(popup_3e8967cd846ea0fe21ce12f0ea670e0a)
+        ;
+
+        
+    
+    
+            var circle_marker_bea3ec5295613d4b9114619fb67f9942 = L.circleMarker(
+                [41.73, -87.61],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_a141f4645c1035026f51a7acda29438b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0141f2aebe8ca8594e03ba412470e4eb = $(`<div id="html_0141f2aebe8ca8594e03ba412470e4eb" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Burnside</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 47 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 2,180</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $48,211</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 31.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.8%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 56.4%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 160.6 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 350</p>                              </div>             </div>`)[0];
+                popup_a141f4645c1035026f51a7acda29438b.setContent(html_0141f2aebe8ca8594e03ba412470e4eb);
+            
+        
+
+        circle_marker_bea3ec5295613d4b9114619fb67f9942.bindPopup(popup_a141f4645c1035026f51a7acda29438b)
+        ;
+
+        
+    
+    
+            var circle_marker_deeebe16fe2f2ed20646ee2a9e46aa22 = L.circleMarker(
+                [41.73, -87.59],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_6b74db6e0873caa7363bf66f54fd515b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a2ebaf543d88dca48eee1873bd743e81 = $(`<div id="html_a2ebaf543d88dca48eee1873bd743e81" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Calumet Heights</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 48 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 12,343</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $76,894</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 39.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 55.9%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 104.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,293</p>                              </div>             </div>`)[0];
+                popup_6b74db6e0873caa7363bf66f54fd515b.setContent(html_a2ebaf543d88dca48eee1873bd743e81);
+            
+        
+
+        circle_marker_deeebe16fe2f2ed20646ee2a9e46aa22.bindPopup(popup_6b74db6e0873caa7363bf66f54fd515b)
+        ;
+
+        
+    
+    
+            var circle_marker_7abfb37569433b6018dae2058bad2c1f = L.circleMarker(
+                [41.72, -87.63],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_2c6ff3c834ba142f31746b61b4483d67 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_27f97275e22491221ceb6d43df7fd5e9 = $(`<div id="html_27f97275e22491221ceb6d43df7fd5e9" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Roseland</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 49 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 39,623</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $45,725</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 30.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 54.9%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 151.7 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 6,011</p>                              </div>             </div>`)[0];
+                popup_2c6ff3c834ba142f31746b61b4483d67.setContent(html_27f97275e22491221ceb6d43df7fd5e9);
+            
+        
+
+        circle_marker_7abfb37569433b6018dae2058bad2c1f.bindPopup(popup_2c6ff3c834ba142f31746b61b4483d67)
+        ;
+
+        
+    
+    
+            var circle_marker_03d9a6c5425d6f56415ae9ec7ad72595 = L.circleMarker(
+                [41.71, -87.61],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_0bc86798aebe0be4bb700d8622f489dc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5b5a636a7c0fbfe9b365c90b64d50bd6 = $(`<div id="html_5b5a636a7c0fbfe9b365c90b64d50bd6" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Pullman</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 50 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 7,131</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $51,412</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 32.5%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 67.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 129.9 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 926</p>                              </div>             </div>`)[0];
+                popup_0bc86798aebe0be4bb700d8622f489dc.setContent(html_5b5a636a7c0fbfe9b365c90b64d50bd6);
+            
+        
+
+        circle_marker_03d9a6c5425d6f56415ae9ec7ad72595.bindPopup(popup_0bc86798aebe0be4bb700d8622f489dc)
+        ;
+
+        
+    
+    
+            var circle_marker_6b551244a0e0482c49917034cb8557a8 = L.circleMarker(
+                [41.7, -87.57],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_04b638a94962884eca55dff63958ca5f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_88c035b3673c145427f6daf37c4a6edf = $(`<div id="html_88c035b3673c145427f6daf37c4a6edf" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">South Deering</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 51 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 15,144</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $34,168</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 31.3%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 7.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 53.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 108.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,643</p>                              </div>             </div>`)[0];
+                popup_04b638a94962884eca55dff63958ca5f.setContent(html_88c035b3673c145427f6daf37c4a6edf);
+            
+        
+
+        circle_marker_6b551244a0e0482c49917034cb8557a8.bindPopup(popup_04b638a94962884eca55dff63958ca5f)
+        ;
+
+        
+    
+    
+            var circle_marker_9b9a6eb49ca0680c08383e441f3699ae = L.circleMarker(
+                [41.71, -87.54],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_9bd1d9937e586fb7fdb8af75230411f1 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a9d2d04e9df95ca76a787fdab4a71617 = $(`<div id="html_a9d2d04e9df95ca76a787fdab4a71617" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">East Side</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 52 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 22,999</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $56,618</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 29.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 15.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 60.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 41.7 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 958</p>                              </div>             </div>`)[0];
+                popup_9bd1d9937e586fb7fdb8af75230411f1.setContent(html_a9d2d04e9df95ca76a787fdab4a71617);
+            
+        
+
+        circle_marker_9b9a6eb49ca0680c08383e441f3699ae.bindPopup(popup_9bd1d9937e586fb7fdb8af75230411f1)
+        ;
+
+        
+    
+    
+            var circle_marker_9040b6c14d8c06ddd4f9416344873b9f = L.circleMarker(
+                [41.69, -87.67],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_65e445490901da8951307f771ea9de3a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1992ae7848f8891869d1b564ecd051b4 = $(`<div id="html_1992ae7848f8891869d1b564ecd051b4" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">West Pullman</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 53 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 26,484</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,107</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 32.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 63.1%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 146.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,873</p>                              </div>             </div>`)[0];
+                popup_65e445490901da8951307f771ea9de3a.setContent(html_1992ae7848f8891869d1b564ecd051b4);
+            
+        
+
+        circle_marker_9040b6c14d8c06ddd4f9416344873b9f.bindPopup(popup_65e445490901da8951307f771ea9de3a)
+        ;
+
+        
+    
+    
+            var circle_marker_4eb8bb93e4577c6d4060d707b13dfb35 = L.circleMarker(
+                [41.69, -87.63],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_ce7734ecab356298d36226690c2963d8 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_ec6b43d6a41523a71fe0033a435125ac = $(`<div id="html_ec6b43d6a41523a71fe0033a435125ac" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Riverdale</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 54 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 7,414</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $19,627</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 22.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 60.1%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 145.3 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,077</p>                              </div>             </div>`)[0];
+                popup_ce7734ecab356298d36226690c2963d8.setContent(html_ec6b43d6a41523a71fe0033a435125ac);
+            
+        
+
+        circle_marker_4eb8bb93e4577c6d4060d707b13dfb35.bindPopup(popup_ce7734ecab356298d36226690c2963d8)
+        ;
+
+        
+    
+    
+            var circle_marker_037aa5872cc0d04ddbde5a522070ea1c = L.circleMarker(
+                [41.66, -87.55],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_ced26a633e4dc95fda1e2b993cf40fe9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_68898bb1e526ae04bc98cdb67df65142 = $(`<div id="html_68898bb1e526ae04bc98cdb67df65142" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Hegewisch</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 55 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 9,175</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,545</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 36.4%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 9.3%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 56.2%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 55.4 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 508</p>                              </div>             </div>`)[0];
+                popup_ced26a633e4dc95fda1e2b993cf40fe9.setContent(html_68898bb1e526ae04bc98cdb67df65142);
+            
+        
+
+        circle_marker_037aa5872cc0d04ddbde5a522070ea1c.bindPopup(popup_ced26a633e4dc95fda1e2b993cf40fe9)
+        ;
+
+        
+    
+    
+            var circle_marker_4ab7423a625fec94d625cfd00488f4b0 = L.circleMarker(
+                [41.79, -87.77],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_223606f2f3462e6c658d2f413e9abaa0 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a8bf314eec7d17bb8d44225b7e07dc21 = $(`<div id="html_a8bf314eec7d17bb8d44225b7e07dc21" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Garfield Ridge</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 56 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 36,049</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $83,297</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 28.3%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 8.5%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 65.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 43.4 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,564</p>                              </div>             </div>`)[0];
+                popup_223606f2f3462e6c658d2f413e9abaa0.setContent(html_a8bf314eec7d17bb8d44225b7e07dc21);
+            
+        
+
+        circle_marker_4ab7423a625fec94d625cfd00488f4b0.bindPopup(popup_223606f2f3462e6c658d2f413e9abaa0)
+        ;
+
+        
+    
+    
+            var circle_marker_3ec5fe171bc0c23eba4c825170091537 = L.circleMarker(
+                [41.81, -87.73],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_99ea8b9e4e97548992c85e803ee516da = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6b9d4e82c9e933a55a0a85783bb0fd6c = $(`<div id="html_6b9d4e82c9e933a55a0a85783bb0fd6c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Archer Heights</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 57 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 13,533</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,912</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 31.7%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 11.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 62.1%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 51.3 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 694</p>                              </div>             </div>`)[0];
+                popup_99ea8b9e4e97548992c85e803ee516da.setContent(html_6b9d4e82c9e933a55a0a85783bb0fd6c);
+            
+        
+
+        circle_marker_3ec5fe171bc0c23eba4c825170091537.bindPopup(popup_99ea8b9e4e97548992c85e803ee516da)
+        ;
+
+        
+    
+    
+            var circle_marker_f00f143712ebcad7a2b018c7d01a676f = L.circleMarker(
+                [41.82, -87.69],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_82f31c1898c086a2d4d286bf454ae2bc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5662b749c881345e8563e1aa525eae9d = $(`<div id="html_5662b749c881345e8563e1aa525eae9d" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Brighton Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 58 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 42,728</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,827</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 32.3%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 14.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 63.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 42.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,804</p>                              </div>             </div>`)[0];
+                popup_82f31c1898c086a2d4d286bf454ae2bc.setContent(html_5662b749c881345e8563e1aa525eae9d);
+            
+        
+
+        circle_marker_f00f143712ebcad7a2b018c7d01a676f.bindPopup(popup_82f31c1898c086a2d4d286bf454ae2bc)
+        ;
+
+        
+    
+    
+            var circle_marker_4085fdb9f8304c887b3b29d066992ada = L.circleMarker(
+                [41.83, -87.67],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_a21bbb242e564ce21e25b1a22b5fc1fe = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_66cd2781b24fd0e822990f5e8185d2cf = $(`<div id="html_66cd2781b24fd0e822990f5e8185d2cf" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">McKinley Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 59 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 15,246</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $62,355</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 27.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 8.4%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 68.7%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 49.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 754</p>                              </div>             </div>`)[0];
+                popup_a21bbb242e564ce21e25b1a22b5fc1fe.setContent(html_66cd2781b24fd0e822990f5e8185d2cf);
+            
+        
+
+        circle_marker_4085fdb9f8304c887b3b29d066992ada.bindPopup(popup_a21bbb242e564ce21e25b1a22b5fc1fe)
+        ;
+
+        
+    
+    
+            var circle_marker_e3525ca25f213b6fbdb9d01dff17e8d2 = L.circleMarker(
+                [41.83, -87.64],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_4f0ea7f55188d1f92c9abd1b689c8e9a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9fd3f04f181a08e8d006f4f67f384b24 = $(`<div id="html_9fd3f04f181a08e8d006f4f67f384b24" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Bridgeport</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 60 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 32,901</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $61,574</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 27.9%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 7.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 66.3%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 39.8 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,311</p>                              </div>             </div>`)[0];
+                popup_4f0ea7f55188d1f92c9abd1b689c8e9a.setContent(html_9fd3f04f181a08e8d006f4f67f384b24);
+            
+        
+
+        circle_marker_e3525ca25f213b6fbdb9d01dff17e8d2.bindPopup(popup_4f0ea7f55188d1f92c9abd1b689c8e9a)
+        ;
+
+        
+    
+    
+            var circle_marker_89013ed5656fbf6ece51346e5d1a045f = L.circleMarker(
+                [41.81, -87.66],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_9772d7f67af6922ddf4f9c749065edff = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_aa01c52af9a84dabb4cb69d5b927af40 = $(`<div id="html_aa01c52af9a84dabb4cb69d5b927af40" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">New City</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 61 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 39,055</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $41,289</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 34.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 14.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 63.1%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 92.0 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 3,593</p>                              </div>             </div>`)[0];
+                popup_9772d7f67af6922ddf4f9c749065edff.setContent(html_aa01c52af9a84dabb4cb69d5b927af40);
+            
+        
+
+        circle_marker_89013ed5656fbf6ece51346e5d1a045f.bindPopup(popup_9772d7f67af6922ddf4f9c749065edff)
+        ;
+
+        
+    
+    
+            var circle_marker_136a021e7df1a3a1adf7f769b3d5e96d = L.circleMarker(
+                [41.79, -87.71],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_fc133ff5ebb0d45cd28820b24ce9c7c1 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a997092fec51ca3f4022ee1a19f1ab0d = $(`<div id="html_a997092fec51ca3f4022ee1a19f1ab0d" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">West Elsdon</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 62 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 18,523</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $63,829</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 38.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 10.3%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 65.7%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 39.1 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 725</p>                              </div>             </div>`)[0];
+                popup_fc133ff5ebb0d45cd28820b24ce9c7c1.setContent(html_a997092fec51ca3f4022ee1a19f1ab0d);
+            
+        
+
+        circle_marker_136a021e7df1a3a1adf7f769b3d5e96d.bindPopup(popup_fc133ff5ebb0d45cd28820b24ce9c7c1)
+        ;
+
+        
+    
+    
+            var circle_marker_650cd2318be82889006cb59cb4bc90ea = L.circleMarker(
+                [41.78, -87.69],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_d65cafc5e100f4964adbeb9bd8ac9cea = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_baa85beaf1a4eda2f59391542caef748 = $(`<div id="html_baa85beaf1a4eda2f59391542caef748" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Gage Park</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 63 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 35,300</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $46,029</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 33.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 14.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 61.2%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 48.9 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,727</p>                              </div>             </div>`)[0];
+                popup_d65cafc5e100f4964adbeb9bd8ac9cea.setContent(html_baa85beaf1a4eda2f59391542caef748);
+            
+        
+
+        circle_marker_650cd2318be82889006cb59cb4bc90ea.bindPopup(popup_d65cafc5e100f4964adbeb9bd8ac9cea)
+        ;
+
+        
+    
+    
+            var circle_marker_7ef2e22b95e131de5c2a4ee08ae79aa9 = L.circleMarker(
+                [41.78, -87.76],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_b37a958c79137f9e9275b63ae3a2d9f3 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d675bd5cbb000eff3fc0c41deb6a0d6f = $(`<div id="html_d675bd5cbb000eff3fc0c41deb6a0d6f" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Clearing</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 64 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 24,382</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $58,021</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 28.3%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 6.9%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 65.2%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 35.4 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 862</p>                              </div>             </div>`)[0];
+                popup_b37a958c79137f9e9275b63ae3a2d9f3.setContent(html_d675bd5cbb000eff3fc0c41deb6a0d6f);
+            
+        
+
+        circle_marker_7ef2e22b95e131de5c2a4ee08ae79aa9.bindPopup(popup_b37a958c79137f9e9275b63ae3a2d9f3)
+        ;
+
+        
+    
+    
+            var circle_marker_e70966a94656289d358133f31d8259a1 = L.circleMarker(
+                [41.77, -87.72],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_2d694fd2af05ba900373c8118e2aca55 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_746167c1039f1f1f95643b9189b0e791 = $(`<div id="html_746167c1039f1f1f95643b9189b0e791" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">West Lawn</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 65 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 32,162</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,321</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 36.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 14.9%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 65.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 39.2 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,262</p>                              </div>             </div>`)[0];
+                popup_2d694fd2af05ba900373c8118e2aca55.setContent(html_746167c1039f1f1f95643b9189b0e791);
+            
+        
+
+        circle_marker_e70966a94656289d358133f31d8259a1.bindPopup(popup_2d694fd2af05ba900373c8118e2aca55)
+        ;
+
+        
+    
+    
+            var circle_marker_6fe14cc386da82955b620c54bc1d3d9f = L.circleMarker(
+                [41.76, -87.69],
+                {"bubblingMouseEvents": true, "color": "#2ca02c", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_fca91a8c9a031c43c4a760f562a0c763 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2eae5cec69e55fe7592e2e745cb7ba73 = $(`<div id="html_2eae5cec69e55fe7592e2e745cb7ba73" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #2ca02c;">Chicago Lawn</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 66 | Community 2</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 51,243</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $42,320</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 35.2%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 12.4%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 61.0%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 95.9 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 4,915</p>                              </div>             </div>`)[0];
+                popup_fca91a8c9a031c43c4a760f562a0c763.setContent(html_2eae5cec69e55fe7592e2e745cb7ba73);
+            
+        
+
+        circle_marker_6fe14cc386da82955b620c54bc1d3d9f.bindPopup(popup_fca91a8c9a031c43c4a760f562a0c763)
+        ;
+
+        
+    
+    
+            var circle_marker_14ae7f7497271d8be7cadfdbc16a9582 = L.circleMarker(
+                [41.75, -87.67],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_f40e79e2575caeab12d35a8429378efa = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5da652b63e7fd6034631b7b7b8682520 = $(`<div id="html_5da652b63e7fd6034631b7b7b8682520" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">West Englewood</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 67 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 26,158</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $31,716</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 34.8%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 9.4%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 50.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 217.7 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 5,694</p>                              </div>             </div>`)[0];
+                popup_f40e79e2575caeab12d35a8429378efa.setContent(html_5da652b63e7fd6034631b7b7b8682520);
+            
+        
+
+        circle_marker_14ae7f7497271d8be7cadfdbc16a9582.bindPopup(popup_f40e79e2575caeab12d35a8429378efa)
+        ;
+
+        
+    
+    
+            var circle_marker_3b699860edf194867fde7ce3b2fc5ac0 = L.circleMarker(
+                [41.78, -87.65],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_8ae6cec2ffade2e892f8fdef95eccb18 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4d9ca9eb347cf3587e9b4a424dafbb7a = $(`<div id="html_4d9ca9eb347cf3587e9b4a424dafbb7a" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Englewood</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 68 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 22,019</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $24,655</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 39.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 10.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 50.8%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 235.7 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 5,189</p>                              </div>             </div>`)[0];
+                popup_8ae6cec2ffade2e892f8fdef95eccb18.setContent(html_4d9ca9eb347cf3587e9b4a424dafbb7a);
+            
+        
+
+        circle_marker_3b699860edf194867fde7ce3b2fc5ac0.bindPopup(popup_8ae6cec2ffade2e892f8fdef95eccb18)
+        ;
+
+        
+    
+    
+            var circle_marker_a134fa864eaa5ed706268754b2bd391b = L.circleMarker(
+                [41.77, -87.61],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_5f3b8ea5591a2bbdcba0376394b61ebe = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_45a45157c22e43d13047471f0881f833 = $(`<div id="html_45a45157c22e43d13047471f0881f833" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Greater Grand Crossing</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 69 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 29,429</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $34,426</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 31.3%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 57.3%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 202.9 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 5,970</p>                              </div>             </div>`)[0];
+                popup_5f3b8ea5591a2bbdcba0376394b61ebe.setContent(html_45a45157c22e43d13047471f0881f833);
+            
+        
+
+        circle_marker_a134fa864eaa5ed706268754b2bd391b.bindPopup(popup_5f3b8ea5591a2bbdcba0376394b61ebe)
+        ;
+
+        
+    
+    
+            var circle_marker_80ae93a89d120b005828f1838f6381d8 = L.circleMarker(
+                [41.74, -87.66],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_536f3123d53da7fb9741655863126ace = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_beb21a58692aa6adffe275d2c363f81b = $(`<div id="html_beb21a58692aa6adffe275d2c363f81b" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Auburn Gresham</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 71 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 46,698</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $45,821</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 33.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.7%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 55.7%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 134.4 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 6,276</p>                              </div>             </div>`)[0];
+                popup_536f3123d53da7fb9741655863126ace.setContent(html_beb21a58692aa6adffe275d2c363f81b);
+            
+        
+
+        circle_marker_80ae93a89d120b005828f1838f6381d8.bindPopup(popup_536f3123d53da7fb9741655863126ace)
+        ;
+
+        
+    
+    
+            var circle_marker_17a881eae49ab005f9c66f7125cda3e3 = L.circleMarker(
+                [41.72, -87.67],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_69bd33002ecf197d4d09b7b1cee1f749 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b85e3b13c4149919ba67cd563231112f = $(`<div id="html_b85e3b13c4149919ba67cd563231112f" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Beverly</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 72 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 19,817</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $115,591</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 25.7%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.8%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 66.3%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 43.3 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 858</p>                              </div>             </div>`)[0];
+                popup_69bd33002ecf197d4d09b7b1cee1f749.setContent(html_b85e3b13c4149919ba67cd563231112f);
+            
+        
+
+        circle_marker_17a881eae49ab005f9c66f7125cda3e3.bindPopup(popup_69bd33002ecf197d4d09b7b1cee1f749)
+        ;
+
+        
+    
+    
+            var circle_marker_ce4fd3553a6828acf03a2e170fc32869 = L.circleMarker(
+                [41.71, -87.65],
+                {"bubblingMouseEvents": true, "color": "#ff7f0e", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_3abb57200e0fab6ce5cbe07ec5d06a7f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_511f47ea4143c7f8485666b5f77776d9 = $(`<div id="html_511f47ea4143c7f8485666b5f77776d9" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #ff7f0e;">Washington Heights</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 73 | Community 1</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 26,940</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $55,516</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 34.6%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.6%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 55.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 99.5 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,681</p>                              </div>             </div>`)[0];
+                popup_3abb57200e0fab6ce5cbe07ec5d06a7f.setContent(html_511f47ea4143c7f8485666b5f77776d9);
+            
+        
+
+        circle_marker_ce4fd3553a6828acf03a2e170fc32869.bindPopup(popup_3abb57200e0fab6ce5cbe07ec5d06a7f)
+        ;
+
+        
+    
+    
+            var circle_marker_4c5b63a34efe42a68ed2f9691ca76c92 = L.circleMarker(
+                [41.7, -87.67],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_ea43a27205810c2af9272f509a78c5b4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6155c86e5fb1a33e7d2ca715e50f134c = $(`<div id="html_6155c86e5fb1a33e7d2ca715e50f134c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Mount Greenwood</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 74 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 18,840</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $105,213</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 29.0%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 5.1%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 64.7%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 27.7 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 521</p>                              </div>             </div>`)[0];
+                popup_ea43a27205810c2af9272f509a78c5b4.setContent(html_6155c86e5fb1a33e7d2ca715e50f134c);
+            
+        
+
+        circle_marker_4c5b63a34efe42a68ed2f9691ca76c92.bindPopup(popup_ea43a27205810c2af9272f509a78c5b4)
+        ;
+
+        
+    
+    
+            var circle_marker_1a42cf854b476fa483dfe7f9f6999d10 = L.circleMarker(
+                [41.98, -87.9],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_97986458bb5607f70beac9f3178f1ee5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_3f798caec5db55f67e8ca6cf10359b84 = $(`<div id="html_3f798caec5db55f67e8ca6cf10359b84" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">O'Hare</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 76 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 13,285</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $58,108</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 26.3%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 3.0%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 71.5%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 90.3 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 1,200</p>                              </div>             </div>`)[0];
+                popup_97986458bb5607f70beac9f3178f1ee5.setContent(html_3f798caec5db55f67e8ca6cf10359b84);
+            
+        
+
+        circle_marker_1a42cf854b476fa483dfe7f9f6999d10.bindPopup(popup_97986458bb5607f70beac9f3178f1ee5)
+        ;
+
+        
+    
+    
+            var circle_marker_782c650afe1dd70d654c8664f8dbcf1d = L.circleMarker(
+                [42.0, -87.66],
+                {"bubblingMouseEvents": true, "color": "#1f77b4", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 2}
+            ).addTo(map_bb7ece29dba57d73ddfbf682b99f783a);
+        
+    
+        var popup_d25beac6da5d0aa05e99a2277576156b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f05c4c3461dcffce0161ed78eb1cc1c0 = $(`<div id="html_f05c4c3461dcffce0161ed78eb1cc1c0" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 280px;">                 <h4 style="margin: 0; color: #1f77b4;">Edgewater</h4>                 <p style="margin: 2px 0; font-size: 11px; color: gray;">CA 77 | Community 0</p>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Population:</strong> 58,693</p>                 <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,814</p>                 <p style="margin: 3px 0;"><strong>Homeownership:</strong> 22.1%</p>                 <p style="margin: 3px 0;"><strong>Bachelor's+:</strong> 4.4%</p>                 <p style="margin: 3px 0;"><strong>Unemployment:</strong> 69.6%</p>                              <hr style="margin: 5px 0;">                 <p style="margin: 3px 0; color: #d62728;"><strong>Crime Rate:</strong> 40.0 per 1,000</p>                 <p style="margin: 3px 0; color: #d62728;"><strong>Total Crimes:</strong> 2,349</p>                              </div>             </div>`)[0];
+                popup_d25beac6da5d0aa05e99a2277576156b.setContent(html_f05c4c3461dcffce0161ed78eb1cc1c0);
+            
+        
+
+        circle_marker_782c650afe1dd70d654c8664f8dbcf1d.bindPopup(popup_d25beac6da5d0aa05e99a2277576156b)
+        ;
+
+        
+    
+</script>
+</html>

@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_14355d291916117fbe8e83ef8ec1c8db {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+         top: 10px; left: 50px; width: 370px; height: 120px; 
+         background-color: white; border:2px solid grey; z-index:9999; 
+         font-size:14px; padding: 10px">
+         <p style="margin: 0; font-weight: bold;">Official (77 CAs) vs. Detected (3 Communities)</p>
+         <hr style="margin: 5px 0;">
+         <p style="margin: 3px 0; font-size: 12px;">Colors show detected communities</p>
+         <p style="margin: 3px 0; font-size: 12px;">Click markers to see both assignments</p>
+         <p style="margin: 3px 0; font-size: 11px; color: gray;">Analysis: 7 variables (6 demographic + crime)</p>
+         <p style="margin: 3px 0; font-size: 11px; color: gray;">Modularity: 0.603 (very strong structure)</p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_14355d291916117fbe8e83ef8ec1c8db" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_14355d291916117fbe8e83ef8ec1c8db = L.map(
+                "map_14355d291916117fbe8e83ef8ec1c8db",
+                {
+                    center: [41.88, -87.63],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ff4997ba3d9a999bd7f272fecc723a48 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_ff4997ba3d9a999bd7f272fecc723a48.addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+            var circle_marker_85806b7e8f245cae889e68d9526de60d = L.circleMarker(
+                [42.01, -87.67],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_4b55744d38cf2199acc804c200e1f386 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_927a4f092a6a9db4618257b97f099b84 = $(`<div id="html_927a4f092a6a9db4618257b97f099b84" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Rogers Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $49,701</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 59.4 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_4b55744d38cf2199acc804c200e1f386.setContent(html_927a4f092a6a9db4618257b97f099b84);
+            
+        
+
+        circle_marker_85806b7e8f245cae889e68d9526de60d.bindPopup(popup_4b55744d38cf2199acc804c200e1f386)
+        ;
+
+        
+    
+    
+            var circle_marker_c73b0ee36661a5d5ee0954ab738b7291 = L.circleMarker(
+                [42.0, -87.69],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_59d9e48e85c39c7329ac65c84a488292 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c5c443168395988f46ee8bae4d2ef6a3 = $(`<div id="html_c5c443168395988f46ee8bae4d2ef6a3" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">West Ridge</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $64,021</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_59d9e48e85c39c7329ac65c84a488292.setContent(html_c5c443168395988f46ee8bae4d2ef6a3);
+            
+        
+
+        circle_marker_c73b0ee36661a5d5ee0954ab738b7291.bindPopup(popup_59d9e48e85c39c7329ac65c84a488292)
+        ;
+
+        
+    
+    
+            var circle_marker_e9e1c2ad7ba4712564e3e7942f846114 = L.circleMarker(
+                [41.97, -87.66],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_3e0af37fc8348ac32b759ab0a518467a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_1669e11a7e75d2979e57d12ae5471c95 = $(`<div id="html_1669e11a7e75d2979e57d12ae5471c95" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Uptown</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 3</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $60,657</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 49.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_3e0af37fc8348ac32b759ab0a518467a.setContent(html_1669e11a7e75d2979e57d12ae5471c95);
+            
+        
+
+        circle_marker_e9e1c2ad7ba4712564e3e7942f846114.bindPopup(popup_3e0af37fc8348ac32b759ab0a518467a)
+        ;
+
+        
+    
+    
+            var circle_marker_76fc842d5f32e7858ff8d2e06e26d648 = L.circleMarker(
+                [41.97, -87.68],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_d1c93d50a45f3e3366937311751ea889 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_1abb0d162f6096ddac0b6f42eac815eb = $(`<div id="html_1abb0d162f6096ddac0b6f42eac815eb" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Lincoln Square</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 4</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $82,567</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 45.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_d1c93d50a45f3e3366937311751ea889.setContent(html_1abb0d162f6096ddac0b6f42eac815eb);
+            
+        
+
+        circle_marker_76fc842d5f32e7858ff8d2e06e26d648.bindPopup(popup_d1c93d50a45f3e3366937311751ea889)
+        ;
+
+        
+    
+    
+            var circle_marker_3c4f9e5fdeb91d698ad132199aa9b894 = L.circleMarker(
+                [41.96, -87.68],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_0de01f600b379440461e637bbd89e1a3 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d10c159cb71f60be757d89125e2dde12 = $(`<div id="html_d10c159cb71f60be757d89125e2dde12" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">North Center</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 5</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $140,789</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 32.1 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_0de01f600b379440461e637bbd89e1a3.setContent(html_d10c159cb71f60be757d89125e2dde12);
+            
+        
+
+        circle_marker_3c4f9e5fdeb91d698ad132199aa9b894.bindPopup(popup_0de01f600b379440461e637bbd89e1a3)
+        ;
+
+        
+    
+    
+            var circle_marker_6375b82b5c61f7a50cd7f500e4100596 = L.circleMarker(
+                [41.95, -87.65],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_59de251cf60c4a77d356a3cc84d340cc = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f75464360aac0529f8ef53f7defba143 = $(`<div id="html_f75464360aac0529f8ef53f7defba143" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Lake View</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 6</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $103,865</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 42.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_59de251cf60c4a77d356a3cc84d340cc.setContent(html_f75464360aac0529f8ef53f7defba143);
+            
+        
+
+        circle_marker_6375b82b5c61f7a50cd7f500e4100596.bindPopup(popup_59de251cf60c4a77d356a3cc84d340cc)
+        ;
+
+        
+    
+    
+            var circle_marker_a6a34b28b8d9eb7409bad2e2edc2acc2 = L.circleMarker(
+                [41.92, -87.64],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_e79dffbe1a6e93949d2a02d5db04a29a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_10a0e8ef3c3eeb4b906a8149ff299a6d = $(`<div id="html_10a0e8ef3c3eeb4b906a8149ff299a6d" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Lincoln Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 7</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $131,583</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.3 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_e79dffbe1a6e93949d2a02d5db04a29a.setContent(html_10a0e8ef3c3eeb4b906a8149ff299a6d);
+            
+        
+
+        circle_marker_a6a34b28b8d9eb7409bad2e2edc2acc2.bindPopup(popup_e79dffbe1a6e93949d2a02d5db04a29a)
+        ;
+
+        
+    
+    
+            var circle_marker_ff5e235cd51b5947c5a4cb0a54cb71a3 = L.circleMarker(
+                [41.9, -87.63],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_b1006d1c5212902d3babbea509d0b178 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6d24edf4d2157febf40470858123da92 = $(`<div id="html_6d24edf4d2157febf40470858123da92" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Near North Side</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 8</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $118,905</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 74.3 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_b1006d1c5212902d3babbea509d0b178.setContent(html_6d24edf4d2157febf40470858123da92);
+            
+        
+
+        circle_marker_ff5e235cd51b5947c5a4cb0a54cb71a3.bindPopup(popup_b1006d1c5212902d3babbea509d0b178)
+        ;
+
+        
+    
+    
+            var circle_marker_2363bf69b1c9b5a8b1baf454349113f4 = L.circleMarker(
+                [42.01, -87.81],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_5df14479665f77d83448151fbfb7bda7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_cddb1ec1e04b10d326c13f2a8e0bacfd = $(`<div id="html_cddb1ec1e04b10d326c13f2a8e0bacfd" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Edison Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 9</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $126,711</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 24.4 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_5df14479665f77d83448151fbfb7bda7.setContent(html_cddb1ec1e04b10d326c13f2a8e0bacfd);
+            
+        
+
+        circle_marker_2363bf69b1c9b5a8b1baf454349113f4.bindPopup(popup_5df14479665f77d83448151fbfb7bda7)
+        ;
+
+        
+    
+    
+            var circle_marker_e83a923e18f55400b456398404cb0812 = L.circleMarker(
+                [42.0, -87.79],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_6921abee2e19779f7a45324fb93cb858 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f5f279ce50a1fe98ab85094f49e2ba1a = $(`<div id="html_f5f279ce50a1fe98ab85094f49e2ba1a" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Norwood Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 10</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $97,165</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 27.3 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_6921abee2e19779f7a45324fb93cb858.setContent(html_f5f279ce50a1fe98ab85094f49e2ba1a);
+            
+        
+
+        circle_marker_e83a923e18f55400b456398404cb0812.bindPopup(popup_6921abee2e19779f7a45324fb93cb858)
+        ;
+
+        
+    
+    
+            var circle_marker_9c56c340cfcdd6e7a4479b9165cfd4e5 = L.circleMarker(
+                [41.98, -87.77],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_e0398a2ece723c38500b01cf896f4e6d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6bb90f41f7df92039df330d3cce52e95 = $(`<div id="html_6bb90f41f7df92039df330d3cce52e95" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Jefferson Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 11</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $81,032</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 36.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_e0398a2ece723c38500b01cf896f4e6d.setContent(html_6bb90f41f7df92039df330d3cce52e95);
+            
+        
+
+        circle_marker_9c56c340cfcdd6e7a4479b9165cfd4e5.bindPopup(popup_e0398a2ece723c38500b01cf896f4e6d)
+        ;
+
+        
+    
+    
+            var circle_marker_0dc3cff40e5f82fde9c1a92a1a1e6eb4 = L.circleMarker(
+                [41.98, -87.79],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_84bb9856b48e3971c9ecb76748eb3fa1 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_84b2672225e63788748573838b318772 = $(`<div id="html_84b2672225e63788748573838b318772" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Forest Glen</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 12</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $131,997</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 27.9 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_84bb9856b48e3971c9ecb76748eb3fa1.setContent(html_84b2672225e63788748573838b318772);
+            
+        
+
+        circle_marker_0dc3cff40e5f82fde9c1a92a1a1e6eb4.bindPopup(popup_84bb9856b48e3971c9ecb76748eb3fa1)
+        ;
+
+        
+    
+    
+            var circle_marker_ec409cde847d0246ab0f355bf43c2725 = L.circleMarker(
+                [41.98, -87.71],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_0642e11917fce1e09806d33caa359b4d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_dde16720dce0036774989f204e1f52c8 = $(`<div id="html_dde16720dce0036774989f204e1f52c8" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">North Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 13</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $65,392</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_0642e11917fce1e09806d33caa359b4d.setContent(html_dde16720dce0036774989f204e1f52c8);
+            
+        
+
+        circle_marker_ec409cde847d0246ab0f355bf43c2725.bindPopup(popup_0642e11917fce1e09806d33caa359b4d)
+        ;
+
+        
+    
+    
+            var circle_marker_5c34bc8d5cdb959313ddc75202f966c6 = L.circleMarker(
+                [41.97, -87.71],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_db4c03d8c07dde8e53ee75fadbf227b2 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_71af27767606650adefcdef81ca2be15 = $(`<div id="html_71af27767606650adefcdef81ca2be15" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Albany Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 14</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $69,901</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_db4c03d8c07dde8e53ee75fadbf227b2.setContent(html_71af27767606650adefcdef81ca2be15);
+            
+        
+
+        circle_marker_5c34bc8d5cdb959313ddc75202f966c6.bindPopup(popup_db4c03d8c07dde8e53ee75fadbf227b2)
+        ;
+
+        
+    
+    
+            var circle_marker_2602838a5d68bad84d4cc82ceaa27165 = L.circleMarker(
+                [41.96, -87.76],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_3eb6e35eb741e40fabc9e4edcee9f06e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_bf063c8ff6d0bab59a229949eab764c0 = $(`<div id="html_bf063c8ff6d0bab59a229949eab764c0" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Portage Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 15</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $75,172</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 40.9 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_3eb6e35eb741e40fabc9e4edcee9f06e.setContent(html_bf063c8ff6d0bab59a229949eab764c0);
+            
+        
+
+        circle_marker_2602838a5d68bad84d4cc82ceaa27165.bindPopup(popup_3eb6e35eb741e40fabc9e4edcee9f06e)
+        ;
+
+        
+    
+    
+            var circle_marker_7d06fccad0ad6bdba2abfa1b455130e9 = L.circleMarker(
+                [41.95, -87.73],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_c0f82cf00fd70afca4d461ede4ee5422 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_92fb5f160254b57ce066a3f580a936c0 = $(`<div id="html_92fb5f160254b57ce066a3f580a936c0" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Irving Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 16</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $77,199</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_c0f82cf00fd70afca4d461ede4ee5422.setContent(html_92fb5f160254b57ce066a3f580a936c0);
+            
+        
+
+        circle_marker_7d06fccad0ad6bdba2abfa1b455130e9.bindPopup(popup_c0f82cf00fd70afca4d461ede4ee5422)
+        ;
+
+        
+    
+    
+            var circle_marker_7c2b7b3e5f339d135997d9aac9cf6cb1 = L.circleMarker(
+                [41.94, -87.79],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_cc28c637056fba033416057000f514b1 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_2efd37a8b038fbed3374e869264f3826 = $(`<div id="html_2efd37a8b038fbed3374e869264f3826" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Dunning</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 17</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $75,569</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 31.6 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_cc28c637056fba033416057000f514b1.setContent(html_2efd37a8b038fbed3374e869264f3826);
+            
+        
+
+        circle_marker_7c2b7b3e5f339d135997d9aac9cf6cb1.bindPopup(popup_cc28c637056fba033416057000f514b1)
+        ;
+
+        
+    
+    
+            var circle_marker_cf18e81546262ca88cbfc2150d9c9819 = L.circleMarker(
+                [41.93, -87.79],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_6ad4a7dd136effa9e58d99206c881673 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b3df0751fd307d65b976ecdabdf9640a = $(`<div id="html_b3df0751fd307d65b976ecdabdf9640a" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Montclare</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 18</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $68,844</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_6ad4a7dd136effa9e58d99206c881673.setContent(html_b3df0751fd307d65b976ecdabdf9640a);
+            
+        
+
+        circle_marker_cf18e81546262ca88cbfc2150d9c9819.bindPopup(popup_6ad4a7dd136effa9e58d99206c881673)
+        ;
+
+        
+    
+    
+            var circle_marker_6f2312236d4b8caff92360ed593d1d08 = L.circleMarker(
+                [41.93, -87.75],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_13884e3877fe1d55af7fac7079795954 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_310aa521c7c797d4590513e56a98e0cf = $(`<div id="html_310aa521c7c797d4590513e56a98e0cf" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Belmont Cragin</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 19</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $60,799</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 48.1 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_13884e3877fe1d55af7fac7079795954.setContent(html_310aa521c7c797d4590513e56a98e0cf);
+            
+        
+
+        circle_marker_6f2312236d4b8caff92360ed593d1d08.bindPopup(popup_13884e3877fe1d55af7fac7079795954)
+        ;
+
+        
+    
+    
+            var circle_marker_435a9472bf4fce042f97a02f696f4e6f = L.circleMarker(
+                [41.92, -87.73],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_9688c730599b9d0e21d7765543b24642 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_212b2a4de30d1fdd2e639c2a3e4229ff = $(`<div id="html_212b2a4de30d1fdd2e639c2a3e4229ff" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Hermosa</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 20</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $54,914</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 51.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_9688c730599b9d0e21d7765543b24642.setContent(html_212b2a4de30d1fdd2e639c2a3e4229ff);
+            
+        
+
+        circle_marker_435a9472bf4fce042f97a02f696f4e6f.bindPopup(popup_9688c730599b9d0e21d7765543b24642)
+        ;
+
+        
+    
+    
+            var circle_marker_15ad0ed59bed3b878d6925d74905f222 = L.circleMarker(
+                [41.94, -87.71],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_62b1501067e3b5e461d3ee95b874987f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3bb1b68c2325214217cc95e5c812c397 = $(`<div id="html_3bb1b68c2325214217cc95e5c812c397" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Avondale</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 21</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $78,279</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 49.0 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_62b1501067e3b5e461d3ee95b874987f.setContent(html_3bb1b68c2325214217cc95e5c812c397);
+            
+        
+
+        circle_marker_15ad0ed59bed3b878d6925d74905f222.bindPopup(popup_62b1501067e3b5e461d3ee95b874987f)
+        ;
+
+        
+    
+    
+            var circle_marker_6ca7ca34a0b31426a7c88e49b5f20e18 = L.circleMarker(
+                [41.92, -87.71],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_48212e62beef9ca915544818a131e3b4 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f4a30814cde61650758b2b012df7e530 = $(`<div id="html_f4a30814cde61650758b2b012df7e530" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Logan Square</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 22</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $91,002</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 51.9 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_48212e62beef9ca915544818a131e3b4.setContent(html_f4a30814cde61650758b2b012df7e530);
+            
+        
+
+        circle_marker_6ca7ca34a0b31426a7c88e49b5f20e18.bindPopup(popup_48212e62beef9ca915544818a131e3b4)
+        ;
+
+        
+    
+    
+            var circle_marker_8a0da7eb9be1f93800c848e351d4a472 = L.circleMarker(
+                [41.9, -87.71],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_9e0eece801f20e67af7e658df7fe2b8a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d8c2509357b5d6eee6000fc9a09dc523 = $(`<div id="html_d8c2509357b5d6eee6000fc9a09dc523" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Humboldt Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 23</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $44,799</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 122.4 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_9e0eece801f20e67af7e658df7fe2b8a.setContent(html_d8c2509357b5d6eee6000fc9a09dc523);
+            
+        
+
+        circle_marker_8a0da7eb9be1f93800c848e351d4a472.bindPopup(popup_9e0eece801f20e67af7e658df7fe2b8a)
+        ;
+
+        
+    
+    
+            var circle_marker_c783d2649500b9eb35add2231516e398 = L.circleMarker(
+                [41.89, -87.68],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_be5a351d6ac475a0d48e7984a799de77 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_8fbb523c6c8e80ebd98f816a41630f9c = $(`<div id="html_8fbb523c6c8e80ebd98f816a41630f9c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">West Town</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 24</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $113,973</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 65.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_be5a351d6ac475a0d48e7984a799de77.setContent(html_8fbb523c6c8e80ebd98f816a41630f9c);
+            
+        
+
+        circle_marker_c783d2649500b9eb35add2231516e398.bindPopup(popup_be5a351d6ac475a0d48e7984a799de77)
+        ;
+
+        
+    
+    
+            var circle_marker_29533ba59d7d84a6cac340d1ef16b7f7 = L.circleMarker(
+                [41.9, -87.76],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_54b65ea73b2fe2df468805ce58deb3fe = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6c904bd50bf25697e706be31e83c8082 = $(`<div id="html_6c904bd50bf25697e706be31e83c8082" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Austin</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 25</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $43,866</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 134.6 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_54b65ea73b2fe2df468805ce58deb3fe.setContent(html_6c904bd50bf25697e706be31e83c8082);
+            
+        
+
+        circle_marker_29533ba59d7d84a6cac340d1ef16b7f7.bindPopup(popup_54b65ea73b2fe2df468805ce58deb3fe)
+        ;
+
+        
+    
+    
+            var circle_marker_abeec2dc69ef80b910588200c9d8ec59 = L.circleMarker(
+                [41.88, -87.73],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_90e7ae8ae96edf8975cc5c4b22497537 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a2f2803d36826979ec82835f67161ed4 = $(`<div id="html_a2f2803d36826979ec82835f67161ed4" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">West Garfield Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 26</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $29,947</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 302.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_90e7ae8ae96edf8975cc5c4b22497537.setContent(html_a2f2803d36826979ec82835f67161ed4);
+            
+        
+
+        circle_marker_abeec2dc69ef80b910588200c9d8ec59.bindPopup(popup_90e7ae8ae96edf8975cc5c4b22497537)
+        ;
+
+        
+    
+    
+            var circle_marker_4d2679387849ce8692068e3d22f590df = L.circleMarker(
+                [41.88, -87.71],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_27dd799e10cc82b6f21269af320d5a4b = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_0a2ec743de14a237ccb8de54df7d94e8 = $(`<div id="html_0a2ec743de14a237ccb8de54df7d94e8" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">East Garfield Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 27</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $26,127</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 207.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_27dd799e10cc82b6f21269af320d5a4b.setContent(html_0a2ec743de14a237ccb8de54df7d94e8);
+            
+        
+
+        circle_marker_4d2679387849ce8692068e3d22f590df.bindPopup(popup_27dd799e10cc82b6f21269af320d5a4b)
+        ;
+
+        
+    
+    
+            var circle_marker_6ec5a055098d378cf52c9e4401fff15b = L.circleMarker(
+                [41.88, -87.64],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_3b70bcf8fd174f3f1124a312acfefd71 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_33a98f624315f7cc65176a175e488985 = $(`<div id="html_33a98f624315f7cc65176a175e488985" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Near West Side</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 28</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $91,015</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 103.9 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_3b70bcf8fd174f3f1124a312acfefd71.setContent(html_33a98f624315f7cc65176a175e488985);
+            
+        
+
+        circle_marker_6ec5a055098d378cf52c9e4401fff15b.bindPopup(popup_3b70bcf8fd174f3f1124a312acfefd71)
+        ;
+
+        
+    
+    
+            var circle_marker_d35b91a93ce96b69624ed694cc5f00d8 = L.circleMarker(
+                [41.86, -87.72],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_45eb4b7a7cc0f4c22c2f391727eeb268 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_2f50fdcbd2a8e8614b40434b985aae01 = $(`<div id="html_2f50fdcbd2a8e8614b40434b985aae01" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">North Lawndale</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 29</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $36,257</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 231.1 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_45eb4b7a7cc0f4c22c2f391727eeb268.setContent(html_2f50fdcbd2a8e8614b40434b985aae01);
+            
+        
+
+        circle_marker_d35b91a93ce96b69624ed694cc5f00d8.bindPopup(popup_45eb4b7a7cc0f4c22c2f391727eeb268)
+        ;
+
+        
+    
+    
+            var circle_marker_560134f588ebf5da63c8fa9cf62e5333 = L.circleMarker(
+                [41.86, -87.7],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_9530871397821ccfeb49ce104cfde8c7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_cefae126d5ee76ed48d6d049ed3e490d = $(`<div id="html_cefae126d5ee76ed48d6d049ed3e490d" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">South Lawndale</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 30</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $38,429</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 51.1 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_9530871397821ccfeb49ce104cfde8c7.setContent(html_cefae126d5ee76ed48d6d049ed3e490d);
+            
+        
+
+        circle_marker_560134f588ebf5da63c8fa9cf62e5333.bindPopup(popup_9530871397821ccfeb49ce104cfde8c7)
+        ;
+
+        
+    
+    
+            var circle_marker_cb1f2431724f3ab5ae10c6d2909f7f7a = L.circleMarker(
+                [41.86, -87.66],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_e4dd4a4f8c9ada0a3de92e6856771f5a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_fc804ba05bccb7c52256808dd5fb2ea1 = $(`<div id="html_fc804ba05bccb7c52256808dd5fb2ea1" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Lower West Side</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 31</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $61,145</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 62.7 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_e4dd4a4f8c9ada0a3de92e6856771f5a.setContent(html_fc804ba05bccb7c52256808dd5fb2ea1);
+            
+        
+
+        circle_marker_cb1f2431724f3ab5ae10c6d2909f7f7a.bindPopup(popup_e4dd4a4f8c9ada0a3de92e6856771f5a)
+        ;
+
+        
+    
+    
+            var circle_marker_4fc7575247c4dc833ea237c318f3bff3 = L.circleMarker(
+                [41.88, -87.63],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_2d82e752bd93aeed54d036b7fad3482f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_0fccd4de547dedb188e38f9cf24b5e6c = $(`<div id="html_0fccd4de547dedb188e38f9cf24b5e6c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Loop</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 32</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $115,244</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 130.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_2d82e752bd93aeed54d036b7fad3482f.setContent(html_0fccd4de547dedb188e38f9cf24b5e6c);
+            
+        
+
+        circle_marker_4fc7575247c4dc833ea237c318f3bff3.bindPopup(popup_2d82e752bd93aeed54d036b7fad3482f)
+        ;
+
+        
+    
+    
+            var circle_marker_6304f8aa1612477cd5e4a0b1e7d0717c = L.circleMarker(
+                [41.85, -87.62],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_e23ccabb2c33820052d6906f685f25f4 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b57043bf2ba4f965f323e8f8f5a19c9c = $(`<div id="html_b57043bf2ba4f965f323e8f8f5a19c9c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Near South Side</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 33</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $118,467</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 61.6 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_e23ccabb2c33820052d6906f685f25f4.setContent(html_b57043bf2ba4f965f323e8f8f5a19c9c);
+            
+        
+
+        circle_marker_6304f8aa1612477cd5e4a0b1e7d0717c.bindPopup(popup_e23ccabb2c33820052d6906f685f25f4)
+        ;
+
+        
+    
+    
+            var circle_marker_168112a615bf6efd7019b2c3286179b2 = L.circleMarker(
+                [41.83, -87.63],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_c7d5c7dfbe83e9db526220cd5f20b3c1 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_ac5859dac44728fba28cadf3f818e95c = $(`<div id="html_ac5859dac44728fba28cadf3f818e95c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Armour Square</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 34</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $48,821</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 63.4 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_c7d5c7dfbe83e9db526220cd5f20b3c1.setContent(html_ac5859dac44728fba28cadf3f818e95c);
+            
+        
+
+        circle_marker_168112a615bf6efd7019b2c3286179b2.bindPopup(popup_c7d5c7dfbe83e9db526220cd5f20b3c1)
+        ;
+
+        
+    
+    
+            var circle_marker_57f36f8fee757ed009bfa0ba660fc524 = L.circleMarker(
+                [41.82, -87.62],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_3134e99f936efce63bc7e9a3f1be4d85 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9b2718826de246c4a68f0e7803dcbd40 = $(`<div id="html_9b2718826de246c4a68f0e7803dcbd40" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Douglas</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 35</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $46,190</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 102.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_3134e99f936efce63bc7e9a3f1be4d85.setContent(html_9b2718826de246c4a68f0e7803dcbd40);
+            
+        
+
+        circle_marker_57f36f8fee757ed009bfa0ba660fc524.bindPopup(popup_3134e99f936efce63bc7e9a3f1be4d85)
+        ;
+
+        
+    
+    
+            var circle_marker_82a14c00053dceddaed7232dcaa1c893 = L.circleMarker(
+                [41.82, -87.6],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_aaee2dbde75001873f2706581a21d774 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f49277fd120ff4d5101f8d072e5b2022 = $(`<div id="html_f49277fd120ff4d5101f8d072e5b2022" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Oakland</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 36</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $41,743</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 89.6 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_aaee2dbde75001873f2706581a21d774.setContent(html_f49277fd120ff4d5101f8d072e5b2022);
+            
+        
+
+        circle_marker_82a14c00053dceddaed7232dcaa1c893.bindPopup(popup_aaee2dbde75001873f2706581a21d774)
+        ;
+
+        
+    
+    
+            var circle_marker_2ec629bb60fb02d63cf8fda8d9c3d713 = L.circleMarker(
+                [41.81, -87.63],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_1bf32cb72dc0d0d4575ef10812c3e52b = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7c0b563a7fd02bc2730efebaf5839aae = $(`<div id="html_7c0b563a7fd02bc2730efebaf5839aae" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Fuller Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 37</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $17,944</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 318.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_1bf32cb72dc0d0d4575ef10812c3e52b.setContent(html_7c0b563a7fd02bc2730efebaf5839aae);
+            
+        
+
+        circle_marker_2ec629bb60fb02d63cf8fda8d9c3d713.bindPopup(popup_1bf32cb72dc0d0d4575ef10812c3e52b)
+        ;
+
+        
+    
+    
+            var circle_marker_2928b21cd8231f49023650e4ee4be2d5 = L.circleMarker(
+                [41.81, -87.62],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_a398584fe1a25e58bb47d813e1d37a6b = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_39f503cf84cbbb818eacdef9e5b94820 = $(`<div id="html_39f503cf84cbbb818eacdef9e5b94820" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Grand Boulevard</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 38</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $47,260</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 125.1 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_a398584fe1a25e58bb47d813e1d37a6b.setContent(html_39f503cf84cbbb818eacdef9e5b94820);
+            
+        
+
+        circle_marker_2928b21cd8231f49023650e4ee4be2d5.bindPopup(popup_a398584fe1a25e58bb47d813e1d37a6b)
+        ;
+
+        
+    
+    
+            var circle_marker_eefe9e09a6f95960059f6de5f5f8ebea = L.circleMarker(
+                [41.8, -87.59],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_8f58bdfdd6182e5625b5b768ade6c69f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b0825aa2fabbf9cd903b803499a7b5e0 = $(`<div id="html_b0825aa2fabbf9cd903b803499a7b5e0" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Kenwood</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 39</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $59,319</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 68.0 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_8f58bdfdd6182e5625b5b768ade6c69f.setContent(html_b0825aa2fabbf9cd903b803499a7b5e0);
+            
+        
+
+        circle_marker_eefe9e09a6f95960059f6de5f5f8ebea.bindPopup(popup_8f58bdfdd6182e5625b5b768ade6c69f)
+        ;
+
+        
+    
+    
+            var circle_marker_c15425e24237c98723145002cf18d644 = L.circleMarker(
+                [41.79, -87.62],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_a55eca1c711d2b3fea1408a9e659974b = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d180230862f436ec7ba082c8824c0a92 = $(`<div id="html_d180230862f436ec7ba082c8824c0a92" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Washington Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 40</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $25,793</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 189.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_a55eca1c711d2b3fea1408a9e659974b.setContent(html_d180230862f436ec7ba082c8824c0a92);
+            
+        
+
+        circle_marker_c15425e24237c98723145002cf18d644.bindPopup(popup_a55eca1c711d2b3fea1408a9e659974b)
+        ;
+
+        
+    
+    
+            var circle_marker_9c083d59dbee67694c13f317a82ef466 = L.circleMarker(
+                [41.79, -87.6],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_273c1ed89937fd9848017b7f1f6c969c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a4113d3f6fa215c07d573f1b1d2db6c2 = $(`<div id="html_a4113d3f6fa215c07d573f1b1d2db6c2" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Hyde Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 41</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $60,631</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 53.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_273c1ed89937fd9848017b7f1f6c969c.setContent(html_a4113d3f6fa215c07d573f1b1d2db6c2);
+            
+        
+
+        circle_marker_9c083d59dbee67694c13f317a82ef466.bindPopup(popup_273c1ed89937fd9848017b7f1f6c969c)
+        ;
+
+        
+    
+    
+            var circle_marker_1299869097efa42b24fc552fde3b44b9 = L.circleMarker(
+                [41.78, -87.6],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_04cb90f0d24ba4a60efed291e6cd853e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5e2b67492790dd5e559566d22c39e291 = $(`<div id="html_5e2b67492790dd5e559566d22c39e291" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Woodlawn</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 42</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $40,109</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 118.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_04cb90f0d24ba4a60efed291e6cd853e.setContent(html_5e2b67492790dd5e559566d22c39e291);
+            
+        
+
+        circle_marker_1299869097efa42b24fc552fde3b44b9.bindPopup(popup_04cb90f0d24ba4a60efed291e6cd853e)
+        ;
+
+        
+    
+    
+            var circle_marker_3a334609bea888aac3b92b41e14c8ae1 = L.circleMarker(
+                [41.76, -87.58],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_718d8bf96cab1106db0bbd697b8e2fe6 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d37c220e173fdd5d1d0345746a444f6b = $(`<div id="html_d37c220e173fdd5d1d0345746a444f6b" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">South Shore</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 43</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $37,591</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 155.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_718d8bf96cab1106db0bbd697b8e2fe6.setContent(html_d37c220e173fdd5d1d0345746a444f6b);
+            
+        
+
+        circle_marker_3a334609bea888aac3b92b41e14c8ae1.bindPopup(popup_718d8bf96cab1106db0bbd697b8e2fe6)
+        ;
+
+        
+    
+    
+            var circle_marker_c0dac74bb057d4fdc9b375794ed94e1b = L.circleMarker(
+                [41.75, -87.61],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_20e551881d89611975d7df6bccca2833 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b16e6443d20399ef0d24a0118f5adac3 = $(`<div id="html_b16e6443d20399ef0d24a0118f5adac3" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Chatham</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 44</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $44,007</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 174.3 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_20e551881d89611975d7df6bccca2833.setContent(html_b16e6443d20399ef0d24a0118f5adac3);
+            
+        
+
+        circle_marker_c0dac74bb057d4fdc9b375794ed94e1b.bindPopup(popup_20e551881d89611975d7df6bccca2833)
+        ;
+
+        
+    
+    
+            var circle_marker_6065d9d3e8c5550d3fa95347a0716d3b = L.circleMarker(
+                [41.74, -87.59],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_960ba0517a1aeb575dfc80574f0f7773 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_075cf9097faddf102f7452f9d523e11d = $(`<div id="html_075cf9097faddf102f7452f9d523e11d" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Avalon Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 45</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $52,359</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 126.0 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_960ba0517a1aeb575dfc80574f0f7773.setContent(html_075cf9097faddf102f7452f9d523e11d);
+            
+        
+
+        circle_marker_6065d9d3e8c5550d3fa95347a0716d3b.bindPopup(popup_960ba0517a1aeb575dfc80574f0f7773)
+        ;
+
+        
+    
+    
+            var circle_marker_02292466f139a3f2d6a7388ba03e9471 = L.circleMarker(
+                [41.74, -87.56],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_a4a9faa80222f163eb0d3322b5a2769d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f870891b71af04e211f891ca6ed8e560 = $(`<div id="html_f870891b71af04e211f891ca6ed8e560" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">South Chicago</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 46</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $42,557</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 114.1 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_a4a9faa80222f163eb0d3322b5a2769d.setContent(html_f870891b71af04e211f891ca6ed8e560);
+            
+        
+
+        circle_marker_02292466f139a3f2d6a7388ba03e9471.bindPopup(popup_a4a9faa80222f163eb0d3322b5a2769d)
+        ;
+
+        
+    
+    
+            var circle_marker_559c873b09fbf780c2cfac5b291f0ef2 = L.circleMarker(
+                [41.73, -87.61],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_5453db19bc559e8e97da5aef04c2a652 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f533871f9d047405a32f53cc5263be60 = $(`<div id="html_f533871f9d047405a32f53cc5263be60" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Burnside</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 47</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $48,211</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 160.6 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_5453db19bc559e8e97da5aef04c2a652.setContent(html_f533871f9d047405a32f53cc5263be60);
+            
+        
+
+        circle_marker_559c873b09fbf780c2cfac5b291f0ef2.bindPopup(popup_5453db19bc559e8e97da5aef04c2a652)
+        ;
+
+        
+    
+    
+            var circle_marker_29ddc558a3b2cc0148933b329ed8991b = L.circleMarker(
+                [41.73, -87.59],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_ad607805b61795df3351badca22096e0 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_748f0981b594728f73293d8d7e8b2402 = $(`<div id="html_748f0981b594728f73293d8d7e8b2402" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Calumet Heights</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 48</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $76,894</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 104.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_ad607805b61795df3351badca22096e0.setContent(html_748f0981b594728f73293d8d7e8b2402);
+            
+        
+
+        circle_marker_29ddc558a3b2cc0148933b329ed8991b.bindPopup(popup_ad607805b61795df3351badca22096e0)
+        ;
+
+        
+    
+    
+            var circle_marker_22269b54bf3fada15c20d606be3acf7d = L.circleMarker(
+                [41.72, -87.63],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_ae5ddcf709cf76ebba0e98be38a0cd8d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_8a99a3c1a799061011edfd8fba35b329 = $(`<div id="html_8a99a3c1a799061011edfd8fba35b329" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Roseland</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 49</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $45,725</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 151.7 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_ae5ddcf709cf76ebba0e98be38a0cd8d.setContent(html_8a99a3c1a799061011edfd8fba35b329);
+            
+        
+
+        circle_marker_22269b54bf3fada15c20d606be3acf7d.bindPopup(popup_ae5ddcf709cf76ebba0e98be38a0cd8d)
+        ;
+
+        
+    
+    
+            var circle_marker_086ee9b58807e10001df468cdb011613 = L.circleMarker(
+                [41.71, -87.61],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_4ec4b90f4a3037c9af63c2d45fe593ca = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c02403770e7e2328cfc4483d80f01106 = $(`<div id="html_c02403770e7e2328cfc4483d80f01106" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Pullman</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 50</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $51,412</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 129.9 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_4ec4b90f4a3037c9af63c2d45fe593ca.setContent(html_c02403770e7e2328cfc4483d80f01106);
+            
+        
+
+        circle_marker_086ee9b58807e10001df468cdb011613.bindPopup(popup_4ec4b90f4a3037c9af63c2d45fe593ca)
+        ;
+
+        
+    
+    
+            var circle_marker_f00aca7de2f292e378dfe2b619407d89 = L.circleMarker(
+                [41.7, -87.57],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_4e76e04b3fcf408bec902c9e6e58ac41 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_4e368d81cf3ef197416f0b982cb604aa = $(`<div id="html_4e368d81cf3ef197416f0b982cb604aa" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">South Deering</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 51</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $34,168</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 108.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_4e76e04b3fcf408bec902c9e6e58ac41.setContent(html_4e368d81cf3ef197416f0b982cb604aa);
+            
+        
+
+        circle_marker_f00aca7de2f292e378dfe2b619407d89.bindPopup(popup_4e76e04b3fcf408bec902c9e6e58ac41)
+        ;
+
+        
+    
+    
+            var circle_marker_3ad72be8a6427645234ce1c3d9add1dd = L.circleMarker(
+                [41.71, -87.54],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_1ece11415abc4156a479e10986dbd09b = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_ead890cbf55fcb716e2e9e428b7f718c = $(`<div id="html_ead890cbf55fcb716e2e9e428b7f718c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">East Side</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 52</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $56,618</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.7 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_1ece11415abc4156a479e10986dbd09b.setContent(html_ead890cbf55fcb716e2e9e428b7f718c);
+            
+        
+
+        circle_marker_3ad72be8a6427645234ce1c3d9add1dd.bindPopup(popup_1ece11415abc4156a479e10986dbd09b)
+        ;
+
+        
+    
+    
+            var circle_marker_d170befdcc71eb41f046646a9241daf3 = L.circleMarker(
+                [41.69, -87.67],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_5501171e8572f4d3c3e874f0cd176fc0 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a2778c99afdcca2787627ecc693a1199 = $(`<div id="html_a2778c99afdcca2787627ecc693a1199" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">West Pullman</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 53</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $49,107</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 146.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_5501171e8572f4d3c3e874f0cd176fc0.setContent(html_a2778c99afdcca2787627ecc693a1199);
+            
+        
+
+        circle_marker_d170befdcc71eb41f046646a9241daf3.bindPopup(popup_5501171e8572f4d3c3e874f0cd176fc0)
+        ;
+
+        
+    
+    
+            var circle_marker_2ac7f39ceb14d1260a56bae142d902ad = L.circleMarker(
+                [41.69, -87.63],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_b8c9d3548dd1512413c8a36582342b50 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3a955da6b7224be0cd2de87e8983ee39 = $(`<div id="html_3a955da6b7224be0cd2de87e8983ee39" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Riverdale</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 54</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $19,627</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 145.3 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_b8c9d3548dd1512413c8a36582342b50.setContent(html_3a955da6b7224be0cd2de87e8983ee39);
+            
+        
+
+        circle_marker_2ac7f39ceb14d1260a56bae142d902ad.bindPopup(popup_b8c9d3548dd1512413c8a36582342b50)
+        ;
+
+        
+    
+    
+            var circle_marker_8b1770cbc38fb4f7d5b69e1ad69fd636 = L.circleMarker(
+                [41.66, -87.55],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_fe7426d874a6a8fb2355f9cbbf41b63a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d6271c4f6eb7a9b4c6a6eb762ba017cd = $(`<div id="html_d6271c4f6eb7a9b4c6a6eb762ba017cd" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Hegewisch</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 55</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $64,545</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 55.4 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_fe7426d874a6a8fb2355f9cbbf41b63a.setContent(html_d6271c4f6eb7a9b4c6a6eb762ba017cd);
+            
+        
+
+        circle_marker_8b1770cbc38fb4f7d5b69e1ad69fd636.bindPopup(popup_fe7426d874a6a8fb2355f9cbbf41b63a)
+        ;
+
+        
+    
+    
+            var circle_marker_3e0476480f1728df0f66b170dbb26662 = L.circleMarker(
+                [41.79, -87.77],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_013d23e4776125db548a5be7e9c3ff35 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_04c5d6ee0f2f701b74d2c0dd5346b635 = $(`<div id="html_04c5d6ee0f2f701b74d2c0dd5346b635" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Garfield Ridge</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 56</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $83,297</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 43.4 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_013d23e4776125db548a5be7e9c3ff35.setContent(html_04c5d6ee0f2f701b74d2c0dd5346b635);
+            
+        
+
+        circle_marker_3e0476480f1728df0f66b170dbb26662.bindPopup(popup_013d23e4776125db548a5be7e9c3ff35)
+        ;
+
+        
+    
+    
+            var circle_marker_68c44ba7453856ee1bb472a21075d947 = L.circleMarker(
+                [41.81, -87.73],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_fc3ad0b5c6a5302325621ffd821d4c5f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d2d174ee59014ccb3503e20466146c6e = $(`<div id="html_d2d174ee59014ccb3503e20466146c6e" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Archer Heights</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 57</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $49,912</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 51.3 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_fc3ad0b5c6a5302325621ffd821d4c5f.setContent(html_d2d174ee59014ccb3503e20466146c6e);
+            
+        
+
+        circle_marker_68c44ba7453856ee1bb472a21075d947.bindPopup(popup_fc3ad0b5c6a5302325621ffd821d4c5f)
+        ;
+
+        
+    
+    
+            var circle_marker_d60bf0d20f9c9610a71ceda00b282e2b = L.circleMarker(
+                [41.82, -87.69],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_d25145d5b4ef55104e5cf1fd5797d47e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_eb5392fb819720ea4d11b86936ab3928 = $(`<div id="html_eb5392fb819720ea4d11b86936ab3928" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Brighton Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 58</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $49,827</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 42.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_d25145d5b4ef55104e5cf1fd5797d47e.setContent(html_eb5392fb819720ea4d11b86936ab3928);
+            
+        
+
+        circle_marker_d60bf0d20f9c9610a71ceda00b282e2b.bindPopup(popup_d25145d5b4ef55104e5cf1fd5797d47e)
+        ;
+
+        
+    
+    
+            var circle_marker_09fa496d572af073a260fb8f0cb3879e = L.circleMarker(
+                [41.83, -87.67],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_bfab919bb75eaa6270f0683878792049 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_89c251e9a9691afe165c1a446f1fafb4 = $(`<div id="html_89c251e9a9691afe165c1a446f1fafb4" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">McKinley Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 59</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $62,355</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 49.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_bfab919bb75eaa6270f0683878792049.setContent(html_89c251e9a9691afe165c1a446f1fafb4);
+            
+        
+
+        circle_marker_09fa496d572af073a260fb8f0cb3879e.bindPopup(popup_bfab919bb75eaa6270f0683878792049)
+        ;
+
+        
+    
+    
+            var circle_marker_f922baca637c5b9bc2aed7c056db07bf = L.circleMarker(
+                [41.83, -87.64],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_a7bd77f4aba0e724f85dfc8964abc88d = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a178b47c2cfa95cf20a663cd9980740f = $(`<div id="html_a178b47c2cfa95cf20a663cd9980740f" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Bridgeport</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 60</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $61,574</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.8 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_a7bd77f4aba0e724f85dfc8964abc88d.setContent(html_a178b47c2cfa95cf20a663cd9980740f);
+            
+        
+
+        circle_marker_f922baca637c5b9bc2aed7c056db07bf.bindPopup(popup_a7bd77f4aba0e724f85dfc8964abc88d)
+        ;
+
+        
+    
+    
+            var circle_marker_d3e958b8bbefeebbb61113055a5b3388 = L.circleMarker(
+                [41.81, -87.66],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_0e4ed2718d1ef5668d7dac6227bc19ed = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3a42f7e6d288b63761bb1adf832110b0 = $(`<div id="html_3a42f7e6d288b63761bb1adf832110b0" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">New City</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 61</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $41,289</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 92.0 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_0e4ed2718d1ef5668d7dac6227bc19ed.setContent(html_3a42f7e6d288b63761bb1adf832110b0);
+            
+        
+
+        circle_marker_d3e958b8bbefeebbb61113055a5b3388.bindPopup(popup_0e4ed2718d1ef5668d7dac6227bc19ed)
+        ;
+
+        
+    
+    
+            var circle_marker_142707d040de474d5915cd8dc09a88c9 = L.circleMarker(
+                [41.79, -87.71],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_3412aa6dea28b7612b05bc23731228eb = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_34350e09a0599b9ae40ddc8f47be3814 = $(`<div id="html_34350e09a0599b9ae40ddc8f47be3814" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">West Elsdon</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 62</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $63,829</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.1 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_3412aa6dea28b7612b05bc23731228eb.setContent(html_34350e09a0599b9ae40ddc8f47be3814);
+            
+        
+
+        circle_marker_142707d040de474d5915cd8dc09a88c9.bindPopup(popup_3412aa6dea28b7612b05bc23731228eb)
+        ;
+
+        
+    
+    
+            var circle_marker_ce48ced184144d91de4148dac9e3503e = L.circleMarker(
+                [41.78, -87.69],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_6904b40dfc4666d75fceb6a3a176c96c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_dde32c9461e39044c1569ac65b67e7fb = $(`<div id="html_dde32c9461e39044c1569ac65b67e7fb" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Gage Park</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 63</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $46,029</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 48.9 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_6904b40dfc4666d75fceb6a3a176c96c.setContent(html_dde32c9461e39044c1569ac65b67e7fb);
+            
+        
+
+        circle_marker_ce48ced184144d91de4148dac9e3503e.bindPopup(popup_6904b40dfc4666d75fceb6a3a176c96c)
+        ;
+
+        
+    
+    
+            var circle_marker_15bbfac4c5da2a7e8a541f29179fe45f = L.circleMarker(
+                [41.78, -87.76],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_f253fbb3321c07b953c103a39d9c7d66 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f5b0635e59b751d9f2c16b713a208f0e = $(`<div id="html_f5b0635e59b751d9f2c16b713a208f0e" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Clearing</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 64</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $58,021</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 35.4 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_f253fbb3321c07b953c103a39d9c7d66.setContent(html_f5b0635e59b751d9f2c16b713a208f0e);
+            
+        
+
+        circle_marker_15bbfac4c5da2a7e8a541f29179fe45f.bindPopup(popup_f253fbb3321c07b953c103a39d9c7d66)
+        ;
+
+        
+    
+    
+            var circle_marker_d8f89c48f08e02420bd43f8d1a822e38 = L.circleMarker(
+                [41.77, -87.72],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_26a3cdb3d111bd50aab603f5ad2b1bb9 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_286cdd267431cfbb59e66d348df723ef = $(`<div id="html_286cdd267431cfbb59e66d348df723ef" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">West Lawn</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 65</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $60,321</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.2 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_26a3cdb3d111bd50aab603f5ad2b1bb9.setContent(html_286cdd267431cfbb59e66d348df723ef);
+            
+        
+
+        circle_marker_d8f89c48f08e02420bd43f8d1a822e38.bindPopup(popup_26a3cdb3d111bd50aab603f5ad2b1bb9)
+        ;
+
+        
+    
+    
+            var circle_marker_9c10c44d23cd37d59fb9d5d15d1107de = L.circleMarker(
+                [41.76, -87.69],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#2ca02c", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_f4374f370c78676e478c5f80d1e77232 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c2f6fb7c7ca4f3d476053228b1632498 = $(`<div id="html_c2f6fb7c7ca4f3d476053228b1632498" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Chicago Lawn</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 66</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 2</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $42,320</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 95.9 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_f4374f370c78676e478c5f80d1e77232.setContent(html_c2f6fb7c7ca4f3d476053228b1632498);
+            
+        
+
+        circle_marker_9c10c44d23cd37d59fb9d5d15d1107de.bindPopup(popup_f4374f370c78676e478c5f80d1e77232)
+        ;
+
+        
+    
+    
+            var circle_marker_5fb98bb887214d6ffed502d8ae696936 = L.circleMarker(
+                [41.75, -87.67],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_3b717546d45071eced7aeef3efa28455 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b90fc25784774fd43f19e8f15a52a93b = $(`<div id="html_b90fc25784774fd43f19e8f15a52a93b" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">West Englewood</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 67</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $31,716</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 217.7 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_3b717546d45071eced7aeef3efa28455.setContent(html_b90fc25784774fd43f19e8f15a52a93b);
+            
+        
+
+        circle_marker_5fb98bb887214d6ffed502d8ae696936.bindPopup(popup_3b717546d45071eced7aeef3efa28455)
+        ;
+
+        
+    
+    
+            var circle_marker_0c21d43585dc2f491dd85fa40174420b = L.circleMarker(
+                [41.78, -87.65],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_b7a7e701664e7272849a500628b037eb = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_1cfbfd9d2915dd7a22a03c1bf50f7fbd = $(`<div id="html_1cfbfd9d2915dd7a22a03c1bf50f7fbd" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Englewood</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 68</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $24,655</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 235.7 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_b7a7e701664e7272849a500628b037eb.setContent(html_1cfbfd9d2915dd7a22a03c1bf50f7fbd);
+            
+        
+
+        circle_marker_0c21d43585dc2f491dd85fa40174420b.bindPopup(popup_b7a7e701664e7272849a500628b037eb)
+        ;
+
+        
+    
+    
+            var circle_marker_01619844823c14f102847aa2370796b9 = L.circleMarker(
+                [41.77, -87.61],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_781d8d9b69281708e177c7697945c9d9 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_ca6d386ced1073aae69b4c05709e0c08 = $(`<div id="html_ca6d386ced1073aae69b4c05709e0c08" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Greater Grand Crossing</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 69</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $34,426</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 202.9 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_781d8d9b69281708e177c7697945c9d9.setContent(html_ca6d386ced1073aae69b4c05709e0c08);
+            
+        
+
+        circle_marker_01619844823c14f102847aa2370796b9.bindPopup(popup_781d8d9b69281708e177c7697945c9d9)
+        ;
+
+        
+    
+    
+            var circle_marker_723857d8333de510a1bd612581039de4 = L.circleMarker(
+                [41.74, -87.66],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_b3370e2b7d2af1faf6c2381d36bbc666 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_ed6f54b9a371c3471d282bce577428c2 = $(`<div id="html_ed6f54b9a371c3471d282bce577428c2" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Auburn Gresham</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 71</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $45,821</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 134.4 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_b3370e2b7d2af1faf6c2381d36bbc666.setContent(html_ed6f54b9a371c3471d282bce577428c2);
+            
+        
+
+        circle_marker_723857d8333de510a1bd612581039de4.bindPopup(popup_b3370e2b7d2af1faf6c2381d36bbc666)
+        ;
+
+        
+    
+    
+            var circle_marker_60ed23da46268fa24951b2f0b34fa393 = L.circleMarker(
+                [41.72, -87.67],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_00d2ae5e664ac82624533419e2304fc0 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_631207c29afca7fd30de3b4d610206aa = $(`<div id="html_631207c29afca7fd30de3b4d610206aa" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Beverly</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 72</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $115,591</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 43.3 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_00d2ae5e664ac82624533419e2304fc0.setContent(html_631207c29afca7fd30de3b4d610206aa);
+            
+        
+
+        circle_marker_60ed23da46268fa24951b2f0b34fa393.bindPopup(popup_00d2ae5e664ac82624533419e2304fc0)
+        ;
+
+        
+    
+    
+            var circle_marker_030fe5341a93b38af1abb71003f75667 = L.circleMarker(
+                [41.71, -87.65],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ff7f0e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_4efc7eb1b83af7dd0fc0122961ac6605 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9b8c3b5ead99282ee42e89feb0815437 = $(`<div id="html_9b8c3b5ead99282ee42e89feb0815437" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Washington Heights</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 73</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 1</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $55,516</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 99.5 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_4efc7eb1b83af7dd0fc0122961ac6605.setContent(html_9b8c3b5ead99282ee42e89feb0815437);
+            
+        
+
+        circle_marker_030fe5341a93b38af1abb71003f75667.bindPopup(popup_4efc7eb1b83af7dd0fc0122961ac6605)
+        ;
+
+        
+    
+    
+            var circle_marker_1525c243756c1be693e0b75468e28996 = L.circleMarker(
+                [41.7, -87.67],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_e337fe9321ebd913fdd2fb910431b006 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b155bdee6bea8ba9ce9e1568f913bf6d = $(`<div id="html_b155bdee6bea8ba9ce9e1568f913bf6d" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Mount Greenwood</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 74</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $105,213</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 27.7 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_e337fe9321ebd913fdd2fb910431b006.setContent(html_b155bdee6bea8ba9ce9e1568f913bf6d);
+            
+        
+
+        circle_marker_1525c243756c1be693e0b75468e28996.bindPopup(popup_e337fe9321ebd913fdd2fb910431b006)
+        ;
+
+        
+    
+    
+            var circle_marker_0d94d736dd8ee71c5a63af15fd3698a2 = L.circleMarker(
+                [41.98, -87.9],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_d0a67b4518c28e8dc10b78cdd1ba40eb = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_85df0a1613a27ed99f5cb3ddd0504fea = $(`<div id="html_85df0a1613a27ed99f5cb3ddd0504fea" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">O'Hare</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 76</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $58,108</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 90.3 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_d0a67b4518c28e8dc10b78cdd1ba40eb.setContent(html_85df0a1613a27ed99f5cb3ddd0504fea);
+            
+        
+
+        circle_marker_0d94d736dd8ee71c5a63af15fd3698a2.bindPopup(popup_d0a67b4518c28e8dc10b78cdd1ba40eb)
+        ;
+
+        
+    
+    
+            var circle_marker_f74a3a660ce32b784f98d3b40cc409dc = L.circleMarker(
+                [42.0, -87.66],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1f77b4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 1}
+            ).addTo(map_14355d291916117fbe8e83ef8ec1c8db);
+        
+    
+        var popup_73d580694b052ed94bb6a48299a70c60 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d136f9d8c3f0d912c5af9e0f7179c5b7 = $(`<div id="html_d136f9d8c3f0d912c5af9e0f7179c5b7" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial; width: 240px;">                 <h4 style="margin: 0;">Edgewater</h4>                 <hr style="margin: 5px 0;">                 <p style="margin: 3px 0;"><strong>Official CA:</strong> 77</p>                 <p style="margin: 3px 0;"><strong>Detected Community:</strong> 0</p>                 <p style="margin: 3px 0;"><strong>Income:</strong> $64,814</p>                              <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 40.0 per 1,000</p>                                  <hr style="margin: 5px 0;">                 <p style="margin: 2px 0; font-size: 10px; color: gray;">                 ✓ Matches detected pattern                 </p>             </div>             </div>`)[0];
+                popup_73d580694b052ed94bb6a48299a70c60.setContent(html_d136f9d8c3f0d912c5af9e0f7179c5b7);
+            
+        
+
+        circle_marker_f74a3a660ce32b784f98d3b40cc409dc.bindPopup(popup_73d580694b052ed94bb6a48299a70c60)
+        ;
+
+        
+    
+</script>
+</html>

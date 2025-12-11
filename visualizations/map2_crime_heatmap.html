@@ -1,0 +1,3059 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_42906fabe6f602ef16900229b4780e21 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+         top: 10px; left: 50px; width: 320px; height: 80px; 
+         background-color: white; border:2px solid grey; z-index:9999; 
+         font-size:16px; font-weight: bold; padding: 10px">
+         <p style="margin: 0;">Crime Rate by Community Area</p>
+         <p style="margin: 5px 0 0 0; font-size:12px; font-weight:normal;">
+         212,655 crimes in 2020 | Mean: 90.2 per 1,000</p>
+         <p style="margin: 5px 0 0 0; font-size:12px; font-weight:normal;">
+         🟢 Low (<80) | 🟠 Medium (80-150) | 🔴 High (>150)</p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_42906fabe6f602ef16900229b4780e21" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_42906fabe6f602ef16900229b4780e21 = L.map(
+                "map_42906fabe6f602ef16900229b4780e21",
+                {
+                    center: [41.88, -87.63],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_880f510f798e88b389366a79ba7e5229 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_880f510f798e88b389366a79ba7e5229.addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var heat_map_0a78f79bb3ea488e09ad8c0278174d89 = L.heatLayer(
+                [[42.01, -87.67, 5.943245331847672], [42.0, -87.69, 3.9485545243324913], [41.97, -87.66, 4.983768691235094], [41.97, -87.68, 4.577992744860944], [41.96, -87.68, 3.212329146145758], [41.95, -87.65, 4.251291556572149], [41.92, -87.64, 4.131209751609935], [41.9, -87.63, 7.43037512179279], [42.01, -87.81, 2.43592074168333], [42.0, -87.79, 2.727893299726948], [41.98, -87.77, 3.680959035081269], [41.98, -87.79, 2.7900441589722997], [41.98, -87.71, 4.15292991598426], [41.97, -87.71, 4.121347402597403], [41.96, -87.76, 4.0942442779142345], [41.95, -87.73, 4.119095589881352], [41.94, -87.79, 3.159198843691926], [41.93, -87.79, 3.9215686274509807], [41.93, -87.75, 4.814184901253999], [41.92, -87.73, 5.150455467771878], [41.94, -87.71, 4.898286937901499], [41.92, -87.71, 5.190512412696217], [41.9, -87.71, 12.235069208286612], [41.89, -87.68, 6.580993493649156], [41.9, -87.76, 13.461235050960841], [41.88, -87.73, 30.280793256110133], [41.88, -87.71, 20.74688796680498], [41.88, -87.64, 10.392256749872644], [41.86, -87.72, 23.11402107952731], [41.86, -87.7, 5.1128354808855985], [41.86, -87.66, 6.268364348677767], [41.88, -87.63, 13.021588221832328], [41.85, -87.62, 6.157112526539278], [41.83, -87.63, 6.335348108350123], [41.82, -87.62, 10.219114219114221], [41.82, -87.6, 8.963143553707157], [41.81, -87.63, 31.87529083294556], [41.81, -87.62, 12.514259157547846], [41.8, -87.59, 6.799465835744492], [41.79, -87.62, 18.922029346887886], [41.79, -87.6, 5.3206839333381435], [41.78, -87.6, 11.851644170304802], [41.76, -87.58, 15.582297364495275], [41.75, -87.61, 17.43455664317827], [41.74, -87.59, 12.597362135216533], [41.74, -87.56, 11.405410814958135], [41.73, -87.61, 16.05504587155963], [41.73, -87.59, 10.475573199384266], [41.72, -87.63, 15.170481790879034], [41.71, -87.61, 12.985556022998177], [41.7, -87.57, 10.849181193872159], [41.71, -87.54, 4.165398495586765], [41.69, -87.67, 14.623923878568192], [41.69, -87.63, 14.526571351497168], [41.66, -87.55, 5.536784741144414], [41.79, -87.77, 4.3385392105190155], [41.81, -87.73, 5.128205128205128], [41.82, -87.69, 4.222055794794982], [41.83, -87.67, 4.945559491014036], [41.83, -87.64, 3.9846813166773045], [41.81, -87.66, 9.199846370503135], [41.79, -87.71, 3.9140527992225875], [41.78, -87.69, 4.8923512747875355], [41.78, -87.76, 3.5353949634976622], [41.77, -87.72, 3.9238853305142714], [41.76, -87.69, 9.591553968346897], [41.75, -87.67, 21.767719244590563], [41.78, -87.65, 23.56601117216949], [41.77, -87.61, 20.286112338169833], [41.75, -87.71, 4.447345112115984], [41.74, -87.66, 13.439547732236926], [41.72, -87.67, 4.32961598627441], [41.71, -87.65, 9.951744617668894], [41.7, -87.67, 2.7653927813163484], [41.69, -87.66, 8.257819351066939], [41.98, -87.9, 9.032743695897627], [42.0, -87.66, 4.002180839282367]],
+                {
+  "minOpacity": 0.5,
+  "maxZoom": 13,
+  "radius": 25,
+  "blur": 35,
+  "gradient": {
+  0.4: "yellow",
+  0.65: "orange",
+  1: "red",
+},
+}
+            );
+        
+    
+            heat_map_0a78f79bb3ea488e09ad8c0278174d89.addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var marker_bf6f2e4e9e3f77cd07e341aa2b88286d = L.marker(
+                [42.01, -87.67],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_693dbcf1e528c9110f00e58af5db2c98 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_42407816788464e10fe907784b29559c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d0a2b72754f02ae3deb435397094966a = $(`<div id="html_d0a2b72754f02ae3deb435397094966a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Rogers Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 59.4 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,307</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 55,643</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,701</p>         </div>         </div>`)[0];
+                popup_42407816788464e10fe907784b29559c.setContent(html_d0a2b72754f02ae3deb435397094966a);
+            
+        
+
+        marker_bf6f2e4e9e3f77cd07e341aa2b88286d.bindPopup(popup_42407816788464e10fe907784b29559c)
+        ;
+
+        
+    
+    
+                marker_bf6f2e4e9e3f77cd07e341aa2b88286d.setIcon(icon_693dbcf1e528c9110f00e58af5db2c98);
+            
+    
+            var marker_2e6155a6b49440256551681daf0243ac = L.marker(
+                [42.0, -87.69],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_3ee26a40386718f21e36b850aaf88b47 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_672781c8d9239f7976d7e84cfe2c18b8 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_6677beaec6eace1a3ae448618b6d97b3 = $(`<div id="html_6677beaec6eace1a3ae448618b6d97b3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">West Ridge</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,110</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 78,763</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,021</p>         </div>         </div>`)[0];
+                popup_672781c8d9239f7976d7e84cfe2c18b8.setContent(html_6677beaec6eace1a3ae448618b6d97b3);
+            
+        
+
+        marker_2e6155a6b49440256551681daf0243ac.bindPopup(popup_672781c8d9239f7976d7e84cfe2c18b8)
+        ;
+
+        
+    
+    
+                marker_2e6155a6b49440256551681daf0243ac.setIcon(icon_3ee26a40386718f21e36b850aaf88b47);
+            
+    
+            var marker_e0fda4720a7624cfc8ad63978e091673 = L.marker(
+                [41.97, -87.66],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_1b254c9aab571699bb14c267f84b0c4b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e7da39d2577d2ae0165c3d30916c7d7c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_51194c7a8509148685c06fda5de1ddd7 = $(`<div id="html_51194c7a8509148685c06fda5de1ddd7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Uptown</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 49.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,963</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 59,453</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,657</p>         </div>         </div>`)[0];
+                popup_e7da39d2577d2ae0165c3d30916c7d7c.setContent(html_51194c7a8509148685c06fda5de1ddd7);
+            
+        
+
+        marker_e0fda4720a7624cfc8ad63978e091673.bindPopup(popup_e7da39d2577d2ae0165c3d30916c7d7c)
+        ;
+
+        
+    
+    
+                marker_e0fda4720a7624cfc8ad63978e091673.setIcon(icon_1b254c9aab571699bb14c267f84b0c4b);
+            
+    
+            var marker_7af64a11d3e608ef81e475865610b94c = L.marker(
+                [41.97, -87.68],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_708c6ed467260735b5e8735c366dae0a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2014988e2abc6d6b66f591fe2e168535 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d6a7e8258a1d08f84a9d842c70697937 = $(`<div id="html_d6a7e8258a1d08f84a9d842c70697937" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Lincoln Square</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 45.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,893</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 41,350</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $82,567</p>         </div>         </div>`)[0];
+                popup_2014988e2abc6d6b66f591fe2e168535.setContent(html_d6a7e8258a1d08f84a9d842c70697937);
+            
+        
+
+        marker_7af64a11d3e608ef81e475865610b94c.bindPopup(popup_2014988e2abc6d6b66f591fe2e168535)
+        ;
+
+        
+    
+    
+                marker_7af64a11d3e608ef81e475865610b94c.setIcon(icon_708c6ed467260735b5e8735c366dae0a);
+            
+    
+            var marker_44a543cbc50e15f20160da0f4c7c4ddd = L.marker(
+                [41.96, -87.68],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_b3a6b3e0a349a483654493ef2d2568d0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_48b429f2fa37bf07e126682611983887 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_bde22727beeea42d5972650c5ff3e897 = $(`<div id="html_bde22727beeea42d5972650c5ff3e897" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">North Center</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 32.1 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,161</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 36,142</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $140,789</p>         </div>         </div>`)[0];
+                popup_48b429f2fa37bf07e126682611983887.setContent(html_bde22727beeea42d5972650c5ff3e897);
+            
+        
+
+        marker_44a543cbc50e15f20160da0f4c7c4ddd.bindPopup(popup_48b429f2fa37bf07e126682611983887)
+        ;
+
+        
+    
+    
+                marker_44a543cbc50e15f20160da0f4c7c4ddd.setIcon(icon_b3a6b3e0a349a483654493ef2d2568d0);
+            
+    
+            var marker_f7508c3da739fd1219a19c6c40d76f95 = L.marker(
+                [41.95, -87.65],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_c92d3554af709a78df529eb56cdbb85d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e9f74baa2c89fe44e3ef47d06b931214 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3ee665a3cadf1bd5a5ec836ab70ad725 = $(`<div id="html_3ee665a3cadf1bd5a5ec836ab70ad725" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Lake View</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 42.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 4,312</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 101,428</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $103,865</p>         </div>         </div>`)[0];
+                popup_e9f74baa2c89fe44e3ef47d06b931214.setContent(html_3ee665a3cadf1bd5a5ec836ab70ad725);
+            
+        
+
+        marker_f7508c3da739fd1219a19c6c40d76f95.bindPopup(popup_e9f74baa2c89fe44e3ef47d06b931214)
+        ;
+
+        
+    
+    
+                marker_f7508c3da739fd1219a19c6c40d76f95.setIcon(icon_c92d3554af709a78df529eb56cdbb85d);
+            
+    
+            var marker_c680d53a170f89ff4fe6d11c56aea936 = L.marker(
+                [41.92, -87.64],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_70fec88f635d405d548b192272d38d46 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_967aa5b0cb20f7a54b3df1d556d06eba = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d742627aeb9ce037b021dc9e8b5d76d3 = $(`<div id="html_d742627aeb9ce037b021dc9e8b5d76d3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Lincoln Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.3 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,874</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 69,568</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $131,583</p>         </div>         </div>`)[0];
+                popup_967aa5b0cb20f7a54b3df1d556d06eba.setContent(html_d742627aeb9ce037b021dc9e8b5d76d3);
+            
+        
+
+        marker_c680d53a170f89ff4fe6d11c56aea936.bindPopup(popup_967aa5b0cb20f7a54b3df1d556d06eba)
+        ;
+
+        
+    
+    
+                marker_c680d53a170f89ff4fe6d11c56aea936.setIcon(icon_70fec88f635d405d548b192272d38d46);
+            
+    
+            var marker_e93f20fd28ac69a5db8c9dca486bbde6 = L.marker(
+                [41.9, -87.63],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_ae8e1294232c8f5f1a9f78da84d6d6ec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c9f9d46d85675755da329f9a0fc697b3 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_bb1f600553b0f9ff06dc5fbc4b72c34a = $(`<div id="html_bb1f600553b0f9ff06dc5fbc4b72c34a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Near North Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 74.3 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 7,321</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 98,528</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $118,905</p>         </div>         </div>`)[0];
+                popup_c9f9d46d85675755da329f9a0fc697b3.setContent(html_bb1f600553b0f9ff06dc5fbc4b72c34a);
+            
+        
+
+        marker_e93f20fd28ac69a5db8c9dca486bbde6.bindPopup(popup_c9f9d46d85675755da329f9a0fc697b3)
+        ;
+
+        
+    
+    
+                marker_e93f20fd28ac69a5db8c9dca486bbde6.setIcon(icon_ae8e1294232c8f5f1a9f78da84d6d6ec);
+            
+    
+            var marker_df6237910aa17e097feeff5e1bd4a75f = L.marker(
+                [42.01, -87.81],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_8b863735b9d48306e8399663f6862cb0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a78d9fd96e1d64a7930006ec13aeefdb = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9c3c92df324882e3661d6a4b6b082c95 = $(`<div id="html_9c3c92df324882e3661d6a4b6b082c95" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Edison Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 24.4 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 268</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 11,002</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $126,711</p>         </div>         </div>`)[0];
+                popup_a78d9fd96e1d64a7930006ec13aeefdb.setContent(html_9c3c92df324882e3661d6a4b6b082c95);
+            
+        
+
+        marker_df6237910aa17e097feeff5e1bd4a75f.bindPopup(popup_a78d9fd96e1d64a7930006ec13aeefdb)
+        ;
+
+        
+    
+    
+                marker_df6237910aa17e097feeff5e1bd4a75f.setIcon(icon_8b863735b9d48306e8399663f6862cb0);
+            
+    
+            var marker_31336c01e7c46fb296ae08151829e8b9 = L.marker(
+                [42.0, -87.79],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_7836743be2cf8cb8c12294f0f7b12160 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_70db9cedd58c545c023340feceeff041 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_68156637af6ffba8c5050d2afe3df6db = $(`<div id="html_68156637af6ffba8c5050d2afe3df6db" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Norwood Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 27.3 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,039</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 38,088</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $97,165</p>         </div>         </div>`)[0];
+                popup_70db9cedd58c545c023340feceeff041.setContent(html_68156637af6ffba8c5050d2afe3df6db);
+            
+        
+
+        marker_31336c01e7c46fb296ae08151829e8b9.bindPopup(popup_70db9cedd58c545c023340feceeff041)
+        ;
+
+        
+    
+    
+                marker_31336c01e7c46fb296ae08151829e8b9.setIcon(icon_7836743be2cf8cb8c12294f0f7b12160);
+            
+    
+            var marker_42d3083fdc7f317a0f94f41e46435864 = L.marker(
+                [41.98, -87.77],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_e9bbe5b4a9e22a402a2602c5a36bb01f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cba6a73efce05ae6d2da70230380da5c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_bc674ce9ae60412efdcc295083838256 = $(`<div id="html_bc674ce9ae60412efdcc295083838256" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Jefferson Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 36.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,001</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 27,194</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $81,032</p>         </div>         </div>`)[0];
+                popup_cba6a73efce05ae6d2da70230380da5c.setContent(html_bc674ce9ae60412efdcc295083838256);
+            
+        
+
+        marker_42d3083fdc7f317a0f94f41e46435864.bindPopup(popup_cba6a73efce05ae6d2da70230380da5c)
+        ;
+
+        
+    
+    
+                marker_42d3083fdc7f317a0f94f41e46435864.setIcon(icon_e9bbe5b4a9e22a402a2602c5a36bb01f);
+            
+    
+            var marker_f2606934636740faf25a68a777b7f7f9 = L.marker(
+                [41.98, -87.79],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_17673fa5e3bcc92d8918db4329aae62c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_23f101bf9ee258943ceebf4d24fcd585 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_2499abca0d8339e524219db483a969ff = $(`<div id="html_2499abca0d8339e524219db483a969ff" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Forest Glen</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 27.9 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 556</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 19,928</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $131,997</p>         </div>         </div>`)[0];
+                popup_23f101bf9ee258943ceebf4d24fcd585.setContent(html_2499abca0d8339e524219db483a969ff);
+            
+        
+
+        marker_f2606934636740faf25a68a777b7f7f9.bindPopup(popup_23f101bf9ee258943ceebf4d24fcd585)
+        ;
+
+        
+    
+    
+                marker_f2606934636740faf25a68a777b7f7f9.setIcon(icon_17673fa5e3bcc92d8918db4329aae62c);
+            
+    
+            var marker_33404c8696d5186f9dadca39134d2c42 = L.marker(
+                [41.98, -87.71],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_a7e8c7c4ca65945ed375feb550e491ad = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_20572e48e0d1656e7cf34bef57d100bf = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_e5812aa195fc05d18bbecda40c0bd475 = $(`<div id="html_e5812aa195fc05d18bbecda40c0bd475" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">North Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 781</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 18,806</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $65,392</p>         </div>         </div>`)[0];
+                popup_20572e48e0d1656e7cf34bef57d100bf.setContent(html_e5812aa195fc05d18bbecda40c0bd475);
+            
+        
+
+        marker_33404c8696d5186f9dadca39134d2c42.bindPopup(popup_20572e48e0d1656e7cf34bef57d100bf)
+        ;
+
+        
+    
+    
+                marker_33404c8696d5186f9dadca39134d2c42.setIcon(icon_a7e8c7c4ca65945ed375feb550e491ad);
+            
+    
+            var marker_ae815e7148625cf3ea330f2140e0a592 = L.marker(
+                [41.97, -87.71],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_e69f0cbc8a31af28058d5d36ef4f0c2f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_891deb29554b4dbb79ec2ed3e31c1a94 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_62d69d6bd6c6653a41d39e5145883ea3 = $(`<div id="html_62d69d6bd6c6653a41d39e5145883ea3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Albany Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,031</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 49,280</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $69,901</p>         </div>         </div>`)[0];
+                popup_891deb29554b4dbb79ec2ed3e31c1a94.setContent(html_62d69d6bd6c6653a41d39e5145883ea3);
+            
+        
+
+        marker_ae815e7148625cf3ea330f2140e0a592.bindPopup(popup_891deb29554b4dbb79ec2ed3e31c1a94)
+        ;
+
+        
+    
+    
+                marker_ae815e7148625cf3ea330f2140e0a592.setIcon(icon_e69f0cbc8a31af28058d5d36ef4f0c2f);
+            
+    
+            var marker_c75964bb81eb5746069216cff8126150 = L.marker(
+                [41.96, -87.76],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_6b81fe914d4aad10d9896fd213adb028 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4fe633547f816bea006e9b1c915c5f54 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7de00f77fd4f35b151eb832544ee0994 = $(`<div id="html_7de00f77fd4f35b151eb832544ee0994" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Portage Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 40.9 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,617</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 63,919</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $75,172</p>         </div>         </div>`)[0];
+                popup_4fe633547f816bea006e9b1c915c5f54.setContent(html_7de00f77fd4f35b151eb832544ee0994);
+            
+        
+
+        marker_c75964bb81eb5746069216cff8126150.bindPopup(popup_4fe633547f816bea006e9b1c915c5f54)
+        ;
+
+        
+    
+    
+                marker_c75964bb81eb5746069216cff8126150.setIcon(icon_6b81fe914d4aad10d9896fd213adb028);
+            
+    
+            var marker_3fd193d472b2425bb4d54e7fb4cf5396 = L.marker(
+                [41.95, -87.73],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_d031f1652b511b161ac56b0d965834fd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8a4c129ea8df2ba93c98439a63a99568 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9226bedf6639c87e843a24d40df2ed2f = $(`<div id="html_9226bedf6639c87e843a24d40df2ed2f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Irving Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,208</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 53,604</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $77,199</p>         </div>         </div>`)[0];
+                popup_8a4c129ea8df2ba93c98439a63a99568.setContent(html_9226bedf6639c87e843a24d40df2ed2f);
+            
+        
+
+        marker_3fd193d472b2425bb4d54e7fb4cf5396.bindPopup(popup_8a4c129ea8df2ba93c98439a63a99568)
+        ;
+
+        
+    
+    
+                marker_3fd193d472b2425bb4d54e7fb4cf5396.setIcon(icon_d031f1652b511b161ac56b0d965834fd);
+            
+    
+            var marker_9896391eab9523c5b771ec4406f8937c = L.marker(
+                [41.94, -87.79],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_7dedb989c181dbcb886a6e81cae0d3c7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_debefc0893c9be8e149bc45464e48da7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_db98d2b5e2323ead8fbe5a63d1262397 = $(`<div id="html_db98d2b5e2323ead8fbe5a63d1262397" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Dunning</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 31.6 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,377</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 43,587</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $75,569</p>         </div>         </div>`)[0];
+                popup_debefc0893c9be8e149bc45464e48da7.setContent(html_db98d2b5e2323ead8fbe5a63d1262397);
+            
+        
+
+        marker_9896391eab9523c5b771ec4406f8937c.bindPopup(popup_debefc0893c9be8e149bc45464e48da7)
+        ;
+
+        
+    
+    
+                marker_9896391eab9523c5b771ec4406f8937c.setIcon(icon_7dedb989c181dbcb886a6e81cae0d3c7);
+            
+    
+            var marker_b7811b0090b5a7ea4a2caeef00c6b30c = L.marker(
+                [41.93, -87.79],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_c686650b27e251db11daa4f31531d356 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fc3504db27d64decd10fcc557479568c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b033151cc3dc54bd682a2d4708f4b64e = $(`<div id="html_b033151cc3dc54bd682a2d4708f4b64e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Montclare</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 564</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 14,382</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $68,844</p>         </div>         </div>`)[0];
+                popup_fc3504db27d64decd10fcc557479568c.setContent(html_b033151cc3dc54bd682a2d4708f4b64e);
+            
+        
+
+        marker_b7811b0090b5a7ea4a2caeef00c6b30c.bindPopup(popup_fc3504db27d64decd10fcc557479568c)
+        ;
+
+        
+    
+    
+                marker_b7811b0090b5a7ea4a2caeef00c6b30c.setIcon(icon_c686650b27e251db11daa4f31531d356);
+            
+    
+            var marker_ce23daa8d3ce12230a6d74c55ced1a72 = L.marker(
+                [41.93, -87.75],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_f6566bf0c7ca90c44a96d231342b9822 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5fa1aec02548b037641517e0db46e0e7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a6ac6556c4cce4fa70b8add262ed558d = $(`<div id="html_a6ac6556c4cce4fa70b8add262ed558d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Belmont Cragin</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 48.1 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,793</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 78,788</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,799</p>         </div>         </div>`)[0];
+                popup_5fa1aec02548b037641517e0db46e0e7.setContent(html_a6ac6556c4cce4fa70b8add262ed558d);
+            
+        
+
+        marker_ce23daa8d3ce12230a6d74c55ced1a72.bindPopup(popup_5fa1aec02548b037641517e0db46e0e7)
+        ;
+
+        
+    
+    
+                marker_ce23daa8d3ce12230a6d74c55ced1a72.setIcon(icon_f6566bf0c7ca90c44a96d231342b9822);
+            
+    
+            var marker_e569a49ce1fe1e6cfb96353c78348d00 = L.marker(
+                [41.92, -87.73],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_3207daf1de4b049b7c7ac0949675a227 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5da5240bef51f44959cbd4bef277f4d7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_e054d7c2a2c1f4a62b4bb1fe2a6454b4 = $(`<div id="html_e054d7c2a2c1f4a62b4bb1fe2a6454b4" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Hermosa</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 51.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,193</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 23,163</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $54,914</p>         </div>         </div>`)[0];
+                popup_5da5240bef51f44959cbd4bef277f4d7.setContent(html_e054d7c2a2c1f4a62b4bb1fe2a6454b4);
+            
+        
+
+        marker_e569a49ce1fe1e6cfb96353c78348d00.bindPopup(popup_5da5240bef51f44959cbd4bef277f4d7)
+        ;
+
+        
+    
+    
+                marker_e569a49ce1fe1e6cfb96353c78348d00.setIcon(icon_3207daf1de4b049b7c7ac0949675a227);
+            
+    
+            var marker_f2d96e58f61f32796a4ee89799dec1be = L.marker(
+                [41.94, -87.71],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_535965f9dc775a15ba1fffe149ebe7ca = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf5c25995a852e1b16f04e909972b477 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_ce76d77f90abdec21328807c98288626 = $(`<div id="html_ce76d77f90abdec21328807c98288626" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Avondale</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 49.0 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,830</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 37,360</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $78,279</p>         </div>         </div>`)[0];
+                popup_bf5c25995a852e1b16f04e909972b477.setContent(html_ce76d77f90abdec21328807c98288626);
+            
+        
+
+        marker_f2d96e58f61f32796a4ee89799dec1be.bindPopup(popup_bf5c25995a852e1b16f04e909972b477)
+        ;
+
+        
+    
+    
+                marker_f2d96e58f61f32796a4ee89799dec1be.setIcon(icon_535965f9dc775a15ba1fffe149ebe7ca);
+            
+    
+            var marker_7fb69e9ad028c525b3008f65bf031fa5 = L.marker(
+                [41.92, -87.71],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_3520ad158b88dfe0c0a8bbfd14a1bb25 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3daa5d5a03dee78baeb880b0114a6484 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9294a02e116ebdec4b2b13695e570c2f = $(`<div id="html_9294a02e116ebdec4b2b13695e570c2f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Logan Square</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 51.9 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,753</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 72,305</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $91,002</p>         </div>         </div>`)[0];
+                popup_3daa5d5a03dee78baeb880b0114a6484.setContent(html_9294a02e116ebdec4b2b13695e570c2f);
+            
+        
+
+        marker_7fb69e9ad028c525b3008f65bf031fa5.bindPopup(popup_3daa5d5a03dee78baeb880b0114a6484)
+        ;
+
+        
+    
+    
+                marker_7fb69e9ad028c525b3008f65bf031fa5.setIcon(icon_3520ad158b88dfe0c0a8bbfd14a1bb25);
+            
+    
+            var marker_443f4c215b25586633d5fa2458d5b6e4 = L.marker(
+                [41.9, -87.71],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_9ba68b5a2de5876b85ca2a24dada01c0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e5ee2bd437d9e7807161dde0d5463b4a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_986a627e8cff0cc0e6dfe05eb8dd319b = $(`<div id="html_986a627e8cff0cc0e6dfe05eb8dd319b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Humboldt Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 122.4 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 6,656</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 54,401</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $44,799</p>         </div>         </div>`)[0];
+                popup_e5ee2bd437d9e7807161dde0d5463b4a.setContent(html_986a627e8cff0cc0e6dfe05eb8dd319b);
+            
+        
+
+        marker_443f4c215b25586633d5fa2458d5b6e4.bindPopup(popup_e5ee2bd437d9e7807161dde0d5463b4a)
+        ;
+
+        
+    
+    
+                marker_443f4c215b25586633d5fa2458d5b6e4.setIcon(icon_9ba68b5a2de5876b85ca2a24dada01c0);
+            
+    
+            var marker_29a73a3dfb3688cf07082f5b34fc22c5 = L.marker(
+                [41.89, -87.68],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_52f1887bafcc0feed3286111515af0c6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_010e347c7ec04cdca13a695b1ab0234a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b4c9b7ecbeb7f95f17018e0fd36080a9 = $(`<div id="html_b4c9b7ecbeb7f95f17018e0fd36080a9" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">West Town</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 65.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 5,290</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 80,383</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $113,973</p>         </div>         </div>`)[0];
+                popup_010e347c7ec04cdca13a695b1ab0234a.setContent(html_b4c9b7ecbeb7f95f17018e0fd36080a9);
+            
+        
+
+        marker_29a73a3dfb3688cf07082f5b34fc22c5.bindPopup(popup_010e347c7ec04cdca13a695b1ab0234a)
+        ;
+
+        
+    
+    
+                marker_29a73a3dfb3688cf07082f5b34fc22c5.setIcon(icon_52f1887bafcc0feed3286111515af0c6);
+            
+    
+            var marker_8105372cd8d7fc6a2da3316bd5cb1621 = L.marker(
+                [41.9, -87.76],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_16e0cf355ffc2a328effe408ee9cc501 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6c616cb34bdc49bbe0cc80582247388a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_839542cec57f3b555d89cd8e5a028fc3 = $(`<div id="html_839542cec57f3b555d89cd8e5a028fc3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Austin</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 134.6 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 12,798</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 95,073</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $43,866</p>         </div>         </div>`)[0];
+                popup_6c616cb34bdc49bbe0cc80582247388a.setContent(html_839542cec57f3b555d89cd8e5a028fc3);
+            
+        
+
+        marker_8105372cd8d7fc6a2da3316bd5cb1621.bindPopup(popup_6c616cb34bdc49bbe0cc80582247388a)
+        ;
+
+        
+    
+    
+                marker_8105372cd8d7fc6a2da3316bd5cb1621.setIcon(icon_16e0cf355ffc2a328effe408ee9cc501);
+            
+    
+            var marker_d2fcfe6e7be573f82f44b4d6a6673335 = L.marker(
+                [41.88, -87.73],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_207c8592c8bfef3adbbc4c9e5bd1679d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b792e34069eae99f6f8e65c5bc06cdb2 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_84b244bf5ad50755a4d03e69b0d8c03e = $(`<div id="html_84b244bf5ad50755a4d03e69b0d8c03e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">West Garfield Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 302.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 4,993</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 16,489</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $29,947</p>         </div>         </div>`)[0];
+                popup_b792e34069eae99f6f8e65c5bc06cdb2.setContent(html_84b244bf5ad50755a4d03e69b0d8c03e);
+            
+        
+
+        marker_d2fcfe6e7be573f82f44b4d6a6673335.bindPopup(popup_b792e34069eae99f6f8e65c5bc06cdb2)
+        ;
+
+        
+    
+    
+                marker_d2fcfe6e7be573f82f44b4d6a6673335.setIcon(icon_207c8592c8bfef3adbbc4c9e5bd1679d);
+            
+    
+            var marker_5d8b8b71af09557ac92c4f78e7295091 = L.marker(
+                [41.88, -87.71],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_cc23f72499452ffbd51b8b770c6959d7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_64a09cef3f9f31b3dd84fafe939fc955 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a75653aa91a42a27e86713ad67bb497e = $(`<div id="html_a75653aa91a42a27e86713ad67bb497e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">East Garfield Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 207.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,750</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 18,075</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $26,127</p>         </div>         </div>`)[0];
+                popup_64a09cef3f9f31b3dd84fafe939fc955.setContent(html_a75653aa91a42a27e86713ad67bb497e);
+            
+        
+
+        marker_5d8b8b71af09557ac92c4f78e7295091.bindPopup(popup_64a09cef3f9f31b3dd84fafe939fc955)
+        ;
+
+        
+    
+    
+                marker_5d8b8b71af09557ac92c4f78e7295091.setIcon(icon_cc23f72499452ffbd51b8b770c6959d7);
+            
+    
+            var marker_59f1b67622c9946502901eb1a1c0f727 = L.marker(
+                [41.88, -87.64],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_fdef36a7d0017284c71d9379d4aac551 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9630cdaee3388222ad3143b9450f0802 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_29b6643d17dc6369b401717fdfa84657 = $(`<div id="html_29b6643d17dc6369b401717fdfa84657" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Near West Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 103.9 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 6,528</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 62,816</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $91,015</p>         </div>         </div>`)[0];
+                popup_9630cdaee3388222ad3143b9450f0802.setContent(html_29b6643d17dc6369b401717fdfa84657);
+            
+        
+
+        marker_59f1b67622c9946502901eb1a1c0f727.bindPopup(popup_9630cdaee3388222ad3143b9450f0802)
+        ;
+
+        
+    
+    
+                marker_59f1b67622c9946502901eb1a1c0f727.setIcon(icon_fdef36a7d0017284c71d9379d4aac551);
+            
+    
+            var marker_4a3a0a00ad761fd08209788d844ef585 = L.marker(
+                [41.86, -87.72],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_aa9924dff472a161f7db7176640e55aa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_40eb6ff3c0835f44bd54703ecd803343 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_dc636a3f051c00a1ae7080c365f9edfe = $(`<div id="html_dc636a3f051c00a1ae7080c365f9edfe" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">North Lawndale</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 231.1 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 7,237</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 31,310</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $36,257</p>         </div>         </div>`)[0];
+                popup_40eb6ff3c0835f44bd54703ecd803343.setContent(html_dc636a3f051c00a1ae7080c365f9edfe);
+            
+        
+
+        marker_4a3a0a00ad761fd08209788d844ef585.bindPopup(popup_40eb6ff3c0835f44bd54703ecd803343)
+        ;
+
+        
+    
+    
+                marker_4a3a0a00ad761fd08209788d844ef585.setIcon(icon_aa9924dff472a161f7db7176640e55aa);
+            
+    
+            var marker_d1cc2382e109683cdc6bc9d29614b3f3 = L.marker(
+                [41.86, -87.7],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_497b7a71cc682d9a49afd2903f7fdcd9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bce6b6e6982c7a87ff8a66e912ae6c4a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3c7fa7d144e4465a4b9973fbcd326399 = $(`<div id="html_3c7fa7d144e4465a4b9973fbcd326399" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">South Lawndale</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 51.1 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,591</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 70,235</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $38,429</p>         </div>         </div>`)[0];
+                popup_bce6b6e6982c7a87ff8a66e912ae6c4a.setContent(html_3c7fa7d144e4465a4b9973fbcd326399);
+            
+        
+
+        marker_d1cc2382e109683cdc6bc9d29614b3f3.bindPopup(popup_bce6b6e6982c7a87ff8a66e912ae6c4a)
+        ;
+
+        
+    
+    
+                marker_d1cc2382e109683cdc6bc9d29614b3f3.setIcon(icon_497b7a71cc682d9a49afd2903f7fdcd9);
+            
+    
+            var marker_0ec7b94961d0448138c70da268f370a1 = L.marker(
+                [41.86, -87.66],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_badb11a4613fdbeb3eb46f12f801ce67 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9626eb40f841293ee945bf8ae42a156f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_396c18a8fa0e96fb218b72272f577239 = $(`<div id="html_396c18a8fa0e96fb218b72272f577239" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Lower West Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 62.7 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,048</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 32,672</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $61,145</p>         </div>         </div>`)[0];
+                popup_9626eb40f841293ee945bf8ae42a156f.setContent(html_396c18a8fa0e96fb218b72272f577239);
+            
+        
+
+        marker_0ec7b94961d0448138c70da268f370a1.bindPopup(popup_9626eb40f841293ee945bf8ae42a156f)
+        ;
+
+        
+    
+    
+                marker_0ec7b94961d0448138c70da268f370a1.setIcon(icon_badb11a4613fdbeb3eb46f12f801ce67);
+            
+    
+            var marker_93295050b05bf8514a86b9527fb6d5b9 = L.marker(
+                [41.88, -87.63],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_b32007c569096dca69fd539be439e9ad = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_432d47b02f345014975c5d1ef7a35d15 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_51c3779cc9c03a9a18dc5e4daa662b7e = $(`<div id="html_51c3779cc9c03a9a18dc5e4daa662b7e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Loop</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 130.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 5,121</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 39,327</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $115,244</p>         </div>         </div>`)[0];
+                popup_432d47b02f345014975c5d1ef7a35d15.setContent(html_51c3779cc9c03a9a18dc5e4daa662b7e);
+            
+        
+
+        marker_93295050b05bf8514a86b9527fb6d5b9.bindPopup(popup_432d47b02f345014975c5d1ef7a35d15)
+        ;
+
+        
+    
+    
+                marker_93295050b05bf8514a86b9527fb6d5b9.setIcon(icon_b32007c569096dca69fd539be439e9ad);
+            
+    
+            var marker_e67ba60a004b15b41309106e9c3a2bad = L.marker(
+                [41.85, -87.62],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_404c99ace69f47aab85a78a76501b796 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6d25e400bb4255fb56b4bf6abd2bdf58 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_246263f2d1aff7afbbc2bc6e655889e5 = $(`<div id="html_246263f2d1aff7afbbc2bc6e655889e5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Near South Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 61.6 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,624</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 26,376</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $118,467</p>         </div>         </div>`)[0];
+                popup_6d25e400bb4255fb56b4bf6abd2bdf58.setContent(html_246263f2d1aff7afbbc2bc6e655889e5);
+            
+        
+
+        marker_e67ba60a004b15b41309106e9c3a2bad.bindPopup(popup_6d25e400bb4255fb56b4bf6abd2bdf58)
+        ;
+
+        
+    
+    
+                marker_e67ba60a004b15b41309106e9c3a2bad.setIcon(icon_404c99ace69f47aab85a78a76501b796);
+            
+    
+            var marker_6f4de94215c939aefff30d79e71a7309 = L.marker(
+                [41.83, -87.63],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_f48ad0b1c2416c6a0577d781322a3577 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_931359f39b15db739c4d1dba63415c69 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_0a97721e18451f71b74dd19d79d742b8 = $(`<div id="html_0a97721e18451f71b74dd19d79d742b8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Armour Square</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 63.4 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 849</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 13,401</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $48,821</p>         </div>         </div>`)[0];
+                popup_931359f39b15db739c4d1dba63415c69.setContent(html_0a97721e18451f71b74dd19d79d742b8);
+            
+        
+
+        marker_6f4de94215c939aefff30d79e71a7309.bindPopup(popup_931359f39b15db739c4d1dba63415c69)
+        ;
+
+        
+    
+    
+                marker_6f4de94215c939aefff30d79e71a7309.setIcon(icon_f48ad0b1c2416c6a0577d781322a3577);
+            
+    
+            var marker_2e7cf9e8f1a793b2fc3a06265b4c1fe0 = L.marker(
+                [41.82, -87.62],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_af92e4308110cbdf555cc8b358df8390 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_347c563353bcd25ee72517b5cd1b2b7e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_1f78040c6229239e62c596eec41b4654 = $(`<div id="html_1f78040c6229239e62c596eec41b4654" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Douglas</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 102.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,192</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 21,450</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $46,190</p>         </div>         </div>`)[0];
+                popup_347c563353bcd25ee72517b5cd1b2b7e.setContent(html_1f78040c6229239e62c596eec41b4654);
+            
+        
+
+        marker_2e7cf9e8f1a793b2fc3a06265b4c1fe0.bindPopup(popup_347c563353bcd25ee72517b5cd1b2b7e)
+        ;
+
+        
+    
+    
+                marker_2e7cf9e8f1a793b2fc3a06265b4c1fe0.setIcon(icon_af92e4308110cbdf555cc8b358df8390);
+            
+    
+            var marker_25ae48e414fbf147c36b617969def610 = L.marker(
+                [41.82, -87.6],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_41e560761af74c0081f903f634b6fcae = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_33bca1688ae70b419532222615367659 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_407440f52645f4f587adcde7185080cc = $(`<div id="html_407440f52645f4f587adcde7185080cc" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Oakland</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 89.6 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 625</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 6,973</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $41,743</p>         </div>         </div>`)[0];
+                popup_33bca1688ae70b419532222615367659.setContent(html_407440f52645f4f587adcde7185080cc);
+            
+        
+
+        marker_25ae48e414fbf147c36b617969def610.bindPopup(popup_33bca1688ae70b419532222615367659)
+        ;
+
+        
+    
+    
+                marker_25ae48e414fbf147c36b617969def610.setIcon(icon_41e560761af74c0081f903f634b6fcae);
+            
+    
+            var marker_acf8e9232ef25fb04e168abed997ae04 = L.marker(
+                [41.81, -87.63],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_6604f001c5da8c430bd1df01c80b66a8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c70a77eed41d402eb414c5c8dd4a8a65 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b98836c2c01ba86af6de9453ab521195 = $(`<div id="html_b98836c2c01ba86af6de9453ab521195" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Fuller Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 318.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 685</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 2,149</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $17,944</p>         </div>         </div>`)[0];
+                popup_c70a77eed41d402eb414c5c8dd4a8a65.setContent(html_b98836c2c01ba86af6de9453ab521195);
+            
+        
+
+        marker_acf8e9232ef25fb04e168abed997ae04.bindPopup(popup_c70a77eed41d402eb414c5c8dd4a8a65)
+        ;
+
+        
+    
+    
+                marker_acf8e9232ef25fb04e168abed997ae04.setIcon(icon_6604f001c5da8c430bd1df01c80b66a8);
+            
+    
+            var marker_3f6585495706b95837a9c7c476eff5fb = L.marker(
+                [41.81, -87.62],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_12daa3061ce83f2ce03a8ad709fc5a6e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7a71cb81b26c0a93fd182b2a40aebf14 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9b8d5f810025dc302095a8864f146a5c = $(`<div id="html_9b8d5f810025dc302095a8864f146a5c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Grand Boulevard</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 125.1 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,962</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 23,669</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $47,260</p>         </div>         </div>`)[0];
+                popup_7a71cb81b26c0a93fd182b2a40aebf14.setContent(html_9b8d5f810025dc302095a8864f146a5c);
+            
+        
+
+        marker_3f6585495706b95837a9c7c476eff5fb.bindPopup(popup_7a71cb81b26c0a93fd182b2a40aebf14)
+        ;
+
+        
+    
+    
+                marker_3f6585495706b95837a9c7c476eff5fb.setIcon(icon_12daa3061ce83f2ce03a8ad709fc5a6e);
+            
+    
+            var marker_773bfc69ecb2a8951faa704fbcd2e591 = L.marker(
+                [41.8, -87.59],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_d3a2bd8038293594ebe9af670d53f42c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3452557452179ac94bc4739efb38b371 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7131630a776ef26c52dcc8bf26f70fa1 = $(`<div id="html_7131630a776ef26c52dcc8bf26f70fa1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Kenwood</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 68.0 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,222</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 17,972</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $59,319</p>         </div>         </div>`)[0];
+                popup_3452557452179ac94bc4739efb38b371.setContent(html_7131630a776ef26c52dcc8bf26f70fa1);
+            
+        
+
+        marker_773bfc69ecb2a8951faa704fbcd2e591.bindPopup(popup_3452557452179ac94bc4739efb38b371)
+        ;
+
+        
+    
+    
+                marker_773bfc69ecb2a8951faa704fbcd2e591.setIcon(icon_d3a2bd8038293594ebe9af670d53f42c);
+            
+    
+            var marker_01b4adbb98327b024ae6a3c68e26e7c1 = L.marker(
+                [41.79, -87.62],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_fb80bd818d173699688d35d83b5168c8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c814b999cae253d20b7c2eed400f0d7 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7193294e813602215e6065a47bb36606 = $(`<div id="html_7193294e813602215e6065a47bb36606" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Washington Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 189.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,973</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 10,427</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $25,793</p>         </div>         </div>`)[0];
+                popup_0c814b999cae253d20b7c2eed400f0d7.setContent(html_7193294e813602215e6065a47bb36606);
+            
+        
+
+        marker_01b4adbb98327b024ae6a3c68e26e7c1.bindPopup(popup_0c814b999cae253d20b7c2eed400f0d7)
+        ;
+
+        
+    
+    
+                marker_01b4adbb98327b024ae6a3c68e26e7c1.setIcon(icon_fb80bd818d173699688d35d83b5168c8);
+            
+    
+            var marker_f46db2165c80e4b8fafb709390fe3d92 = L.marker(
+                [41.79, -87.6],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_5575d35922c1a54ffc47996005ae0db7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2a6a13e256ad38a8f40832441ec08092 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7c2ada37945f5a0853c6df8986edbadb = $(`<div id="html_7c2ada37945f5a0853c6df8986edbadb" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Hyde Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 53.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,475</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 27,722</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,631</p>         </div>         </div>`)[0];
+                popup_2a6a13e256ad38a8f40832441ec08092.setContent(html_7c2ada37945f5a0853c6df8986edbadb);
+            
+        
+
+        marker_f46db2165c80e4b8fafb709390fe3d92.bindPopup(popup_2a6a13e256ad38a8f40832441ec08092)
+        ;
+
+        
+    
+    
+                marker_f46db2165c80e4b8fafb709390fe3d92.setIcon(icon_5575d35922c1a54ffc47996005ae0db7);
+            
+    
+            var marker_8fb3566653f88f25b662f9ad3c3418fd = L.marker(
+                [41.78, -87.6],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_cf317492c8023a2703d27c38be72a8f3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9755dc2aa3244c08cae45604de5699b8 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7eb2f8cce3d1a8ef13299ca04321dc1e = $(`<div id="html_7eb2f8cce3d1a8ef13299ca04321dc1e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Woodlawn</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 118.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,959</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 24,967</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $40,109</p>         </div>         </div>`)[0];
+                popup_9755dc2aa3244c08cae45604de5699b8.setContent(html_7eb2f8cce3d1a8ef13299ca04321dc1e);
+            
+        
+
+        marker_8fb3566653f88f25b662f9ad3c3418fd.bindPopup(popup_9755dc2aa3244c08cae45604de5699b8)
+        ;
+
+        
+    
+    
+                marker_8fb3566653f88f25b662f9ad3c3418fd.setIcon(icon_cf317492c8023a2703d27c38be72a8f3);
+            
+    
+            var marker_7e3a506b22a1ac1963c4ea8fe28e9f20 = L.marker(
+                [41.76, -87.58],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_064e22b2b743b38b57c4675491c1b19b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9d79e6126503dad7820a0a3dc013a62 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9d4c58b010ebbda73e1f76063379dbd1 = $(`<div id="html_9d4c58b010ebbda73e1f76063379dbd1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">South Shore</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 155.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 7,834</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 50,275</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $37,591</p>         </div>         </div>`)[0];
+                popup_b9d79e6126503dad7820a0a3dc013a62.setContent(html_9d4c58b010ebbda73e1f76063379dbd1);
+            
+        
+
+        marker_7e3a506b22a1ac1963c4ea8fe28e9f20.bindPopup(popup_b9d79e6126503dad7820a0a3dc013a62)
+        ;
+
+        
+    
+    
+                marker_7e3a506b22a1ac1963c4ea8fe28e9f20.setIcon(icon_064e22b2b743b38b57c4675491c1b19b);
+            
+    
+            var marker_6bdf0407f84cfe847fcdc0844cd3c539 = L.marker(
+                [41.75, -87.61],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_c4525389b6798249c908f8f7d065ec0f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_da45239928fda519e2d7141eec366d51 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_227b02f6cc07e9060b3402705c9769f0 = $(`<div id="html_227b02f6cc07e9060b3402705c9769f0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Chatham</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 174.3 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 5,468</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 31,363</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $44,007</p>         </div>         </div>`)[0];
+                popup_da45239928fda519e2d7141eec366d51.setContent(html_227b02f6cc07e9060b3402705c9769f0);
+            
+        
+
+        marker_6bdf0407f84cfe847fcdc0844cd3c539.bindPopup(popup_da45239928fda519e2d7141eec366d51)
+        ;
+
+        
+    
+    
+                marker_6bdf0407f84cfe847fcdc0844cd3c539.setIcon(icon_c4525389b6798249c908f8f7d065ec0f);
+            
+    
+            var marker_d6cfc959b76ed8d2cbf4a25db4e51c5c = L.marker(
+                [41.74, -87.59],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_be126f414c6d6d839805b264b26f088a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4fc16cbca6aca3bcd9ec5ab220bff003 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_57a9e8aa6f3b23053acf4e2f0ea75414 = $(`<div id="html_57a9e8aa6f3b23053acf4e2f0ea75414" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Avalon Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 126.0 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,213</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 9,629</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $52,359</p>         </div>         </div>`)[0];
+                popup_4fc16cbca6aca3bcd9ec5ab220bff003.setContent(html_57a9e8aa6f3b23053acf4e2f0ea75414);
+            
+        
+
+        marker_d6cfc959b76ed8d2cbf4a25db4e51c5c.bindPopup(popup_4fc16cbca6aca3bcd9ec5ab220bff003)
+        ;
+
+        
+    
+    
+                marker_d6cfc959b76ed8d2cbf4a25db4e51c5c.setIcon(icon_be126f414c6d6d839805b264b26f088a);
+            
+    
+            var marker_f91b0370a7eea3f8fe67934bc093de9f = L.marker(
+                [41.74, -87.56],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_0e9ba0bfde8a02912db4327da21d0a66 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d9ace490159f472e8defe3a22af6d985 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_4344810ce73d4013524f4cc7547300e3 = $(`<div id="html_4344810ce73d4013524f4cc7547300e3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">South Chicago</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 114.1 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,419</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 29,977</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $42,557</p>         </div>         </div>`)[0];
+                popup_d9ace490159f472e8defe3a22af6d985.setContent(html_4344810ce73d4013524f4cc7547300e3);
+            
+        
+
+        marker_f91b0370a7eea3f8fe67934bc093de9f.bindPopup(popup_d9ace490159f472e8defe3a22af6d985)
+        ;
+
+        
+    
+    
+                marker_f91b0370a7eea3f8fe67934bc093de9f.setIcon(icon_0e9ba0bfde8a02912db4327da21d0a66);
+            
+    
+            var marker_1e81b836fc9feed34117bd636bf6db3b = L.marker(
+                [41.73, -87.61],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_15f28a26ad90cea7b39762ed66ee0e38 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6f274b3f650034044db5c28792803033 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_37505bbcaa800e9297cfb213a7f7eb9e = $(`<div id="html_37505bbcaa800e9297cfb213a7f7eb9e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Burnside</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 160.6 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 350</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 2,180</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $48,211</p>         </div>         </div>`)[0];
+                popup_6f274b3f650034044db5c28792803033.setContent(html_37505bbcaa800e9297cfb213a7f7eb9e);
+            
+        
+
+        marker_1e81b836fc9feed34117bd636bf6db3b.bindPopup(popup_6f274b3f650034044db5c28792803033)
+        ;
+
+        
+    
+    
+                marker_1e81b836fc9feed34117bd636bf6db3b.setIcon(icon_15f28a26ad90cea7b39762ed66ee0e38);
+            
+    
+            var marker_de5dacbde484ab5098cb8df7c47e91a8 = L.marker(
+                [41.73, -87.59],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_d0d94bd9746a609bbecaa47ec4e629e4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_724b41acca16e1ce458055799db869d9 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_127744006560fc1160c1804e3d20d4a0 = $(`<div id="html_127744006560fc1160c1804e3d20d4a0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Calumet Heights</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 104.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,293</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 12,343</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $76,894</p>         </div>         </div>`)[0];
+                popup_724b41acca16e1ce458055799db869d9.setContent(html_127744006560fc1160c1804e3d20d4a0);
+            
+        
+
+        marker_de5dacbde484ab5098cb8df7c47e91a8.bindPopup(popup_724b41acca16e1ce458055799db869d9)
+        ;
+
+        
+    
+    
+                marker_de5dacbde484ab5098cb8df7c47e91a8.setIcon(icon_d0d94bd9746a609bbecaa47ec4e629e4);
+            
+    
+            var marker_bd59f86d71e8145d6759dbd488c400c2 = L.marker(
+                [41.72, -87.63],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_ae664b32514bab1c1aba678ee3d24d8c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5a8cb5f6f0a607ed84ad795830dd648c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b83fd98049d9ce9eac424e1a874da374 = $(`<div id="html_b83fd98049d9ce9eac424e1a874da374" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Roseland</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 151.7 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 6,011</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 39,623</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $45,725</p>         </div>         </div>`)[0];
+                popup_5a8cb5f6f0a607ed84ad795830dd648c.setContent(html_b83fd98049d9ce9eac424e1a874da374);
+            
+        
+
+        marker_bd59f86d71e8145d6759dbd488c400c2.bindPopup(popup_5a8cb5f6f0a607ed84ad795830dd648c)
+        ;
+
+        
+    
+    
+                marker_bd59f86d71e8145d6759dbd488c400c2.setIcon(icon_ae664b32514bab1c1aba678ee3d24d8c);
+            
+    
+            var marker_6364edfcdd60dc34ed693a5cb8b2d167 = L.marker(
+                [41.71, -87.61],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_0eda0c423a47494dc417745c1fc7c824 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7b7508326cd1faa63edb19b410cf53ef = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_072680ac80904b83758ea239cbd28216 = $(`<div id="html_072680ac80904b83758ea239cbd28216" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Pullman</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 129.9 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 926</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 7,131</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $51,412</p>         </div>         </div>`)[0];
+                popup_7b7508326cd1faa63edb19b410cf53ef.setContent(html_072680ac80904b83758ea239cbd28216);
+            
+        
+
+        marker_6364edfcdd60dc34ed693a5cb8b2d167.bindPopup(popup_7b7508326cd1faa63edb19b410cf53ef)
+        ;
+
+        
+    
+    
+                marker_6364edfcdd60dc34ed693a5cb8b2d167.setIcon(icon_0eda0c423a47494dc417745c1fc7c824);
+            
+    
+            var marker_be1196daa5c42ac4088f5d26424e7706 = L.marker(
+                [41.7, -87.57],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_96c87bd29756282c8f1bb7811af87769 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dda7e319e6e9868fc4c90b4ae09a298f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_f03cc1feb06b7072e3ead3194016d6e5 = $(`<div id="html_f03cc1feb06b7072e3ead3194016d6e5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">South Deering</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 108.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,643</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 15,144</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $34,168</p>         </div>         </div>`)[0];
+                popup_dda7e319e6e9868fc4c90b4ae09a298f.setContent(html_f03cc1feb06b7072e3ead3194016d6e5);
+            
+        
+
+        marker_be1196daa5c42ac4088f5d26424e7706.bindPopup(popup_dda7e319e6e9868fc4c90b4ae09a298f)
+        ;
+
+        
+    
+    
+                marker_be1196daa5c42ac4088f5d26424e7706.setIcon(icon_96c87bd29756282c8f1bb7811af87769);
+            
+    
+            var marker_df493a474b6a1d7d9ff4f26898466e94 = L.marker(
+                [41.71, -87.54],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_51a2b027f7b13f92682674af887e06db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_504d8b7a72d4b0a5c5126655c91cee38 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_1195862ec5b717e2bfba17b19ad17852 = $(`<div id="html_1195862ec5b717e2bfba17b19ad17852" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">East Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 41.7 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 958</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 22,999</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $56,618</p>         </div>         </div>`)[0];
+                popup_504d8b7a72d4b0a5c5126655c91cee38.setContent(html_1195862ec5b717e2bfba17b19ad17852);
+            
+        
+
+        marker_df493a474b6a1d7d9ff4f26898466e94.bindPopup(popup_504d8b7a72d4b0a5c5126655c91cee38)
+        ;
+
+        
+    
+    
+                marker_df493a474b6a1d7d9ff4f26898466e94.setIcon(icon_51a2b027f7b13f92682674af887e06db);
+            
+    
+            var marker_dbfa2e39d9ea74735f6a088e89611926 = L.marker(
+                [41.69, -87.67],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_1cb79dce3e511d2cdf951e0f20024e37 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d9c8ecd5e02a271347e6d24b89f68b79 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3dd78af7a1bf526abaa71eb12e23b06c = $(`<div id="html_3dd78af7a1bf526abaa71eb12e23b06c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">West Pullman</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 146.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,873</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 26,484</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,107</p>         </div>         </div>`)[0];
+                popup_d9c8ecd5e02a271347e6d24b89f68b79.setContent(html_3dd78af7a1bf526abaa71eb12e23b06c);
+            
+        
+
+        marker_dbfa2e39d9ea74735f6a088e89611926.bindPopup(popup_d9c8ecd5e02a271347e6d24b89f68b79)
+        ;
+
+        
+    
+    
+                marker_dbfa2e39d9ea74735f6a088e89611926.setIcon(icon_1cb79dce3e511d2cdf951e0f20024e37);
+            
+    
+            var marker_802e72d44f859bd29073560fa61eadd8 = L.marker(
+                [41.69, -87.63],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_e0da175a1cde0666ad2fd59e1b998463 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_241964372fcaa144c0883edf596c27e9 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9be11d2d97af33c3af366b855c7a35d1 = $(`<div id="html_9be11d2d97af33c3af366b855c7a35d1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Riverdale</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 145.3 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,077</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 7,414</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $19,627</p>         </div>         </div>`)[0];
+                popup_241964372fcaa144c0883edf596c27e9.setContent(html_9be11d2d97af33c3af366b855c7a35d1);
+            
+        
+
+        marker_802e72d44f859bd29073560fa61eadd8.bindPopup(popup_241964372fcaa144c0883edf596c27e9)
+        ;
+
+        
+    
+    
+                marker_802e72d44f859bd29073560fa61eadd8.setIcon(icon_e0da175a1cde0666ad2fd59e1b998463);
+            
+    
+            var marker_12422db469511f959779a447a6d2a73b = L.marker(
+                [41.66, -87.55],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_3a20fda311162372aa46a820bde8ebd5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8dc57d8a12852670c32dea85c8b79e1b = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_01287b37acc163a7bbaacd273ffbd134 = $(`<div id="html_01287b37acc163a7bbaacd273ffbd134" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Hegewisch</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 55.4 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 508</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 9,175</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,545</p>         </div>         </div>`)[0];
+                popup_8dc57d8a12852670c32dea85c8b79e1b.setContent(html_01287b37acc163a7bbaacd273ffbd134);
+            
+        
+
+        marker_12422db469511f959779a447a6d2a73b.bindPopup(popup_8dc57d8a12852670c32dea85c8b79e1b)
+        ;
+
+        
+    
+    
+                marker_12422db469511f959779a447a6d2a73b.setIcon(icon_3a20fda311162372aa46a820bde8ebd5);
+            
+    
+            var marker_c693de174dcb7141671c394348c5687e = L.marker(
+                [41.79, -87.77],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_e8cd21ab44f2568a6192a2f327286d5d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3334e6a26a65780b8f382e6562cdb198 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3eaea3fdbf64bccd27b3821441ab8bce = $(`<div id="html_3eaea3fdbf64bccd27b3821441ab8bce" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Garfield Ridge</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 43.4 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,564</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 36,049</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $83,297</p>         </div>         </div>`)[0];
+                popup_3334e6a26a65780b8f382e6562cdb198.setContent(html_3eaea3fdbf64bccd27b3821441ab8bce);
+            
+        
+
+        marker_c693de174dcb7141671c394348c5687e.bindPopup(popup_3334e6a26a65780b8f382e6562cdb198)
+        ;
+
+        
+    
+    
+                marker_c693de174dcb7141671c394348c5687e.setIcon(icon_e8cd21ab44f2568a6192a2f327286d5d);
+            
+    
+            var marker_808a0551449ded48424b77dff0325742 = L.marker(
+                [41.81, -87.73],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_98f7255fe2f90b6bc7f7683c9df3002e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e6a8ddf8ae95f2beae0f10eaa1238386 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_d7dbd26293e22e23ea17fff87d4cf4aa = $(`<div id="html_d7dbd26293e22e23ea17fff87d4cf4aa" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Archer Heights</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 51.3 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 694</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 13,533</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,912</p>         </div>         </div>`)[0];
+                popup_e6a8ddf8ae95f2beae0f10eaa1238386.setContent(html_d7dbd26293e22e23ea17fff87d4cf4aa);
+            
+        
+
+        marker_808a0551449ded48424b77dff0325742.bindPopup(popup_e6a8ddf8ae95f2beae0f10eaa1238386)
+        ;
+
+        
+    
+    
+                marker_808a0551449ded48424b77dff0325742.setIcon(icon_98f7255fe2f90b6bc7f7683c9df3002e);
+            
+    
+            var marker_fb812e11ca28a7863c5dbd07eea7eea4 = L.marker(
+                [41.82, -87.69],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_1eb73433b34aadfce6b492483e8fb942 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6d375463303d2897440defddd68e1e4a = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b4e3b88bb3b373b1d45c3e7542edee6f = $(`<div id="html_b4e3b88bb3b373b1d45c3e7542edee6f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Brighton Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 42.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,804</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 42,728</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,827</p>         </div>         </div>`)[0];
+                popup_6d375463303d2897440defddd68e1e4a.setContent(html_b4e3b88bb3b373b1d45c3e7542edee6f);
+            
+        
+
+        marker_fb812e11ca28a7863c5dbd07eea7eea4.bindPopup(popup_6d375463303d2897440defddd68e1e4a)
+        ;
+
+        
+    
+    
+                marker_fb812e11ca28a7863c5dbd07eea7eea4.setIcon(icon_1eb73433b34aadfce6b492483e8fb942);
+            
+    
+            var marker_6ba6e9feb7cbcdab7ad2ebbc00026507 = L.marker(
+                [41.83, -87.67],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_2c61ac5f464eaa5bcfc064662a282a72 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d3968d4ea559031142cf302180dc0a0c = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_21d43e9d300966ca13a505ecfc19448c = $(`<div id="html_21d43e9d300966ca13a505ecfc19448c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">McKinley Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 49.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 754</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 15,246</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $62,355</p>         </div>         </div>`)[0];
+                popup_d3968d4ea559031142cf302180dc0a0c.setContent(html_21d43e9d300966ca13a505ecfc19448c);
+            
+        
+
+        marker_6ba6e9feb7cbcdab7ad2ebbc00026507.bindPopup(popup_d3968d4ea559031142cf302180dc0a0c)
+        ;
+
+        
+    
+    
+                marker_6ba6e9feb7cbcdab7ad2ebbc00026507.setIcon(icon_2c61ac5f464eaa5bcfc064662a282a72);
+            
+    
+            var marker_707063a4ca3fc74e05120a64eb2831e0 = L.marker(
+                [41.83, -87.64],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_364d9aec60bd69eb90319117a486a7da = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f14d2498e7671b05c752baa437bb3797 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_68ca515471165645e613cab480358350 = $(`<div id="html_68ca515471165645e613cab480358350" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Bridgeport</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.8 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,311</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 32,901</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $61,574</p>         </div>         </div>`)[0];
+                popup_f14d2498e7671b05c752baa437bb3797.setContent(html_68ca515471165645e613cab480358350);
+            
+        
+
+        marker_707063a4ca3fc74e05120a64eb2831e0.bindPopup(popup_f14d2498e7671b05c752baa437bb3797)
+        ;
+
+        
+    
+    
+                marker_707063a4ca3fc74e05120a64eb2831e0.setIcon(icon_364d9aec60bd69eb90319117a486a7da);
+            
+    
+            var marker_a52fc881feb2952f17614aef9ba0f96a = L.marker(
+                [41.81, -87.66],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_4e70b6a1d53d7f58d962ee6b98b2748f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e42ec9af3c96e3542071d1261efe7b10 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_8349ca6de725eef030523d8dc55251d7 = $(`<div id="html_8349ca6de725eef030523d8dc55251d7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">New City</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 92.0 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 3,593</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 39,055</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $41,289</p>         </div>         </div>`)[0];
+                popup_e42ec9af3c96e3542071d1261efe7b10.setContent(html_8349ca6de725eef030523d8dc55251d7);
+            
+        
+
+        marker_a52fc881feb2952f17614aef9ba0f96a.bindPopup(popup_e42ec9af3c96e3542071d1261efe7b10)
+        ;
+
+        
+    
+    
+                marker_a52fc881feb2952f17614aef9ba0f96a.setIcon(icon_4e70b6a1d53d7f58d962ee6b98b2748f);
+            
+    
+            var marker_5bad7d55b8c4b3b4f4a5b609532fe136 = L.marker(
+                [41.79, -87.71],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_d0d01c03bddf909fcd25994eb04fdc00 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_85bef49e6b3564bc96e21d9beb6652df = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_9707ab2226d3dfbdd8a386c26065693f = $(`<div id="html_9707ab2226d3dfbdd8a386c26065693f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">West Elsdon</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.1 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 725</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 18,523</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $63,829</p>         </div>         </div>`)[0];
+                popup_85bef49e6b3564bc96e21d9beb6652df.setContent(html_9707ab2226d3dfbdd8a386c26065693f);
+            
+        
+
+        marker_5bad7d55b8c4b3b4f4a5b609532fe136.bindPopup(popup_85bef49e6b3564bc96e21d9beb6652df)
+        ;
+
+        
+    
+    
+                marker_5bad7d55b8c4b3b4f4a5b609532fe136.setIcon(icon_d0d01c03bddf909fcd25994eb04fdc00);
+            
+    
+            var marker_ce60c2b9f02a41bd2cdc523830456d72 = L.marker(
+                [41.78, -87.69],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_99f97922207750424feca207ce8fdf1e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1a75c33330e8d4891a4ceffe19f93fec = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_517303c08c8138d9464297b061b67519 = $(`<div id="html_517303c08c8138d9464297b061b67519" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Gage Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 48.9 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,727</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 35,300</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $46,029</p>         </div>         </div>`)[0];
+                popup_1a75c33330e8d4891a4ceffe19f93fec.setContent(html_517303c08c8138d9464297b061b67519);
+            
+        
+
+        marker_ce60c2b9f02a41bd2cdc523830456d72.bindPopup(popup_1a75c33330e8d4891a4ceffe19f93fec)
+        ;
+
+        
+    
+    
+                marker_ce60c2b9f02a41bd2cdc523830456d72.setIcon(icon_99f97922207750424feca207ce8fdf1e);
+            
+    
+            var marker_938d4dce84bc2efa41ea53cf203fc243 = L.marker(
+                [41.78, -87.76],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_e4d10d86710208cad22d91f4ea1ec3e0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_42285d609f4f01ac2cdf7a00c1b7ffdf = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_a2706bb5fd43a69e8f1c686e897d33f3 = $(`<div id="html_a2706bb5fd43a69e8f1c686e897d33f3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Clearing</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 35.4 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 862</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 24,382</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $58,021</p>         </div>         </div>`)[0];
+                popup_42285d609f4f01ac2cdf7a00c1b7ffdf.setContent(html_a2706bb5fd43a69e8f1c686e897d33f3);
+            
+        
+
+        marker_938d4dce84bc2efa41ea53cf203fc243.bindPopup(popup_42285d609f4f01ac2cdf7a00c1b7ffdf)
+        ;
+
+        
+    
+    
+                marker_938d4dce84bc2efa41ea53cf203fc243.setIcon(icon_e4d10d86710208cad22d91f4ea1ec3e0);
+            
+    
+            var marker_33f2c417d1cf74c520b79d8fbacbf849 = L.marker(
+                [41.77, -87.72],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_9541c5cada579eed540fb96149d4e949 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_753f9a7c35a269e27519738dd8b32b71 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_27baaddbcb58345ec378c99967c2f744 = $(`<div id="html_27baaddbcb58345ec378c99967c2f744" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">West Lawn</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 39.2 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,262</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 32,162</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,321</p>         </div>         </div>`)[0];
+                popup_753f9a7c35a269e27519738dd8b32b71.setContent(html_27baaddbcb58345ec378c99967c2f744);
+            
+        
+
+        marker_33f2c417d1cf74c520b79d8fbacbf849.bindPopup(popup_753f9a7c35a269e27519738dd8b32b71)
+        ;
+
+        
+    
+    
+                marker_33f2c417d1cf74c520b79d8fbacbf849.setIcon(icon_9541c5cada579eed540fb96149d4e949);
+            
+    
+            var marker_48426c3549fd031bafdf415635f7ae66 = L.marker(
+                [41.76, -87.69],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_7a4190d194aedac9eac1d586fc297666 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_057a1c7e0736ceee4d252933d147c176 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_233f914fc0bc95e5f26eacfaec9c7949 = $(`<div id="html_233f914fc0bc95e5f26eacfaec9c7949" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Chicago Lawn</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 95.9 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 4,915</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 51,243</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $42,320</p>         </div>         </div>`)[0];
+                popup_057a1c7e0736ceee4d252933d147c176.setContent(html_233f914fc0bc95e5f26eacfaec9c7949);
+            
+        
+
+        marker_48426c3549fd031bafdf415635f7ae66.bindPopup(popup_057a1c7e0736ceee4d252933d147c176)
+        ;
+
+        
+    
+    
+                marker_48426c3549fd031bafdf415635f7ae66.setIcon(icon_7a4190d194aedac9eac1d586fc297666);
+            
+    
+            var marker_0a8dc7eb56e3537ad0396dc94d443775 = L.marker(
+                [41.75, -87.67],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_c87ce13d92ea57a97cf92467832b14f7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2428d4403e11e327b0f8a891bd844b84 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_7ae9058f62b3de09a761c34388c4d371 = $(`<div id="html_7ae9058f62b3de09a761c34388c4d371" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">West Englewood</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 217.7 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 5,694</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 26,158</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $31,716</p>         </div>         </div>`)[0];
+                popup_2428d4403e11e327b0f8a891bd844b84.setContent(html_7ae9058f62b3de09a761c34388c4d371);
+            
+        
+
+        marker_0a8dc7eb56e3537ad0396dc94d443775.bindPopup(popup_2428d4403e11e327b0f8a891bd844b84)
+        ;
+
+        
+    
+    
+                marker_0a8dc7eb56e3537ad0396dc94d443775.setIcon(icon_c87ce13d92ea57a97cf92467832b14f7);
+            
+    
+            var marker_89d6a87979a4c30c0c510a1afa1f6363 = L.marker(
+                [41.78, -87.65],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_2275f4bfafdc8c6760587eaeae14a86c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2faa79719e9d7c78810f5f064393592f = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_05ec660a45cf7bc8e2688bf649f3b8d0 = $(`<div id="html_05ec660a45cf7bc8e2688bf649f3b8d0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Englewood</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 235.7 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 5,189</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 22,019</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $24,655</p>         </div>         </div>`)[0];
+                popup_2faa79719e9d7c78810f5f064393592f.setContent(html_05ec660a45cf7bc8e2688bf649f3b8d0);
+            
+        
+
+        marker_89d6a87979a4c30c0c510a1afa1f6363.bindPopup(popup_2faa79719e9d7c78810f5f064393592f)
+        ;
+
+        
+    
+    
+                marker_89d6a87979a4c30c0c510a1afa1f6363.setIcon(icon_2275f4bfafdc8c6760587eaeae14a86c);
+            
+    
+            var marker_59769e344b8f1736b1cc437c27791bc0 = L.marker(
+                [41.77, -87.61],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_fd5cc994fab52d25493160633afdea22 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1d5bb26701bb7ea04ec1964359e5eac3 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_5ab30db7e0ae711c15030c9b2cc9e9c8 = $(`<div id="html_5ab30db7e0ae711c15030c9b2cc9e9c8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Greater Grand Crossing</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 202.9 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 5,970</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 29,429</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $34,426</p>         </div>         </div>`)[0];
+                popup_1d5bb26701bb7ea04ec1964359e5eac3.setContent(html_5ab30db7e0ae711c15030c9b2cc9e9c8);
+            
+        
+
+        marker_59769e344b8f1736b1cc437c27791bc0.bindPopup(popup_1d5bb26701bb7ea04ec1964359e5eac3)
+        ;
+
+        
+    
+    
+                marker_59769e344b8f1736b1cc437c27791bc0.setIcon(icon_fd5cc994fab52d25493160633afdea22);
+            
+    
+            var marker_448b8af20ff7d322f065e442d43b17ff = L.marker(
+                [41.75, -87.71],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_c79c6f40c5795388b8ba1c50c1c47c9f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_46dbed856ddf0698e860f8a5888fa77b = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_b33d364f2a07f3fdc9ca6c53af3ee30e = $(`<div id="html_b33d364f2a07f3fdc9ca6c53af3ee30e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Ashburn</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 44.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,908</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 42,902</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $74,204</p>         </div>         </div>`)[0];
+                popup_46dbed856ddf0698e860f8a5888fa77b.setContent(html_b33d364f2a07f3fdc9ca6c53af3ee30e);
+            
+        
+
+        marker_448b8af20ff7d322f065e442d43b17ff.bindPopup(popup_46dbed856ddf0698e860f8a5888fa77b)
+        ;
+
+        
+    
+    
+                marker_448b8af20ff7d322f065e442d43b17ff.setIcon(icon_c79c6f40c5795388b8ba1c50c1c47c9f);
+            
+    
+            var marker_c6cbf58955bfde3c14682f0f9041379f = L.marker(
+                [41.74, -87.66],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_09b7ee6a24bfe57dcc99992ee56b094c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cfd4881403038c571943210ccfa2a29e = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_98fa1b61adc6000a3e71f1c099146da7 = $(`<div id="html_98fa1b61adc6000a3e71f1c099146da7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Auburn Gresham</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 134.4 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 6,276</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 46,698</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $45,821</p>         </div>         </div>`)[0];
+                popup_cfd4881403038c571943210ccfa2a29e.setContent(html_98fa1b61adc6000a3e71f1c099146da7);
+            
+        
+
+        marker_c6cbf58955bfde3c14682f0f9041379f.bindPopup(popup_cfd4881403038c571943210ccfa2a29e)
+        ;
+
+        
+    
+    
+                marker_c6cbf58955bfde3c14682f0f9041379f.setIcon(icon_09b7ee6a24bfe57dcc99992ee56b094c);
+            
+    
+            var marker_bf8bfb6da15711523c225fbc4b0f31c1 = L.marker(
+                [41.72, -87.67],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_12eab78229de97578a379d4c656aede5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_80786d1323a5d25d7ab67520b70484a1 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_874978978b3bfde222d477dc09da77b8 = $(`<div id="html_874978978b3bfde222d477dc09da77b8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Beverly</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 43.3 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 858</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 19,817</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $115,591</p>         </div>         </div>`)[0];
+                popup_80786d1323a5d25d7ab67520b70484a1.setContent(html_874978978b3bfde222d477dc09da77b8);
+            
+        
+
+        marker_bf8bfb6da15711523c225fbc4b0f31c1.bindPopup(popup_80786d1323a5d25d7ab67520b70484a1)
+        ;
+
+        
+    
+    
+                marker_bf8bfb6da15711523c225fbc4b0f31c1.setIcon(icon_12eab78229de97578a379d4c656aede5);
+            
+    
+            var marker_1004b8f88c42baaf71c36e7196c6d9ec = L.marker(
+                [41.71, -87.65],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_d9c838d23c8e3e333f84ce771feb36aa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f63515fbe072f634054b4c191345bfdb = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_c1d21be3ac630786c7e5f82fc2b5b9d7 = $(`<div id="html_c1d21be3ac630786c7e5f82fc2b5b9d7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Washington Heights</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 99.5 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,681</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 26,940</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $55,516</p>         </div>         </div>`)[0];
+                popup_f63515fbe072f634054b4c191345bfdb.setContent(html_c1d21be3ac630786c7e5f82fc2b5b9d7);
+            
+        
+
+        marker_1004b8f88c42baaf71c36e7196c6d9ec.bindPopup(popup_f63515fbe072f634054b4c191345bfdb)
+        ;
+
+        
+    
+    
+                marker_1004b8f88c42baaf71c36e7196c6d9ec.setIcon(icon_d9c838d23c8e3e333f84ce771feb36aa);
+            
+    
+            var marker_10594b54500ba6ed4569889f37ef123c = L.marker(
+                [41.7, -87.67],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_076bb4f90d11a41c2916cda2eb9e39ce = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e05551f0cde0876f69544ca2ed457929 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_616d0e5e2890136f01d58d0e89f62704 = $(`<div id="html_616d0e5e2890136f01d58d0e89f62704" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Mount Greenwood</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 27.7 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 521</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 18,840</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $105,213</p>         </div>         </div>`)[0];
+                popup_e05551f0cde0876f69544ca2ed457929.setContent(html_616d0e5e2890136f01d58d0e89f62704);
+            
+        
+
+        marker_10594b54500ba6ed4569889f37ef123c.bindPopup(popup_e05551f0cde0876f69544ca2ed457929)
+        ;
+
+        
+    
+    
+                marker_10594b54500ba6ed4569889f37ef123c.setIcon(icon_076bb4f90d11a41c2916cda2eb9e39ce);
+            
+    
+            var marker_b2f8ce9860c6bb615c50acfe8eaec88f = L.marker(
+                [41.69, -87.66],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_041b68ff1da534ba394b4b6e3b5bf429 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_160b16739fe64b4ed21122b26b47d0da = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_11dad4e1a5a05e15cefe6f9cea7280c3 = $(`<div id="html_11dad4e1a5a05e15cefe6f9cea7280c3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Morgan Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 82.6 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,695</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 20,526</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $70,324</p>         </div>         </div>`)[0];
+                popup_160b16739fe64b4ed21122b26b47d0da.setContent(html_11dad4e1a5a05e15cefe6f9cea7280c3);
+            
+        
+
+        marker_b2f8ce9860c6bb615c50acfe8eaec88f.bindPopup(popup_160b16739fe64b4ed21122b26b47d0da)
+        ;
+
+        
+    
+    
+                marker_b2f8ce9860c6bb615c50acfe8eaec88f.setIcon(icon_041b68ff1da534ba394b4b6e3b5bf429);
+            
+    
+            var marker_739bf8cb53b602185a0cbaa1e21ad3da = L.marker(
+                [41.98, -87.9],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_feda9334899edde25c1b2b7559803c37 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8ca70277423cfc8c6abef936a7041ba6 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_3c0793a354ddbb0de630d5a5ebcbeaa9 = $(`<div id="html_3c0793a354ddbb0de630d5a5ebcbeaa9" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">O'Hare</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 90.3 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 1,200</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 13,285</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $58,108</p>         </div>         </div>`)[0];
+                popup_8ca70277423cfc8c6abef936a7041ba6.setContent(html_3c0793a354ddbb0de630d5a5ebcbeaa9);
+            
+        
+
+        marker_739bf8cb53b602185a0cbaa1e21ad3da.bindPopup(popup_8ca70277423cfc8c6abef936a7041ba6)
+        ;
+
+        
+    
+    
+                marker_739bf8cb53b602185a0cbaa1e21ad3da.setIcon(icon_feda9334899edde25c1b2b7559803c37);
+            
+    
+            var marker_8aaf8560f8fcbe45fcc213f3ddc00120 = L.marker(
+                [42.0, -87.66],
+                {
+}
+            ).addTo(map_42906fabe6f602ef16900229b4780e21);
+        
+    
+            var icon_3bd390ea866fb88b8408f16039ddd661 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "warning-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bf4ac675fe22fac2c1f89aa10fe84f49 = L.popup({
+  "maxWidth": 260,
+});
+
+        
+            
+                var html_0a2b6ee4a9f7e52c69b3d74216b4c5d9 = $(`<div id="html_0a2b6ee4a9f7e52c69b3d74216b4c5d9" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 240px;">             <h4 style="margin: 0;">Edgewater</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Crime Rate:</strong> 40.0 per 1,000</p>             <p style="margin: 3px 0;"><strong>Total Crimes:</strong> 2,349</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 58,693</p>             <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,814</p>         </div>         </div>`)[0];
+                popup_bf4ac675fe22fac2c1f89aa10fe84f49.setContent(html_0a2b6ee4a9f7e52c69b3d74216b4c5d9);
+            
+        
+
+        marker_8aaf8560f8fcbe45fcc213f3ddc00120.bindPopup(popup_bf4ac675fe22fac2c1f89aa10fe84f49)
+        ;
+
+        
+    
+    
+                marker_8aaf8560f8fcbe45fcc213f3ddc00120.setIcon(icon_3bd390ea866fb88b8408f16039ddd661);
+            
+</script>
+</html>

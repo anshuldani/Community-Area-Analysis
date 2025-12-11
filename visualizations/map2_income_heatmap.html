@@ -1,0 +1,3052 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_83e99c8e8f0e13e7f14e2932332b388c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    
+    <div style="position: fixed; 
+         top: 10px; left: 50px; width: 300px; height: 60px; 
+         background-color: white; border:2px solid grey; z-index:9999; 
+         font-size:16px; font-weight: bold; padding: 10px">
+         <p style="margin: 0;">Median Income by Community Area</p>
+         <p style="margin: 5px 0 0 0; font-size:12px; font-weight:normal;">
+         🟢 High (>$80K) | 🟠 Medium ($50-80K) | 🔴 Low (<$50K)</p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_83e99c8e8f0e13e7f14e2932332b388c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_83e99c8e8f0e13e7f14e2932332b388c = L.map(
+                "map_83e99c8e8f0e13e7f14e2932332b388c",
+                {
+                    center: [41.88, -87.63],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_cfa14f3498df354a7ed4d1cc8b5d0074 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_cfa14f3498df354a7ed4d1cc8b5d0074.addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var heat_map_910e3b9331f8c5c9c72e6d8da098cc4d = L.heatLayer(
+                [[42.01, -87.67, 49.701809819979914], [42.0, -87.69, 64.02184465824008], [41.97, -87.66, 60.657788023726255], [41.97, -87.68, 82.56786079956807], [41.96, -87.68, 140.78998644236623], [41.95, -87.65, 103.86573513448919], [41.92, -87.64, 131.58362918682545], [41.9, -87.63, 118.90567518686085], [42.01, -87.81, 126.71149101331002], [42.0, -87.79, 97.16504891608001], [41.98, -87.77, 81.0320163701629], [41.98, -87.79, 131.99768863234647], [41.98, -87.71, 65.39277178234693], [41.97, -87.71, 69.90197871063182], [41.96, -87.76, 75.17254938271606], [41.95, -87.73, 77.19917029471841], [41.94, -87.79, 75.56922916716944], [41.93, -87.79, 68.84483630748112], [41.93, -87.75, 60.79907895988584], [41.92, -87.73, 54.91436037085352], [41.94, -87.71, 78.27994844840636], [41.92, -87.71, 91.0025741923553], [41.9, -87.71, 44.79950842383329], [41.89, -87.68, 113.97313206271447], [41.9, -87.76, 43.86621135089377], [41.88, -87.73, 29.94773830800339], [41.88, -87.71, 26.127785977859777], [41.88, -87.64, 91.01572552685528], [41.86, -87.72, 36.257296402821005], [41.86, -87.7, 38.429553157002886], [41.86, -87.66, 61.14598662348178], [41.88, -87.63, 115.24427267748159], [41.85, -87.62, 118.46758980151687], [41.83, -87.63, 48.82129757223457], [41.82, -87.62, 46.19024265805083], [41.82, -87.6, 41.74398264735408], [41.81, -87.63, 17.94449744067008], [41.81, -87.62, 47.26091767700738], [41.8, -87.59, 59.31910399764844], [41.79, -87.62, 25.79353288418351], [41.79, -87.6, 60.6313364482134], [41.78, -87.6, 40.1090431009182], [41.76, -87.58, 37.591864075842764], [41.75, -87.61, 44.00708336306339], [41.74, -87.59, 52.35986985927784], [41.74, -87.56, 42.55757267957172], [41.73, -87.61, 48.211009174311926], [41.73, -87.59, 76.89421710114704], [41.72, -87.63, 45.72574949050298], [41.71, -87.61, 51.41227513672697], [41.7, -87.57, 34.16832829744889], [41.71, -87.54, 56.6187478151224], [41.69, -87.67, 49.107469698482426], [41.69, -87.63, 19.627802670623147], [41.66, -87.55, 64.54527104351754], [41.79, -87.77, 83.29754690612916], [41.81, -87.73, 49.91236297625847], [41.82, -87.69, 49.82735683393129], [41.83, -87.67, 62.35516627312082], [41.83, -87.64, 61.574123212935866], [41.81, -87.66, 41.28990267971076], [41.79, -87.71, 63.82949833656778], [41.78, -87.69, 46.0296669196951], [41.78, -87.76, 58.02187335324082], [41.77, -87.72, 60.32186289980187], [41.76, -87.69, 42.320057209795955], [41.75, -87.67, 31.716412740715263], [41.78, -87.65, 24.655644891605167], [41.77, -87.61, 34.42654136904762], [41.75, -87.71, 74.20458988156726], [41.74, -87.66, 45.821057619172905], [41.72, -87.67, 115.59104436317381], [41.71, -87.65, 55.516224300228075], [41.7, -87.67, 105.21387239568304], [41.69, -87.66, 70.32493908658205], [41.98, -87.9, 58.10807557395559], [42.0, -87.66, 64.81446553424088]],
+                {
+  "minOpacity": 0.5,
+  "maxZoom": 13,
+  "radius": 25,
+  "blur": 35,
+}
+            );
+        
+    
+            heat_map_910e3b9331f8c5c9c72e6d8da098cc4d.addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var marker_bd09a79b080270125a5826be38d8d8f4 = L.marker(
+                [42.01, -87.67],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_0dede7099877c9e4f54541fb3935050a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_539ec597eba021f440188c9907ace248 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c948c9b725119f0fba8c4ce54f1515e7 = $(`<div id="html_c948c9b725119f0fba8c4ce54f1515e7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Rogers Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,701</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 55,643</p>         </div>         </div>`)[0];
+                popup_539ec597eba021f440188c9907ace248.setContent(html_c948c9b725119f0fba8c4ce54f1515e7);
+            
+        
+
+        marker_bd09a79b080270125a5826be38d8d8f4.bindPopup(popup_539ec597eba021f440188c9907ace248)
+        ;
+
+        
+    
+    
+                marker_bd09a79b080270125a5826be38d8d8f4.setIcon(icon_0dede7099877c9e4f54541fb3935050a);
+            
+    
+            var marker_4e112822e2a25ac9d39ad51c05601637 = L.marker(
+                [42.0, -87.69],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_2dd6c511cb220c3093875c09eec9ae69 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e89883aeb44497b5b2f34a6b411f4200 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6faf1ccf7fd596fed1d51ee06414b5f7 = $(`<div id="html_6faf1ccf7fd596fed1d51ee06414b5f7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">West Ridge</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,021</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 78,763</p>         </div>         </div>`)[0];
+                popup_e89883aeb44497b5b2f34a6b411f4200.setContent(html_6faf1ccf7fd596fed1d51ee06414b5f7);
+            
+        
+
+        marker_4e112822e2a25ac9d39ad51c05601637.bindPopup(popup_e89883aeb44497b5b2f34a6b411f4200)
+        ;
+
+        
+    
+    
+                marker_4e112822e2a25ac9d39ad51c05601637.setIcon(icon_2dd6c511cb220c3093875c09eec9ae69);
+            
+    
+            var marker_fffe34e31c5fc89b2436da37a9b7294e = L.marker(
+                [41.97, -87.66],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_64367de73c41cc9bab2304556cecdc7f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_87bdeac3e1615583f92a3f55ccbde5e3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_43e1026b3b30c3913e3ca7b898a6d734 = $(`<div id="html_43e1026b3b30c3913e3ca7b898a6d734" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Uptown</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,657</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 59,453</p>         </div>         </div>`)[0];
+                popup_87bdeac3e1615583f92a3f55ccbde5e3.setContent(html_43e1026b3b30c3913e3ca7b898a6d734);
+            
+        
+
+        marker_fffe34e31c5fc89b2436da37a9b7294e.bindPopup(popup_87bdeac3e1615583f92a3f55ccbde5e3)
+        ;
+
+        
+    
+    
+                marker_fffe34e31c5fc89b2436da37a9b7294e.setIcon(icon_64367de73c41cc9bab2304556cecdc7f);
+            
+    
+            var marker_756bc2ec73c78760330e0b369dbe78d0 = L.marker(
+                [41.97, -87.68],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_e051856059120476690e9df0f8a6738c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f4dc7fbf5e13a6e7272f61760ba7ce3f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4b9a81389279e6dea41b62688191840f = $(`<div id="html_4b9a81389279e6dea41b62688191840f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Lincoln Square</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $82,567</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 41,350</p>         </div>         </div>`)[0];
+                popup_f4dc7fbf5e13a6e7272f61760ba7ce3f.setContent(html_4b9a81389279e6dea41b62688191840f);
+            
+        
+
+        marker_756bc2ec73c78760330e0b369dbe78d0.bindPopup(popup_f4dc7fbf5e13a6e7272f61760ba7ce3f)
+        ;
+
+        
+    
+    
+                marker_756bc2ec73c78760330e0b369dbe78d0.setIcon(icon_e051856059120476690e9df0f8a6738c);
+            
+    
+            var marker_ed21b5844b15197f8fa938018da997b1 = L.marker(
+                [41.96, -87.68],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_d433245f84d866e0942032b5940f1c3d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9a9478ab36e24aa07f106f4725913ba0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_77a1c0e1467f2f0f2f038fcdf0a75a92 = $(`<div id="html_77a1c0e1467f2f0f2f038fcdf0a75a92" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">North Center</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $140,789</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 36,142</p>         </div>         </div>`)[0];
+                popup_9a9478ab36e24aa07f106f4725913ba0.setContent(html_77a1c0e1467f2f0f2f038fcdf0a75a92);
+            
+        
+
+        marker_ed21b5844b15197f8fa938018da997b1.bindPopup(popup_9a9478ab36e24aa07f106f4725913ba0)
+        ;
+
+        
+    
+    
+                marker_ed21b5844b15197f8fa938018da997b1.setIcon(icon_d433245f84d866e0942032b5940f1c3d);
+            
+    
+            var marker_35ead8d1eb23d0f8f80628c991d34cc8 = L.marker(
+                [41.95, -87.65],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_17efee710082809f1684f6ab8381a663 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_13804498b660bb3f5b027fbce5004a87 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_58b6c51920a48178e028c3c4003a1fe8 = $(`<div id="html_58b6c51920a48178e028c3c4003a1fe8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Lake View</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $103,865</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 101,428</p>         </div>         </div>`)[0];
+                popup_13804498b660bb3f5b027fbce5004a87.setContent(html_58b6c51920a48178e028c3c4003a1fe8);
+            
+        
+
+        marker_35ead8d1eb23d0f8f80628c991d34cc8.bindPopup(popup_13804498b660bb3f5b027fbce5004a87)
+        ;
+
+        
+    
+    
+                marker_35ead8d1eb23d0f8f80628c991d34cc8.setIcon(icon_17efee710082809f1684f6ab8381a663);
+            
+    
+            var marker_85d5545e6bcf0d90f1aee10d20e1947c = L.marker(
+                [41.92, -87.64],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_68922d43a8bd6f9ff431b5b4765f59c2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a0dbdf88f0749d185d5e48a793119eef = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3c7f0fc6348945f6698af8bd798f1cbd = $(`<div id="html_3c7f0fc6348945f6698af8bd798f1cbd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Lincoln Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $131,583</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 69,568</p>         </div>         </div>`)[0];
+                popup_a0dbdf88f0749d185d5e48a793119eef.setContent(html_3c7f0fc6348945f6698af8bd798f1cbd);
+            
+        
+
+        marker_85d5545e6bcf0d90f1aee10d20e1947c.bindPopup(popup_a0dbdf88f0749d185d5e48a793119eef)
+        ;
+
+        
+    
+    
+                marker_85d5545e6bcf0d90f1aee10d20e1947c.setIcon(icon_68922d43a8bd6f9ff431b5b4765f59c2);
+            
+    
+            var marker_4b2ee40798d33b1e11ffa8cdc0b7d108 = L.marker(
+                [41.9, -87.63],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_b219213efe202ed79e2370e1184f18a9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4abcf2b6c9268b413c177ad32dbf0d1a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1de00bd60066b5c3a1557ccf3ba50909 = $(`<div id="html_1de00bd60066b5c3a1557ccf3ba50909" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Near North Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $118,905</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 98,528</p>         </div>         </div>`)[0];
+                popup_4abcf2b6c9268b413c177ad32dbf0d1a.setContent(html_1de00bd60066b5c3a1557ccf3ba50909);
+            
+        
+
+        marker_4b2ee40798d33b1e11ffa8cdc0b7d108.bindPopup(popup_4abcf2b6c9268b413c177ad32dbf0d1a)
+        ;
+
+        
+    
+    
+                marker_4b2ee40798d33b1e11ffa8cdc0b7d108.setIcon(icon_b219213efe202ed79e2370e1184f18a9);
+            
+    
+            var marker_094b799f9f8beae772df970bb01f025c = L.marker(
+                [42.01, -87.81],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_39a1cb250eff825f9738673bc656c4f0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_93e351d54881e46424e194478ad6582f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3b14c01ca9a4cb6849befc55ca1a3e7b = $(`<div id="html_3b14c01ca9a4cb6849befc55ca1a3e7b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Edison Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $126,711</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 11,002</p>         </div>         </div>`)[0];
+                popup_93e351d54881e46424e194478ad6582f.setContent(html_3b14c01ca9a4cb6849befc55ca1a3e7b);
+            
+        
+
+        marker_094b799f9f8beae772df970bb01f025c.bindPopup(popup_93e351d54881e46424e194478ad6582f)
+        ;
+
+        
+    
+    
+                marker_094b799f9f8beae772df970bb01f025c.setIcon(icon_39a1cb250eff825f9738673bc656c4f0);
+            
+    
+            var marker_717da7bb4119324603a5f400861be273 = L.marker(
+                [42.0, -87.79],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_0aafe1f92fe905b0e47a479b406eee04 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_849249fe4eda8cdd9f5a26c6f25931e8 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_88d0f8e447715015cb545623ea9b34b3 = $(`<div id="html_88d0f8e447715015cb545623ea9b34b3" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Norwood Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $97,165</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 38,088</p>         </div>         </div>`)[0];
+                popup_849249fe4eda8cdd9f5a26c6f25931e8.setContent(html_88d0f8e447715015cb545623ea9b34b3);
+            
+        
+
+        marker_717da7bb4119324603a5f400861be273.bindPopup(popup_849249fe4eda8cdd9f5a26c6f25931e8)
+        ;
+
+        
+    
+    
+                marker_717da7bb4119324603a5f400861be273.setIcon(icon_0aafe1f92fe905b0e47a479b406eee04);
+            
+    
+            var marker_9e017ac29a0e1d7b2757a8aed52002b3 = L.marker(
+                [41.98, -87.77],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_2db6bc413cd4dbad001cf98fc75c7507 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_28462d793cd4ae6f4b2f8268b6604101 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5aa6737969584535839a8fa7d8d9632e = $(`<div id="html_5aa6737969584535839a8fa7d8d9632e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Jefferson Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $81,032</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 27,194</p>         </div>         </div>`)[0];
+                popup_28462d793cd4ae6f4b2f8268b6604101.setContent(html_5aa6737969584535839a8fa7d8d9632e);
+            
+        
+
+        marker_9e017ac29a0e1d7b2757a8aed52002b3.bindPopup(popup_28462d793cd4ae6f4b2f8268b6604101)
+        ;
+
+        
+    
+    
+                marker_9e017ac29a0e1d7b2757a8aed52002b3.setIcon(icon_2db6bc413cd4dbad001cf98fc75c7507);
+            
+    
+            var marker_a372d73828bed2dec51fc2a51e67d61d = L.marker(
+                [41.98, -87.79],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_2b9fffd2d7cc7c0957685959531e1a66 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7e0350a018d65856a777fa4a71142b8f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e6d74e2fe7883f3fa292ddd1d809a421 = $(`<div id="html_e6d74e2fe7883f3fa292ddd1d809a421" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Forest Glen</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $131,997</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 19,928</p>         </div>         </div>`)[0];
+                popup_7e0350a018d65856a777fa4a71142b8f.setContent(html_e6d74e2fe7883f3fa292ddd1d809a421);
+            
+        
+
+        marker_a372d73828bed2dec51fc2a51e67d61d.bindPopup(popup_7e0350a018d65856a777fa4a71142b8f)
+        ;
+
+        
+    
+    
+                marker_a372d73828bed2dec51fc2a51e67d61d.setIcon(icon_2b9fffd2d7cc7c0957685959531e1a66);
+            
+    
+            var marker_8971f358fcdce94f65d6ab6b9cff28a9 = L.marker(
+                [41.98, -87.71],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_b630a2a993f90481b3a96052e1724fc2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_34336e4559066a3ab5bab1e7eeb024b4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_22789afe83103e2556a9af513a4a3a3e = $(`<div id="html_22789afe83103e2556a9af513a4a3a3e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">North Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $65,392</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 18,806</p>         </div>         </div>`)[0];
+                popup_34336e4559066a3ab5bab1e7eeb024b4.setContent(html_22789afe83103e2556a9af513a4a3a3e);
+            
+        
+
+        marker_8971f358fcdce94f65d6ab6b9cff28a9.bindPopup(popup_34336e4559066a3ab5bab1e7eeb024b4)
+        ;
+
+        
+    
+    
+                marker_8971f358fcdce94f65d6ab6b9cff28a9.setIcon(icon_b630a2a993f90481b3a96052e1724fc2);
+            
+    
+            var marker_e7ead461d3dee9b0aae018dde7e91ed5 = L.marker(
+                [41.97, -87.71],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_d1d50751fd11fc8ba68d762261d37427 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_776549cc7737db989de619086d5d8280 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_fc1a5bd452fd53fa4f92ab054f7e36f7 = $(`<div id="html_fc1a5bd452fd53fa4f92ab054f7e36f7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Albany Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $69,901</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 49,280</p>         </div>         </div>`)[0];
+                popup_776549cc7737db989de619086d5d8280.setContent(html_fc1a5bd452fd53fa4f92ab054f7e36f7);
+            
+        
+
+        marker_e7ead461d3dee9b0aae018dde7e91ed5.bindPopup(popup_776549cc7737db989de619086d5d8280)
+        ;
+
+        
+    
+    
+                marker_e7ead461d3dee9b0aae018dde7e91ed5.setIcon(icon_d1d50751fd11fc8ba68d762261d37427);
+            
+    
+            var marker_3c734310fbabba6a7bcd68d6c604061e = L.marker(
+                [41.96, -87.76],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_02d387df98a4a094079a7bf799839dab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7436aa7e3be214faa322073922b6460d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_76b4df708d8d7ccc00052ad782052adb = $(`<div id="html_76b4df708d8d7ccc00052ad782052adb" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Portage Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $75,172</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 63,919</p>         </div>         </div>`)[0];
+                popup_7436aa7e3be214faa322073922b6460d.setContent(html_76b4df708d8d7ccc00052ad782052adb);
+            
+        
+
+        marker_3c734310fbabba6a7bcd68d6c604061e.bindPopup(popup_7436aa7e3be214faa322073922b6460d)
+        ;
+
+        
+    
+    
+                marker_3c734310fbabba6a7bcd68d6c604061e.setIcon(icon_02d387df98a4a094079a7bf799839dab);
+            
+    
+            var marker_c5ae67ef5d078252b4c24be4e4215442 = L.marker(
+                [41.95, -87.73],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_8fc122e600de00feec3e2987b9095ca6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b7c6259ce3fb29944b7739ed69849c08 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_22ece095d876ace1feed2540dadf65af = $(`<div id="html_22ece095d876ace1feed2540dadf65af" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Irving Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $77,199</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 53,604</p>         </div>         </div>`)[0];
+                popup_b7c6259ce3fb29944b7739ed69849c08.setContent(html_22ece095d876ace1feed2540dadf65af);
+            
+        
+
+        marker_c5ae67ef5d078252b4c24be4e4215442.bindPopup(popup_b7c6259ce3fb29944b7739ed69849c08)
+        ;
+
+        
+    
+    
+                marker_c5ae67ef5d078252b4c24be4e4215442.setIcon(icon_8fc122e600de00feec3e2987b9095ca6);
+            
+    
+            var marker_104c1fc88f822cbac0f5d34f0afd0263 = L.marker(
+                [41.94, -87.79],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_05f544cbcf9a359f07587b5b27f8f68b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b2eb0988f4164d003d079d3f91780c81 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9e0d46302f31f9b0b59cfefb2da07211 = $(`<div id="html_9e0d46302f31f9b0b59cfefb2da07211" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Dunning</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $75,569</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 43,587</p>         </div>         </div>`)[0];
+                popup_b2eb0988f4164d003d079d3f91780c81.setContent(html_9e0d46302f31f9b0b59cfefb2da07211);
+            
+        
+
+        marker_104c1fc88f822cbac0f5d34f0afd0263.bindPopup(popup_b2eb0988f4164d003d079d3f91780c81)
+        ;
+
+        
+    
+    
+                marker_104c1fc88f822cbac0f5d34f0afd0263.setIcon(icon_05f544cbcf9a359f07587b5b27f8f68b);
+            
+    
+            var marker_ff2297b577761a82d3252944fe7110ae = L.marker(
+                [41.93, -87.79],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_5df7e2fe2609f4f5a9392acbfd1b0fd0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_444eca27626887049a77121cf3e97bd0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_debf2445c9074f562726f5aae65d228a = $(`<div id="html_debf2445c9074f562726f5aae65d228a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Montclare</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $68,844</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 14,382</p>         </div>         </div>`)[0];
+                popup_444eca27626887049a77121cf3e97bd0.setContent(html_debf2445c9074f562726f5aae65d228a);
+            
+        
+
+        marker_ff2297b577761a82d3252944fe7110ae.bindPopup(popup_444eca27626887049a77121cf3e97bd0)
+        ;
+
+        
+    
+    
+                marker_ff2297b577761a82d3252944fe7110ae.setIcon(icon_5df7e2fe2609f4f5a9392acbfd1b0fd0);
+            
+    
+            var marker_43b9ee5c22dc046c3c73b2bcf9c41a45 = L.marker(
+                [41.93, -87.75],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_1dee26b596e214cc228ae26dc876f29f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e60f2d51df9f73f102fc425998806627 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c98c74198b4b342c7b18ef0c9d2a6a92 = $(`<div id="html_c98c74198b4b342c7b18ef0c9d2a6a92" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Belmont Cragin</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,799</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 78,788</p>         </div>         </div>`)[0];
+                popup_e60f2d51df9f73f102fc425998806627.setContent(html_c98c74198b4b342c7b18ef0c9d2a6a92);
+            
+        
+
+        marker_43b9ee5c22dc046c3c73b2bcf9c41a45.bindPopup(popup_e60f2d51df9f73f102fc425998806627)
+        ;
+
+        
+    
+    
+                marker_43b9ee5c22dc046c3c73b2bcf9c41a45.setIcon(icon_1dee26b596e214cc228ae26dc876f29f);
+            
+    
+            var marker_8c818d4a0b926558d49133c99e863f56 = L.marker(
+                [41.92, -87.73],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_81e5e486a518c3da83423785a5ef2e61 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9ea8a5a6da96cb6cb19cd9522ad1ab80 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_274ad215b0daeb0657b3a5795334d9a9 = $(`<div id="html_274ad215b0daeb0657b3a5795334d9a9" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Hermosa</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $54,914</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 23,163</p>         </div>         </div>`)[0];
+                popup_9ea8a5a6da96cb6cb19cd9522ad1ab80.setContent(html_274ad215b0daeb0657b3a5795334d9a9);
+            
+        
+
+        marker_8c818d4a0b926558d49133c99e863f56.bindPopup(popup_9ea8a5a6da96cb6cb19cd9522ad1ab80)
+        ;
+
+        
+    
+    
+                marker_8c818d4a0b926558d49133c99e863f56.setIcon(icon_81e5e486a518c3da83423785a5ef2e61);
+            
+    
+            var marker_b7f26d65af0eae32a514d22dda8fb7fc = L.marker(
+                [41.94, -87.71],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_181d74f81fc2d81b87526305e276eb2d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a915ba7b09cf79a6f04de722e615f5ab = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9c9ac481d6337ce92bb1ea64ef20a2fe = $(`<div id="html_9c9ac481d6337ce92bb1ea64ef20a2fe" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Avondale</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $78,279</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 37,360</p>         </div>         </div>`)[0];
+                popup_a915ba7b09cf79a6f04de722e615f5ab.setContent(html_9c9ac481d6337ce92bb1ea64ef20a2fe);
+            
+        
+
+        marker_b7f26d65af0eae32a514d22dda8fb7fc.bindPopup(popup_a915ba7b09cf79a6f04de722e615f5ab)
+        ;
+
+        
+    
+    
+                marker_b7f26d65af0eae32a514d22dda8fb7fc.setIcon(icon_181d74f81fc2d81b87526305e276eb2d);
+            
+    
+            var marker_d0fe377d8f9260bda1482d2b92e5d945 = L.marker(
+                [41.92, -87.71],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_363109431c2c0fd90292458274aa28ba = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0ad8a5f7537a43ef18f0cbf89b95fe80 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_aca41b04fc76af9078a1bfa271f415c6 = $(`<div id="html_aca41b04fc76af9078a1bfa271f415c6" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Logan Square</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $91,002</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 72,305</p>         </div>         </div>`)[0];
+                popup_0ad8a5f7537a43ef18f0cbf89b95fe80.setContent(html_aca41b04fc76af9078a1bfa271f415c6);
+            
+        
+
+        marker_d0fe377d8f9260bda1482d2b92e5d945.bindPopup(popup_0ad8a5f7537a43ef18f0cbf89b95fe80)
+        ;
+
+        
+    
+    
+                marker_d0fe377d8f9260bda1482d2b92e5d945.setIcon(icon_363109431c2c0fd90292458274aa28ba);
+            
+    
+            var marker_3d5c33c0b674908ac209e4f1d9692986 = L.marker(
+                [41.9, -87.71],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_742a93d38492032dd71f83110500b83b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c3ac2a8b16e1bee11a50a6b7b51e17ae = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_05c7b8de61d00832e70a49733368c39a = $(`<div id="html_05c7b8de61d00832e70a49733368c39a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Humboldt Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $44,799</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 54,401</p>         </div>         </div>`)[0];
+                popup_c3ac2a8b16e1bee11a50a6b7b51e17ae.setContent(html_05c7b8de61d00832e70a49733368c39a);
+            
+        
+
+        marker_3d5c33c0b674908ac209e4f1d9692986.bindPopup(popup_c3ac2a8b16e1bee11a50a6b7b51e17ae)
+        ;
+
+        
+    
+    
+                marker_3d5c33c0b674908ac209e4f1d9692986.setIcon(icon_742a93d38492032dd71f83110500b83b);
+            
+    
+            var marker_419911bd43b464c99da24bd7f0ed373e = L.marker(
+                [41.89, -87.68],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_0a5bed1a369d853ee1873a66d3f0f97d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7a0bcb2177fa95638b47ba2cfd448a27 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_143e98f33d54f5a2665f3513ec96f984 = $(`<div id="html_143e98f33d54f5a2665f3513ec96f984" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">West Town</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $113,973</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 80,383</p>         </div>         </div>`)[0];
+                popup_7a0bcb2177fa95638b47ba2cfd448a27.setContent(html_143e98f33d54f5a2665f3513ec96f984);
+            
+        
+
+        marker_419911bd43b464c99da24bd7f0ed373e.bindPopup(popup_7a0bcb2177fa95638b47ba2cfd448a27)
+        ;
+
+        
+    
+    
+                marker_419911bd43b464c99da24bd7f0ed373e.setIcon(icon_0a5bed1a369d853ee1873a66d3f0f97d);
+            
+    
+            var marker_033b3458b240099add9329ad3813967b = L.marker(
+                [41.9, -87.76],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_34f4f6be23ca5c377eb57860993eb471 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ca7aef3fad04456408304637b1f11a5e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e79a0edf2fc31a87d805cf3d1f51e03f = $(`<div id="html_e79a0edf2fc31a87d805cf3d1f51e03f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Austin</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $43,866</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 95,073</p>         </div>         </div>`)[0];
+                popup_ca7aef3fad04456408304637b1f11a5e.setContent(html_e79a0edf2fc31a87d805cf3d1f51e03f);
+            
+        
+
+        marker_033b3458b240099add9329ad3813967b.bindPopup(popup_ca7aef3fad04456408304637b1f11a5e)
+        ;
+
+        
+    
+    
+                marker_033b3458b240099add9329ad3813967b.setIcon(icon_34f4f6be23ca5c377eb57860993eb471);
+            
+    
+            var marker_3fcde88836b16545170260023d68fed3 = L.marker(
+                [41.88, -87.73],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_d152c0320aaace155f248530724dc6d0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_57f62e6f18fa69ee163f757f1de4a9dd = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e72f91e882dee4f18c7e74bb40e2c1b2 = $(`<div id="html_e72f91e882dee4f18c7e74bb40e2c1b2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">West Garfield Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $29,947</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 16,489</p>         </div>         </div>`)[0];
+                popup_57f62e6f18fa69ee163f757f1de4a9dd.setContent(html_e72f91e882dee4f18c7e74bb40e2c1b2);
+            
+        
+
+        marker_3fcde88836b16545170260023d68fed3.bindPopup(popup_57f62e6f18fa69ee163f757f1de4a9dd)
+        ;
+
+        
+    
+    
+                marker_3fcde88836b16545170260023d68fed3.setIcon(icon_d152c0320aaace155f248530724dc6d0);
+            
+    
+            var marker_19fbfdd4fab3f4d18d3146b707e31818 = L.marker(
+                [41.88, -87.71],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_bdd8f33f284560657887cd3304507198 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9c583a45131a22b44d29bd87d300ab8c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5e15a5391f918a0189275981ed059331 = $(`<div id="html_5e15a5391f918a0189275981ed059331" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">East Garfield Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $26,127</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 18,075</p>         </div>         </div>`)[0];
+                popup_9c583a45131a22b44d29bd87d300ab8c.setContent(html_5e15a5391f918a0189275981ed059331);
+            
+        
+
+        marker_19fbfdd4fab3f4d18d3146b707e31818.bindPopup(popup_9c583a45131a22b44d29bd87d300ab8c)
+        ;
+
+        
+    
+    
+                marker_19fbfdd4fab3f4d18d3146b707e31818.setIcon(icon_bdd8f33f284560657887cd3304507198);
+            
+    
+            var marker_1bbaff35dbc45473c0fc0da9341bec3c = L.marker(
+                [41.88, -87.64],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_b8fb94e5e3f9c787ce549183c3467e8b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3ffbd3e440c17b81b0bfb13b927ece49 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_958c264b5d286609c9fcdbeb5c8b366e = $(`<div id="html_958c264b5d286609c9fcdbeb5c8b366e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Near West Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $91,015</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 62,816</p>         </div>         </div>`)[0];
+                popup_3ffbd3e440c17b81b0bfb13b927ece49.setContent(html_958c264b5d286609c9fcdbeb5c8b366e);
+            
+        
+
+        marker_1bbaff35dbc45473c0fc0da9341bec3c.bindPopup(popup_3ffbd3e440c17b81b0bfb13b927ece49)
+        ;
+
+        
+    
+    
+                marker_1bbaff35dbc45473c0fc0da9341bec3c.setIcon(icon_b8fb94e5e3f9c787ce549183c3467e8b);
+            
+    
+            var marker_4184b44bce597fe40d0366e924374981 = L.marker(
+                [41.86, -87.72],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_65bc2d98d88a016edc27d2e69fca7e1b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_898a41e1e054720a95ad314511b7edb5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_01b3d57180822ef5b807d97b2842ee3d = $(`<div id="html_01b3d57180822ef5b807d97b2842ee3d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">North Lawndale</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $36,257</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 31,310</p>         </div>         </div>`)[0];
+                popup_898a41e1e054720a95ad314511b7edb5.setContent(html_01b3d57180822ef5b807d97b2842ee3d);
+            
+        
+
+        marker_4184b44bce597fe40d0366e924374981.bindPopup(popup_898a41e1e054720a95ad314511b7edb5)
+        ;
+
+        
+    
+    
+                marker_4184b44bce597fe40d0366e924374981.setIcon(icon_65bc2d98d88a016edc27d2e69fca7e1b);
+            
+    
+            var marker_92ccc0c00fb69390bb201ab4003435f1 = L.marker(
+                [41.86, -87.7],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_2dfd73456dc7885407f9bcee26bc6a90 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c9d99f5b0b9ada2d3cc6b5b6f81cd6a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_87b32cbc00e8404d50a20e8728a7054c = $(`<div id="html_87b32cbc00e8404d50a20e8728a7054c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">South Lawndale</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $38,429</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 70,235</p>         </div>         </div>`)[0];
+                popup_0c9d99f5b0b9ada2d3cc6b5b6f81cd6a.setContent(html_87b32cbc00e8404d50a20e8728a7054c);
+            
+        
+
+        marker_92ccc0c00fb69390bb201ab4003435f1.bindPopup(popup_0c9d99f5b0b9ada2d3cc6b5b6f81cd6a)
+        ;
+
+        
+    
+    
+                marker_92ccc0c00fb69390bb201ab4003435f1.setIcon(icon_2dfd73456dc7885407f9bcee26bc6a90);
+            
+    
+            var marker_15c0a428f91d609c30d6ef16dbff97cc = L.marker(
+                [41.86, -87.66],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_7a856b124d9585962cb1e37427048d14 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_799a4cdc6033a5cd608a9b1576b7e712 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_aede202c8d82f1998cb1cb8f73bb83cc = $(`<div id="html_aede202c8d82f1998cb1cb8f73bb83cc" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Lower West Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $61,145</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 32,672</p>         </div>         </div>`)[0];
+                popup_799a4cdc6033a5cd608a9b1576b7e712.setContent(html_aede202c8d82f1998cb1cb8f73bb83cc);
+            
+        
+
+        marker_15c0a428f91d609c30d6ef16dbff97cc.bindPopup(popup_799a4cdc6033a5cd608a9b1576b7e712)
+        ;
+
+        
+    
+    
+                marker_15c0a428f91d609c30d6ef16dbff97cc.setIcon(icon_7a856b124d9585962cb1e37427048d14);
+            
+    
+            var marker_57aa4c3155437eee73bb6c71f7d2937d = L.marker(
+                [41.88, -87.63],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_6fb8c6108f71a0d4cf3db35b151782b7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4bea9dad8281bd10538687616aed53ac = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c52b3acf48bc351eba0837f30e76819f = $(`<div id="html_c52b3acf48bc351eba0837f30e76819f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Loop</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $115,244</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 39,327</p>         </div>         </div>`)[0];
+                popup_4bea9dad8281bd10538687616aed53ac.setContent(html_c52b3acf48bc351eba0837f30e76819f);
+            
+        
+
+        marker_57aa4c3155437eee73bb6c71f7d2937d.bindPopup(popup_4bea9dad8281bd10538687616aed53ac)
+        ;
+
+        
+    
+    
+                marker_57aa4c3155437eee73bb6c71f7d2937d.setIcon(icon_6fb8c6108f71a0d4cf3db35b151782b7);
+            
+    
+            var marker_1d0c237312304ca798effd8f2d580613 = L.marker(
+                [41.85, -87.62],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_1275bb581c18b6d5119c6bc28b3e304c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_69db1ef01de247caceb61cef49d43708 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ebfa77d78ef97aeac4b068fe172560cf = $(`<div id="html_ebfa77d78ef97aeac4b068fe172560cf" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Near South Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $118,467</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 26,376</p>         </div>         </div>`)[0];
+                popup_69db1ef01de247caceb61cef49d43708.setContent(html_ebfa77d78ef97aeac4b068fe172560cf);
+            
+        
+
+        marker_1d0c237312304ca798effd8f2d580613.bindPopup(popup_69db1ef01de247caceb61cef49d43708)
+        ;
+
+        
+    
+    
+                marker_1d0c237312304ca798effd8f2d580613.setIcon(icon_1275bb581c18b6d5119c6bc28b3e304c);
+            
+    
+            var marker_d12b9166b3e807a621328ad09e54b98a = L.marker(
+                [41.83, -87.63],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_ee7481a937fcfc9d617c4b5b6fa0e4a2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0f9645c8091563a4171ecca768708951 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e88bdee79b6afd46f836bcd64cb0ebaa = $(`<div id="html_e88bdee79b6afd46f836bcd64cb0ebaa" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Armour Square</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $48,821</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 13,401</p>         </div>         </div>`)[0];
+                popup_0f9645c8091563a4171ecca768708951.setContent(html_e88bdee79b6afd46f836bcd64cb0ebaa);
+            
+        
+
+        marker_d12b9166b3e807a621328ad09e54b98a.bindPopup(popup_0f9645c8091563a4171ecca768708951)
+        ;
+
+        
+    
+    
+                marker_d12b9166b3e807a621328ad09e54b98a.setIcon(icon_ee7481a937fcfc9d617c4b5b6fa0e4a2);
+            
+    
+            var marker_b6a47a5d5a789b29b257a840a993e649 = L.marker(
+                [41.82, -87.62],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_53fd378f4821636e27096badf2dc6f6a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2cd01c8932a994313a1d0e80ac5aff00 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_65d1e42b45c63db7a0886547db18b0fd = $(`<div id="html_65d1e42b45c63db7a0886547db18b0fd" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Douglas</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $46,190</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 21,450</p>         </div>         </div>`)[0];
+                popup_2cd01c8932a994313a1d0e80ac5aff00.setContent(html_65d1e42b45c63db7a0886547db18b0fd);
+            
+        
+
+        marker_b6a47a5d5a789b29b257a840a993e649.bindPopup(popup_2cd01c8932a994313a1d0e80ac5aff00)
+        ;
+
+        
+    
+    
+                marker_b6a47a5d5a789b29b257a840a993e649.setIcon(icon_53fd378f4821636e27096badf2dc6f6a);
+            
+    
+            var marker_e540f72253bd95c4ec3490269825e738 = L.marker(
+                [41.82, -87.6],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_c035255c33faa43ac0798622ea14c5a4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6649dd75ab5478bf2c02546d9078f0d0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7708ea93f602d07238deca0a86781b13 = $(`<div id="html_7708ea93f602d07238deca0a86781b13" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Oakland</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $41,743</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 6,973</p>         </div>         </div>`)[0];
+                popup_6649dd75ab5478bf2c02546d9078f0d0.setContent(html_7708ea93f602d07238deca0a86781b13);
+            
+        
+
+        marker_e540f72253bd95c4ec3490269825e738.bindPopup(popup_6649dd75ab5478bf2c02546d9078f0d0)
+        ;
+
+        
+    
+    
+                marker_e540f72253bd95c4ec3490269825e738.setIcon(icon_c035255c33faa43ac0798622ea14c5a4);
+            
+    
+            var marker_4b80400f2b1a2a94007e4a8645e38141 = L.marker(
+                [41.81, -87.63],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_f3595e2cdb11fcc604c9b24ce7eea219 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_10cc54df5b45426c74b8e823d19658c5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_752b493c5bb5e3064389202060109a13 = $(`<div id="html_752b493c5bb5e3064389202060109a13" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Fuller Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $17,944</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 2,149</p>         </div>         </div>`)[0];
+                popup_10cc54df5b45426c74b8e823d19658c5.setContent(html_752b493c5bb5e3064389202060109a13);
+            
+        
+
+        marker_4b80400f2b1a2a94007e4a8645e38141.bindPopup(popup_10cc54df5b45426c74b8e823d19658c5)
+        ;
+
+        
+    
+    
+                marker_4b80400f2b1a2a94007e4a8645e38141.setIcon(icon_f3595e2cdb11fcc604c9b24ce7eea219);
+            
+    
+            var marker_e14b00157c905d877d355a0d1a3f9421 = L.marker(
+                [41.81, -87.62],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_939b9c93536494721e646039815db70d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_02a71b38c3d7cbd0ecc70ca2236abf77 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_6b162e71ea7c1e3628f8e769b06f270f = $(`<div id="html_6b162e71ea7c1e3628f8e769b06f270f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Grand Boulevard</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $47,260</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 23,669</p>         </div>         </div>`)[0];
+                popup_02a71b38c3d7cbd0ecc70ca2236abf77.setContent(html_6b162e71ea7c1e3628f8e769b06f270f);
+            
+        
+
+        marker_e14b00157c905d877d355a0d1a3f9421.bindPopup(popup_02a71b38c3d7cbd0ecc70ca2236abf77)
+        ;
+
+        
+    
+    
+                marker_e14b00157c905d877d355a0d1a3f9421.setIcon(icon_939b9c93536494721e646039815db70d);
+            
+    
+            var marker_847b525639e2dbecb7e48a851881af90 = L.marker(
+                [41.8, -87.59],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_4fcc2cec7cb76af3c3c6c1f3e196566d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6c3fd8b0743e1e5555f9acded5721994 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_59b2fcd3d3943ca63a41340d71deb819 = $(`<div id="html_59b2fcd3d3943ca63a41340d71deb819" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Kenwood</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $59,319</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 17,972</p>         </div>         </div>`)[0];
+                popup_6c3fd8b0743e1e5555f9acded5721994.setContent(html_59b2fcd3d3943ca63a41340d71deb819);
+            
+        
+
+        marker_847b525639e2dbecb7e48a851881af90.bindPopup(popup_6c3fd8b0743e1e5555f9acded5721994)
+        ;
+
+        
+    
+    
+                marker_847b525639e2dbecb7e48a851881af90.setIcon(icon_4fcc2cec7cb76af3c3c6c1f3e196566d);
+            
+    
+            var marker_a779351281ef789b08615d7b542cc9fb = L.marker(
+                [41.79, -87.62],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_ffba490ba263fed40952bb5407ac6e0c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3e0f181cc0ad2c3af16c6d0b2c68502f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_fa14b85da64bd55e1f109aee4018ed4e = $(`<div id="html_fa14b85da64bd55e1f109aee4018ed4e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Washington Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $25,793</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 10,427</p>         </div>         </div>`)[0];
+                popup_3e0f181cc0ad2c3af16c6d0b2c68502f.setContent(html_fa14b85da64bd55e1f109aee4018ed4e);
+            
+        
+
+        marker_a779351281ef789b08615d7b542cc9fb.bindPopup(popup_3e0f181cc0ad2c3af16c6d0b2c68502f)
+        ;
+
+        
+    
+    
+                marker_a779351281ef789b08615d7b542cc9fb.setIcon(icon_ffba490ba263fed40952bb5407ac6e0c);
+            
+    
+            var marker_8eea768f3d3d07563f99fea870ec67f0 = L.marker(
+                [41.79, -87.6],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_e347679ba0423e7219e1553028848502 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_eb15b15e64d8901b08702e0633837d43 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d6ad209ef704ddd9319072e689ce930a = $(`<div id="html_d6ad209ef704ddd9319072e689ce930a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Hyde Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,631</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 27,722</p>         </div>         </div>`)[0];
+                popup_eb15b15e64d8901b08702e0633837d43.setContent(html_d6ad209ef704ddd9319072e689ce930a);
+            
+        
+
+        marker_8eea768f3d3d07563f99fea870ec67f0.bindPopup(popup_eb15b15e64d8901b08702e0633837d43)
+        ;
+
+        
+    
+    
+                marker_8eea768f3d3d07563f99fea870ec67f0.setIcon(icon_e347679ba0423e7219e1553028848502);
+            
+    
+            var marker_42d5f22cd1bd5543c919b9ff8ad36a25 = L.marker(
+                [41.78, -87.6],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_d87871a17e26791256c897c0d45e59a4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_15562a40520f379352379621628bb320 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1643d8ea6138b1d71d1c351aefa82b86 = $(`<div id="html_1643d8ea6138b1d71d1c351aefa82b86" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Woodlawn</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $40,109</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 24,967</p>         </div>         </div>`)[0];
+                popup_15562a40520f379352379621628bb320.setContent(html_1643d8ea6138b1d71d1c351aefa82b86);
+            
+        
+
+        marker_42d5f22cd1bd5543c919b9ff8ad36a25.bindPopup(popup_15562a40520f379352379621628bb320)
+        ;
+
+        
+    
+    
+                marker_42d5f22cd1bd5543c919b9ff8ad36a25.setIcon(icon_d87871a17e26791256c897c0d45e59a4);
+            
+    
+            var marker_1d6c6ca15772e5c0281a366c24cadd03 = L.marker(
+                [41.76, -87.58],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_95fec07c949d2ab1bce5e2e60fc0f290 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_26f5902cb81fbab511c145a16aa20396 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3b95671c6065d7de1db2983736d09b84 = $(`<div id="html_3b95671c6065d7de1db2983736d09b84" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">South Shore</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $37,591</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 50,275</p>         </div>         </div>`)[0];
+                popup_26f5902cb81fbab511c145a16aa20396.setContent(html_3b95671c6065d7de1db2983736d09b84);
+            
+        
+
+        marker_1d6c6ca15772e5c0281a366c24cadd03.bindPopup(popup_26f5902cb81fbab511c145a16aa20396)
+        ;
+
+        
+    
+    
+                marker_1d6c6ca15772e5c0281a366c24cadd03.setIcon(icon_95fec07c949d2ab1bce5e2e60fc0f290);
+            
+    
+            var marker_2246cada8704390a3b0c7882b9960b76 = L.marker(
+                [41.75, -87.61],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_c0175b69456e310b6fdce0d8adfa849b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fbbca5ac2b3444b47e7da7571aed9c73 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_7097fb53e4f988843b4206d2afc074e8 = $(`<div id="html_7097fb53e4f988843b4206d2afc074e8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Chatham</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $44,007</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 31,363</p>         </div>         </div>`)[0];
+                popup_fbbca5ac2b3444b47e7da7571aed9c73.setContent(html_7097fb53e4f988843b4206d2afc074e8);
+            
+        
+
+        marker_2246cada8704390a3b0c7882b9960b76.bindPopup(popup_fbbca5ac2b3444b47e7da7571aed9c73)
+        ;
+
+        
+    
+    
+                marker_2246cada8704390a3b0c7882b9960b76.setIcon(icon_c0175b69456e310b6fdce0d8adfa849b);
+            
+    
+            var marker_eb54bb1da10963f98629d3a8e7db46b7 = L.marker(
+                [41.74, -87.59],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_452fceab9dae290ae29c43a9a52d46b2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_be8abdc512bc53d501aa20d663481ffb = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e9395f10231796bbe7dfe0e9cbc8abee = $(`<div id="html_e9395f10231796bbe7dfe0e9cbc8abee" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Avalon Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $52,359</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 9,629</p>         </div>         </div>`)[0];
+                popup_be8abdc512bc53d501aa20d663481ffb.setContent(html_e9395f10231796bbe7dfe0e9cbc8abee);
+            
+        
+
+        marker_eb54bb1da10963f98629d3a8e7db46b7.bindPopup(popup_be8abdc512bc53d501aa20d663481ffb)
+        ;
+
+        
+    
+    
+                marker_eb54bb1da10963f98629d3a8e7db46b7.setIcon(icon_452fceab9dae290ae29c43a9a52d46b2);
+            
+    
+            var marker_8793309d91c327ab4b607cba3ea6a264 = L.marker(
+                [41.74, -87.56],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_09787ea2898982ae069472c5f3a56c1b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bc6ce56d5b76f563e38d77105d5cc562 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_20aba038979d06255d797eedec6713ea = $(`<div id="html_20aba038979d06255d797eedec6713ea" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">South Chicago</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $42,557</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 29,977</p>         </div>         </div>`)[0];
+                popup_bc6ce56d5b76f563e38d77105d5cc562.setContent(html_20aba038979d06255d797eedec6713ea);
+            
+        
+
+        marker_8793309d91c327ab4b607cba3ea6a264.bindPopup(popup_bc6ce56d5b76f563e38d77105d5cc562)
+        ;
+
+        
+    
+    
+                marker_8793309d91c327ab4b607cba3ea6a264.setIcon(icon_09787ea2898982ae069472c5f3a56c1b);
+            
+    
+            var marker_62e381919beed13016179dcd6d7a170b = L.marker(
+                [41.73, -87.61],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_686a256134c1fe5ff964db6394719660 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9cd8df069dbece3afb96feeac3e5cfed = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4c0d37912ce693e1001d722cc15b14e5 = $(`<div id="html_4c0d37912ce693e1001d722cc15b14e5" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Burnside</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $48,211</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 2,180</p>         </div>         </div>`)[0];
+                popup_9cd8df069dbece3afb96feeac3e5cfed.setContent(html_4c0d37912ce693e1001d722cc15b14e5);
+            
+        
+
+        marker_62e381919beed13016179dcd6d7a170b.bindPopup(popup_9cd8df069dbece3afb96feeac3e5cfed)
+        ;
+
+        
+    
+    
+                marker_62e381919beed13016179dcd6d7a170b.setIcon(icon_686a256134c1fe5ff964db6394719660);
+            
+    
+            var marker_6c138e91b9cfcc7ccdfced380aededcc = L.marker(
+                [41.73, -87.59],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_7f8ccc331c0475f44fafe0615c88ff4a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_81f28246ba9347cde5526b5be350c147 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_1c8ea4ab7def240944dcdf61bfa84695 = $(`<div id="html_1c8ea4ab7def240944dcdf61bfa84695" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Calumet Heights</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $76,894</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 12,343</p>         </div>         </div>`)[0];
+                popup_81f28246ba9347cde5526b5be350c147.setContent(html_1c8ea4ab7def240944dcdf61bfa84695);
+            
+        
+
+        marker_6c138e91b9cfcc7ccdfced380aededcc.bindPopup(popup_81f28246ba9347cde5526b5be350c147)
+        ;
+
+        
+    
+    
+                marker_6c138e91b9cfcc7ccdfced380aededcc.setIcon(icon_7f8ccc331c0475f44fafe0615c88ff4a);
+            
+    
+            var marker_b51e86b39f09600d552bf6de95a55bad = L.marker(
+                [41.72, -87.63],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_182590080f676ce78eab359cba092acb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8fef6a5cb26568c2a476ef1a77001003 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_609554ae14158d3f3ec4e736564ab1e7 = $(`<div id="html_609554ae14158d3f3ec4e736564ab1e7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Roseland</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $45,725</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 39,623</p>         </div>         </div>`)[0];
+                popup_8fef6a5cb26568c2a476ef1a77001003.setContent(html_609554ae14158d3f3ec4e736564ab1e7);
+            
+        
+
+        marker_b51e86b39f09600d552bf6de95a55bad.bindPopup(popup_8fef6a5cb26568c2a476ef1a77001003)
+        ;
+
+        
+    
+    
+                marker_b51e86b39f09600d552bf6de95a55bad.setIcon(icon_182590080f676ce78eab359cba092acb);
+            
+    
+            var marker_e29384f67d911bd1632942979e33477d = L.marker(
+                [41.71, -87.61],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_cc17e88a882b47f85b49dd88307f2fb8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_72e6d6e80bbe3a78bed5bf54d27dd4be = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_81ec56bab0b395db2766fb815058aeaf = $(`<div id="html_81ec56bab0b395db2766fb815058aeaf" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Pullman</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $51,412</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 7,131</p>         </div>         </div>`)[0];
+                popup_72e6d6e80bbe3a78bed5bf54d27dd4be.setContent(html_81ec56bab0b395db2766fb815058aeaf);
+            
+        
+
+        marker_e29384f67d911bd1632942979e33477d.bindPopup(popup_72e6d6e80bbe3a78bed5bf54d27dd4be)
+        ;
+
+        
+    
+    
+                marker_e29384f67d911bd1632942979e33477d.setIcon(icon_cc17e88a882b47f85b49dd88307f2fb8);
+            
+    
+            var marker_ee8fa1bc5ca25fc7347d241b971582ce = L.marker(
+                [41.7, -87.57],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_52715f439d89db7df45d89cf7f7ddaf2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_64520316665566750689f902ec75af14 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_85929955fe53bfb63d0cfe879caf532f = $(`<div id="html_85929955fe53bfb63d0cfe879caf532f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">South Deering</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $34,168</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 15,144</p>         </div>         </div>`)[0];
+                popup_64520316665566750689f902ec75af14.setContent(html_85929955fe53bfb63d0cfe879caf532f);
+            
+        
+
+        marker_ee8fa1bc5ca25fc7347d241b971582ce.bindPopup(popup_64520316665566750689f902ec75af14)
+        ;
+
+        
+    
+    
+                marker_ee8fa1bc5ca25fc7347d241b971582ce.setIcon(icon_52715f439d89db7df45d89cf7f7ddaf2);
+            
+    
+            var marker_2f2ff83f05c389327312eafc92cd0cee = L.marker(
+                [41.71, -87.54],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_219ecf05c28d7f9f1e9b37d44d0c859a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8a3d0e9608171eaa2990f4d036cc728b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_15711b2edd6e035f0d0baf09e4e3d08d = $(`<div id="html_15711b2edd6e035f0d0baf09e4e3d08d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">East Side</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $56,618</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 22,999</p>         </div>         </div>`)[0];
+                popup_8a3d0e9608171eaa2990f4d036cc728b.setContent(html_15711b2edd6e035f0d0baf09e4e3d08d);
+            
+        
+
+        marker_2f2ff83f05c389327312eafc92cd0cee.bindPopup(popup_8a3d0e9608171eaa2990f4d036cc728b)
+        ;
+
+        
+    
+    
+                marker_2f2ff83f05c389327312eafc92cd0cee.setIcon(icon_219ecf05c28d7f9f1e9b37d44d0c859a);
+            
+    
+            var marker_96c035db5baaf097146fb670b99b21b3 = L.marker(
+                [41.69, -87.67],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_1512735bb4100e43f01064c3323cfa86 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_76540757b4ff274ef95131e170463d50 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9188a62b8ff9ac32667d587b0478afe8 = $(`<div id="html_9188a62b8ff9ac32667d587b0478afe8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">West Pullman</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,107</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 26,484</p>         </div>         </div>`)[0];
+                popup_76540757b4ff274ef95131e170463d50.setContent(html_9188a62b8ff9ac32667d587b0478afe8);
+            
+        
+
+        marker_96c035db5baaf097146fb670b99b21b3.bindPopup(popup_76540757b4ff274ef95131e170463d50)
+        ;
+
+        
+    
+    
+                marker_96c035db5baaf097146fb670b99b21b3.setIcon(icon_1512735bb4100e43f01064c3323cfa86);
+            
+    
+            var marker_7ca14992f7294c16dac668b0db2d8839 = L.marker(
+                [41.69, -87.63],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_ea2f5c2662b7dda76156a0f51f7d3c98 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_12aad5b34b81506b61f01abeace9fac8 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_81526ea3a45d85c926b2da79cc13cd83 = $(`<div id="html_81526ea3a45d85c926b2da79cc13cd83" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Riverdale</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $19,627</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 7,414</p>         </div>         </div>`)[0];
+                popup_12aad5b34b81506b61f01abeace9fac8.setContent(html_81526ea3a45d85c926b2da79cc13cd83);
+            
+        
+
+        marker_7ca14992f7294c16dac668b0db2d8839.bindPopup(popup_12aad5b34b81506b61f01abeace9fac8)
+        ;
+
+        
+    
+    
+                marker_7ca14992f7294c16dac668b0db2d8839.setIcon(icon_ea2f5c2662b7dda76156a0f51f7d3c98);
+            
+    
+            var marker_4681f51069aed7e771f6a1265d4db161 = L.marker(
+                [41.66, -87.55],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_1f58ec8dd8f81917b5b56574313ab814 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_09ced32e6daa7af538d86e3bfe96fa78 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a3825084059cf77642ca7782a0a3dfa7 = $(`<div id="html_a3825084059cf77642ca7782a0a3dfa7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Hegewisch</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,545</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 9,175</p>         </div>         </div>`)[0];
+                popup_09ced32e6daa7af538d86e3bfe96fa78.setContent(html_a3825084059cf77642ca7782a0a3dfa7);
+            
+        
+
+        marker_4681f51069aed7e771f6a1265d4db161.bindPopup(popup_09ced32e6daa7af538d86e3bfe96fa78)
+        ;
+
+        
+    
+    
+                marker_4681f51069aed7e771f6a1265d4db161.setIcon(icon_1f58ec8dd8f81917b5b56574313ab814);
+            
+    
+            var marker_f15f37af5e0d77660eb5f4ba242d8a09 = L.marker(
+                [41.79, -87.77],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_0d97c423d782fb98c886eb24f8464264 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_67a00813eb12e8fd85eb9d5662cae454 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_37e7a153ac8ec3ab2737197b3eda3324 = $(`<div id="html_37e7a153ac8ec3ab2737197b3eda3324" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Garfield Ridge</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $83,297</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 36,049</p>         </div>         </div>`)[0];
+                popup_67a00813eb12e8fd85eb9d5662cae454.setContent(html_37e7a153ac8ec3ab2737197b3eda3324);
+            
+        
+
+        marker_f15f37af5e0d77660eb5f4ba242d8a09.bindPopup(popup_67a00813eb12e8fd85eb9d5662cae454)
+        ;
+
+        
+    
+    
+                marker_f15f37af5e0d77660eb5f4ba242d8a09.setIcon(icon_0d97c423d782fb98c886eb24f8464264);
+            
+    
+            var marker_7522dd2da8e7cf71a369cdd131395b3e = L.marker(
+                [41.81, -87.73],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_d367130dbe8a824adf74366abb16de08 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_770188a04520f6effbc04e339e42881f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_96cf1058a08f8246b07d14ba2bf204df = $(`<div id="html_96cf1058a08f8246b07d14ba2bf204df" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Archer Heights</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,912</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 13,533</p>         </div>         </div>`)[0];
+                popup_770188a04520f6effbc04e339e42881f.setContent(html_96cf1058a08f8246b07d14ba2bf204df);
+            
+        
+
+        marker_7522dd2da8e7cf71a369cdd131395b3e.bindPopup(popup_770188a04520f6effbc04e339e42881f)
+        ;
+
+        
+    
+    
+                marker_7522dd2da8e7cf71a369cdd131395b3e.setIcon(icon_d367130dbe8a824adf74366abb16de08);
+            
+    
+            var marker_81bed05905da6639d93bde054b0622f7 = L.marker(
+                [41.82, -87.69],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_d1f60e5f335704fe62746f61ed9c27eb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7aeaae8933e3f03a5d15d10ba4890a3b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_75bb5c5a3b9237fd8287ff86b1edeb96 = $(`<div id="html_75bb5c5a3b9237fd8287ff86b1edeb96" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Brighton Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $49,827</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 42,728</p>         </div>         </div>`)[0];
+                popup_7aeaae8933e3f03a5d15d10ba4890a3b.setContent(html_75bb5c5a3b9237fd8287ff86b1edeb96);
+            
+        
+
+        marker_81bed05905da6639d93bde054b0622f7.bindPopup(popup_7aeaae8933e3f03a5d15d10ba4890a3b)
+        ;
+
+        
+    
+    
+                marker_81bed05905da6639d93bde054b0622f7.setIcon(icon_d1f60e5f335704fe62746f61ed9c27eb);
+            
+    
+            var marker_60dc070aa94eea529926a7e5f75283f8 = L.marker(
+                [41.83, -87.67],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_f569901e54cea26ef4b2c1b90e243117 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c5b800c9c43e7516f0036d8d1dc20288 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_f09f4a639ae5a8c4dca159a1b48ca70a = $(`<div id="html_f09f4a639ae5a8c4dca159a1b48ca70a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">McKinley Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $62,355</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 15,246</p>         </div>         </div>`)[0];
+                popup_c5b800c9c43e7516f0036d8d1dc20288.setContent(html_f09f4a639ae5a8c4dca159a1b48ca70a);
+            
+        
+
+        marker_60dc070aa94eea529926a7e5f75283f8.bindPopup(popup_c5b800c9c43e7516f0036d8d1dc20288)
+        ;
+
+        
+    
+    
+                marker_60dc070aa94eea529926a7e5f75283f8.setIcon(icon_f569901e54cea26ef4b2c1b90e243117);
+            
+    
+            var marker_2a6ca55c264de5a8921f9e9cc1f3c06c = L.marker(
+                [41.83, -87.64],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_dc9b6430da8fcc9ab7bd031b6e4e189c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_22acc242e7ccbe9068cf9a6ac98f597a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b57c0d61ccb14b6ceea023c41910e811 = $(`<div id="html_b57c0d61ccb14b6ceea023c41910e811" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Bridgeport</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $61,574</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 32,901</p>         </div>         </div>`)[0];
+                popup_22acc242e7ccbe9068cf9a6ac98f597a.setContent(html_b57c0d61ccb14b6ceea023c41910e811);
+            
+        
+
+        marker_2a6ca55c264de5a8921f9e9cc1f3c06c.bindPopup(popup_22acc242e7ccbe9068cf9a6ac98f597a)
+        ;
+
+        
+    
+    
+                marker_2a6ca55c264de5a8921f9e9cc1f3c06c.setIcon(icon_dc9b6430da8fcc9ab7bd031b6e4e189c);
+            
+    
+            var marker_67a5c7152023cf80f4f8d8e4f4be1c0e = L.marker(
+                [41.81, -87.66],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_f2bad442627b1b1e5f93fa41c03431e2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a006454fb4b4f62cd4cd45b86ef892d4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_5c2e9225be0997f07e9dcec21107d218 = $(`<div id="html_5c2e9225be0997f07e9dcec21107d218" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">New City</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $41,289</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 39,055</p>         </div>         </div>`)[0];
+                popup_a006454fb4b4f62cd4cd45b86ef892d4.setContent(html_5c2e9225be0997f07e9dcec21107d218);
+            
+        
+
+        marker_67a5c7152023cf80f4f8d8e4f4be1c0e.bindPopup(popup_a006454fb4b4f62cd4cd45b86ef892d4)
+        ;
+
+        
+    
+    
+                marker_67a5c7152023cf80f4f8d8e4f4be1c0e.setIcon(icon_f2bad442627b1b1e5f93fa41c03431e2);
+            
+    
+            var marker_8f3f756378c6853e776e0eaab51e509e = L.marker(
+                [41.79, -87.71],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_85c03bc658cd27ced44842db5528d238 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_49bdb49f85d57751bed9d83042a12eb0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_e10e4d50f47c1117cb5c5b2efce1f147 = $(`<div id="html_e10e4d50f47c1117cb5c5b2efce1f147" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">West Elsdon</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $63,829</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 18,523</p>         </div>         </div>`)[0];
+                popup_49bdb49f85d57751bed9d83042a12eb0.setContent(html_e10e4d50f47c1117cb5c5b2efce1f147);
+            
+        
+
+        marker_8f3f756378c6853e776e0eaab51e509e.bindPopup(popup_49bdb49f85d57751bed9d83042a12eb0)
+        ;
+
+        
+    
+    
+                marker_8f3f756378c6853e776e0eaab51e509e.setIcon(icon_85c03bc658cd27ced44842db5528d238);
+            
+    
+            var marker_b90b1ec76050bcb1ed7e20c49efd52e3 = L.marker(
+                [41.78, -87.69],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_f43dfe2cfabb3e9da491edd974ec5536 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7ed1388878f85d45b82a3689b66dd2e5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0f985acfa3ec5277abd47d6abf81b73a = $(`<div id="html_0f985acfa3ec5277abd47d6abf81b73a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Gage Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $46,029</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 35,300</p>         </div>         </div>`)[0];
+                popup_7ed1388878f85d45b82a3689b66dd2e5.setContent(html_0f985acfa3ec5277abd47d6abf81b73a);
+            
+        
+
+        marker_b90b1ec76050bcb1ed7e20c49efd52e3.bindPopup(popup_7ed1388878f85d45b82a3689b66dd2e5)
+        ;
+
+        
+    
+    
+                marker_b90b1ec76050bcb1ed7e20c49efd52e3.setIcon(icon_f43dfe2cfabb3e9da491edd974ec5536);
+            
+    
+            var marker_bae4582b2c147429926c95f89a57a35e = L.marker(
+                [41.78, -87.76],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_e075c29df202f2fc1504a20ad81d629d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2d2ef2b2e1563e4892c4053d0a6c187c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_d4aa48c0d3c81d33d07617d7c8219342 = $(`<div id="html_d4aa48c0d3c81d33d07617d7c8219342" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Clearing</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $58,021</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 24,382</p>         </div>         </div>`)[0];
+                popup_2d2ef2b2e1563e4892c4053d0a6c187c.setContent(html_d4aa48c0d3c81d33d07617d7c8219342);
+            
+        
+
+        marker_bae4582b2c147429926c95f89a57a35e.bindPopup(popup_2d2ef2b2e1563e4892c4053d0a6c187c)
+        ;
+
+        
+    
+    
+                marker_bae4582b2c147429926c95f89a57a35e.setIcon(icon_e075c29df202f2fc1504a20ad81d629d);
+            
+    
+            var marker_226b9c0960c3205bb2fc280d4038e8a8 = L.marker(
+                [41.77, -87.72],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_0382e6771b592255a5dd983488526ac8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_83ddd25e033cc95f88516161c1714d23 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_c7156fc1753e7291415b61bafeb9692d = $(`<div id="html_c7156fc1753e7291415b61bafeb9692d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">West Lawn</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $60,321</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 32,162</p>         </div>         </div>`)[0];
+                popup_83ddd25e033cc95f88516161c1714d23.setContent(html_c7156fc1753e7291415b61bafeb9692d);
+            
+        
+
+        marker_226b9c0960c3205bb2fc280d4038e8a8.bindPopup(popup_83ddd25e033cc95f88516161c1714d23)
+        ;
+
+        
+    
+    
+                marker_226b9c0960c3205bb2fc280d4038e8a8.setIcon(icon_0382e6771b592255a5dd983488526ac8);
+            
+    
+            var marker_94b358f0d7a14b3a51076520463df289 = L.marker(
+                [41.76, -87.69],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_47b1d97450666360749afc08b2de4eb3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_47ffd1382ae0410e11e03c614cc2ae13 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_388067ab6b09be63e23013019cda5707 = $(`<div id="html_388067ab6b09be63e23013019cda5707" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Chicago Lawn</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $42,320</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 51,243</p>         </div>         </div>`)[0];
+                popup_47ffd1382ae0410e11e03c614cc2ae13.setContent(html_388067ab6b09be63e23013019cda5707);
+            
+        
+
+        marker_94b358f0d7a14b3a51076520463df289.bindPopup(popup_47ffd1382ae0410e11e03c614cc2ae13)
+        ;
+
+        
+    
+    
+                marker_94b358f0d7a14b3a51076520463df289.setIcon(icon_47b1d97450666360749afc08b2de4eb3);
+            
+    
+            var marker_08d77d118dc46880aad96c4e700114ef = L.marker(
+                [41.75, -87.67],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_9d70da8d324f165ec39747e528ac02a2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_05e947fd81727e1f1b8dae894267f4e9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0efd5cbf17a958d7bba6c6ca9537a145 = $(`<div id="html_0efd5cbf17a958d7bba6c6ca9537a145" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">West Englewood</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $31,716</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 26,158</p>         </div>         </div>`)[0];
+                popup_05e947fd81727e1f1b8dae894267f4e9.setContent(html_0efd5cbf17a958d7bba6c6ca9537a145);
+            
+        
+
+        marker_08d77d118dc46880aad96c4e700114ef.bindPopup(popup_05e947fd81727e1f1b8dae894267f4e9)
+        ;
+
+        
+    
+    
+                marker_08d77d118dc46880aad96c4e700114ef.setIcon(icon_9d70da8d324f165ec39747e528ac02a2);
+            
+    
+            var marker_6786bca3912d30b3b419d8632172c3c6 = L.marker(
+                [41.78, -87.65],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_7155f729dc884d067c47d3b16927f60e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2ace43b49426daf2f27f2098b67b7ccd = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_8e7f8f0f74507066b2ad80e7f8498c8c = $(`<div id="html_8e7f8f0f74507066b2ad80e7f8498c8c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Englewood</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $24,655</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 22,019</p>         </div>         </div>`)[0];
+                popup_2ace43b49426daf2f27f2098b67b7ccd.setContent(html_8e7f8f0f74507066b2ad80e7f8498c8c);
+            
+        
+
+        marker_6786bca3912d30b3b419d8632172c3c6.bindPopup(popup_2ace43b49426daf2f27f2098b67b7ccd)
+        ;
+
+        
+    
+    
+                marker_6786bca3912d30b3b419d8632172c3c6.setIcon(icon_7155f729dc884d067c47d3b16927f60e);
+            
+    
+            var marker_fab0378382ac6dd0ff98e3b3adb693e6 = L.marker(
+                [41.77, -87.61],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_a4b193c011a414d4409c653342ef961e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_824d02ce334c5eb6fced1da2907f7460 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ba16f0384a75d753d8327031f8260b39 = $(`<div id="html_ba16f0384a75d753d8327031f8260b39" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Greater Grand Crossing</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $34,426</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 29,429</p>         </div>         </div>`)[0];
+                popup_824d02ce334c5eb6fced1da2907f7460.setContent(html_ba16f0384a75d753d8327031f8260b39);
+            
+        
+
+        marker_fab0378382ac6dd0ff98e3b3adb693e6.bindPopup(popup_824d02ce334c5eb6fced1da2907f7460)
+        ;
+
+        
+    
+    
+                marker_fab0378382ac6dd0ff98e3b3adb693e6.setIcon(icon_a4b193c011a414d4409c653342ef961e);
+            
+    
+            var marker_e6730cc26f0751b1789ef6651f9854af = L.marker(
+                [41.75, -87.71],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_53be26b564e4170d3fe8625cc4a0666e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8f1cfecd661d225e9beca6d0a166e271 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ed7fa980f54a18f031d2a3c58a66c669 = $(`<div id="html_ed7fa980f54a18f031d2a3c58a66c669" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Ashburn</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $74,204</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 42,902</p>         </div>         </div>`)[0];
+                popup_8f1cfecd661d225e9beca6d0a166e271.setContent(html_ed7fa980f54a18f031d2a3c58a66c669);
+            
+        
+
+        marker_e6730cc26f0751b1789ef6651f9854af.bindPopup(popup_8f1cfecd661d225e9beca6d0a166e271)
+        ;
+
+        
+    
+    
+                marker_e6730cc26f0751b1789ef6651f9854af.setIcon(icon_53be26b564e4170d3fe8625cc4a0666e);
+            
+    
+            var marker_edbf2afe34c9fd4136753d4a068557cc = L.marker(
+                [41.74, -87.66],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_f38963f618d7e2c464ec0c4d9707ba2e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e58176178e8942be70b8799ecd6a0bc0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_eb4879815974723ccfb27a46f11ae5a9 = $(`<div id="html_eb4879815974723ccfb27a46f11ae5a9" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Auburn Gresham</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $45,821</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 46,698</p>         </div>         </div>`)[0];
+                popup_e58176178e8942be70b8799ecd6a0bc0.setContent(html_eb4879815974723ccfb27a46f11ae5a9);
+            
+        
+
+        marker_edbf2afe34c9fd4136753d4a068557cc.bindPopup(popup_e58176178e8942be70b8799ecd6a0bc0)
+        ;
+
+        
+    
+    
+                marker_edbf2afe34c9fd4136753d4a068557cc.setIcon(icon_f38963f618d7e2c464ec0c4d9707ba2e);
+            
+    
+            var marker_6b29baba3e2fbb7093409468c49c0034 = L.marker(
+                [41.72, -87.67],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_b0c7ef98b7501e08a367ee2827ddcc72 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_293f97c3e18371e27278a3489889a4fe = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_0765061fda3788431998b6634c9cd7b1 = $(`<div id="html_0765061fda3788431998b6634c9cd7b1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Beverly</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $115,591</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 19,817</p>         </div>         </div>`)[0];
+                popup_293f97c3e18371e27278a3489889a4fe.setContent(html_0765061fda3788431998b6634c9cd7b1);
+            
+        
+
+        marker_6b29baba3e2fbb7093409468c49c0034.bindPopup(popup_293f97c3e18371e27278a3489889a4fe)
+        ;
+
+        
+    
+    
+                marker_6b29baba3e2fbb7093409468c49c0034.setIcon(icon_b0c7ef98b7501e08a367ee2827ddcc72);
+            
+    
+            var marker_685e560c2310828bf6e2609c2c6c490b = L.marker(
+                [41.71, -87.65],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_0aab26873a3d6a30426c2df41eb6ce91 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0fd4e146c862888b6092b948109a3b2a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9bc248c5e6a7a1cb8f73e2f037651d73 = $(`<div id="html_9bc248c5e6a7a1cb8f73e2f037651d73" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Washington Heights</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $55,516</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 26,940</p>         </div>         </div>`)[0];
+                popup_0fd4e146c862888b6092b948109a3b2a.setContent(html_9bc248c5e6a7a1cb8f73e2f037651d73);
+            
+        
+
+        marker_685e560c2310828bf6e2609c2c6c490b.bindPopup(popup_0fd4e146c862888b6092b948109a3b2a)
+        ;
+
+        
+    
+    
+                marker_685e560c2310828bf6e2609c2c6c490b.setIcon(icon_0aab26873a3d6a30426c2df41eb6ce91);
+            
+    
+            var marker_d504a5aef75a8b59f270fdc105e9639d = L.marker(
+                [41.7, -87.67],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_f0534c0a3c1e6c58f848c8bf4095aba8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_92b124aec67fa7c7bea2b68cdf05b670 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3006fb42ac903036326a290f3926b4e7 = $(`<div id="html_3006fb42ac903036326a290f3926b4e7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Mount Greenwood</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $105,213</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 18,840</p>         </div>         </div>`)[0];
+                popup_92b124aec67fa7c7bea2b68cdf05b670.setContent(html_3006fb42ac903036326a290f3926b4e7);
+            
+        
+
+        marker_d504a5aef75a8b59f270fdc105e9639d.bindPopup(popup_92b124aec67fa7c7bea2b68cdf05b670)
+        ;
+
+        
+    
+    
+                marker_d504a5aef75a8b59f270fdc105e9639d.setIcon(icon_f0534c0a3c1e6c58f848c8bf4095aba8);
+            
+    
+            var marker_e4a7861672f35a8b7542705034dec78d = L.marker(
+                [41.69, -87.66],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_1235cda4fd7d37fe18b9a5d4b3f5255e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_307c229f83c94fb286e9e8bec1e49861 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_000c3c733a9112d18c2d23eaf31bee29 = $(`<div id="html_000c3c733a9112d18c2d23eaf31bee29" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Morgan Park</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $70,324</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 20,526</p>         </div>         </div>`)[0];
+                popup_307c229f83c94fb286e9e8bec1e49861.setContent(html_000c3c733a9112d18c2d23eaf31bee29);
+            
+        
+
+        marker_e4a7861672f35a8b7542705034dec78d.bindPopup(popup_307c229f83c94fb286e9e8bec1e49861)
+        ;
+
+        
+    
+    
+                marker_e4a7861672f35a8b7542705034dec78d.setIcon(icon_1235cda4fd7d37fe18b9a5d4b3f5255e);
+            
+    
+            var marker_3ed6f4d2e3464df3e31a29e38052bb50 = L.marker(
+                [41.98, -87.9],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_0ec1dcf1893da9a8613a6eaa9b74d445 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_628a21db199e06cf03696c71ff7320f4 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a96df4df1593103d8585fdbf55a6ce5b = $(`<div id="html_a96df4df1593103d8585fdbf55a6ce5b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">O'Hare</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $58,108</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 13,285</p>         </div>         </div>`)[0];
+                popup_628a21db199e06cf03696c71ff7320f4.setContent(html_a96df4df1593103d8585fdbf55a6ce5b);
+            
+        
+
+        marker_3ed6f4d2e3464df3e31a29e38052bb50.bindPopup(popup_628a21db199e06cf03696c71ff7320f4)
+        ;
+
+        
+    
+    
+                marker_3ed6f4d2e3464df3e31a29e38052bb50.setIcon(icon_0ec1dcf1893da9a8613a6eaa9b74d445);
+            
+    
+            var marker_b7ca01f5e53ffdcb0f3b1598e88546b2 = L.marker(
+                [42.0, -87.66],
+                {
+}
+            ).addTo(map_83e99c8e8f0e13e7f14e2932332b388c);
+        
+    
+            var icon_a22d67782e70865af0a598c6922baaee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d3150169ea82543a5ef6af08a4922ac1 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_64ca2d4e76c8652b9ab87795bd3a6a55 = $(`<div id="html_64ca2d4e76c8652b9ab87795bd3a6a55" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; width: 200px;">             <h4 style="margin: 0;">Edgewater</h4>             <hr style="margin: 5px 0;">             <p style="margin: 3px 0;"><strong>Median Income:</strong> $64,814</p>             <p style="margin: 3px 0;"><strong>Population:</strong> 58,693</p>         </div>         </div>`)[0];
+                popup_d3150169ea82543a5ef6af08a4922ac1.setContent(html_64ca2d4e76c8652b9ab87795bd3a6a55);
+            
+        
+
+        marker_b7ca01f5e53ffdcb0f3b1598e88546b2.bindPopup(popup_d3150169ea82543a5ef6af08a4922ac1)
+        ;
+
+        
+    
+    
+                marker_b7ca01f5e53ffdcb0f3b1598e88546b2.setIcon(icon_a22d67782e70865af0a598c6922baaee);
+            
+</script>
+</html>
